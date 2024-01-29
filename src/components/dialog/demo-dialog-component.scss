@@ -1,0 +1,22 @@
+[part="container"] {
+  block-size: 480px;
+  aspect-ratio: var(--ratio-widescreen);
+  padding: 0;
+  overflow: visible;
+  background-color: var(--color-12);
+}
+
+[part="close-btn"] {
+  position: absolute;
+  top: calc(var(--size-3) * -1);
+  right: 0;
+
+  /* video-js error screen is z-index=1 and the button is not easily clickable */
+  z-index: 2;
+  width: var(--size-7);
+  height: var(--size-7);
+  font-size: var(--size-4);
+  text-align: center;
+  background: var(--gray-6);
+  border-radius: var(--radius-round);
+}

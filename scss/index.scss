@@ -1,0 +1,54 @@
+@import "open-props/open-props.min.css";
+@import 'material-icons/iconfont/material-icons.css';
+@import 'video.js/dist/video-js.css';
+
+$material-icons-font-path: '../node_modules/material-icons/iconfont/';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+
+  --color-1: var(--gray-1);
+  --color-2: var(--gray-2);
+  --color-3: var(--gray-3);
+  --color-4: var(--gray-4);
+  --color-5: var(--gray-5);
+  --color-6: var(--gray-6);
+  --color-7: var(--gray-7);
+  --color-8: var(--gray-8);
+  --color-9: var(--gray-9);
+  --color-10: var(--gray-10);
+  --color-11: var(--gray-11);
+  --color-12: var(--gray-12);
+
+  @media (prefers-color-scheme: light) {
+    --color-1: var(--gray-12);
+    --color-2: var(--gray-11);
+    --color-3: var(--gray-10);
+    --color-4: var(--gray-9);
+    --color-5: var(--gray-8);
+    --color-6: var(--gray-7);
+    --color-7: var(--gray-6);
+    --color-8: var(--gray-5);
+    --color-9: var(--gray-4);
+    --color-10: var(--gray-3);
+    --color-11: var(--gray-2);
+    --color-12: var(--gray-1);
+  }
+}
+
+body {
+  max-width: var(--size-md);
+  margin: 0 auto;
+  padding: 0 var(--size-2);
+  color: var(--color-4);
+  font-size: var(--size-5);
+  font-family: var(--font-sans);
+  background-color: var(--color-11);
+}
+
