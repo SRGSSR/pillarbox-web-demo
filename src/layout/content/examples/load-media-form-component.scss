@@ -1,0 +1,61 @@
+
+.load-bar-container {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--size-3);
+  background-color: var(--color-8);
+  border-radius: var(--radius-2);
+
+  input {
+    width: 90%;
+  }
+
+  button {
+    background-color: var(--color-8);
+    border: 0;
+  }
+}
+
+.drm-settings-container {
+  display: none;
+
+  input {
+    border-radius: var(--radius-2);
+  }
+
+  select {
+    border-right: var(--size-5) solid var(--color-8);
+  }
+
+  &.active {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.load-bar-action {
+  width: 100%;
+}
+
+
+.fade-in-grow {
+  opacity: 0;
+  animation: fade-in .4s var(--ease-elastic-in-3) forwards,
+  grow .4s ease;
+}
+
+.shrink {
+  opacity: 0;
+  animation: grow .4s ease;
+  animation-direction: reverse;
+}
+
+@keyframes grow {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: var(--size-15);
+  }
+}

@@ -1,0 +1,94 @@
+ul, li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  display: inline-block;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: var(--size-4) 0;
+
+  h1 {
+    display: flex;
+    gap: .15em;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.pbw-logo {
+  height: var(--size-7);
+}
+
+.version-txt {
+  align-self: flex-end;
+  color: var(--color-6);
+  font-weight: var(--font-weight-4);
+  font-size: var(--size-3);
+  line-height: var(--size-5);
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+}
+
+.github-icon {
+  fill: var(--color-5);
+
+  &:hover {
+    fill: var(--color-2);
+  }
+}
+
+route-link::part(a) {
+  padding: var(--size-1) var(--size-1);
+  font-size: var(--size-4);
+  border-radius: var(--radius-3);
+  transition: background-color 0.4s, color 0.4s;
+}
+
+route-link::part(a active) {
+  color: var(--color-8);
+  text-decoration: none;
+  background-color: var(--color-5);
+  cursor: default;
+  transition: background-color 0.8s, color 0.4s;
+}
+
+.header-end {
+  display: flex;
+  align-items: center;
+
+  route-link {
+    margin-left: var(--size-2);
+  }
+
+  route-link::part(a) {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .material-icons-outlined {
+    font-size: var(--size-7);
+  }
+}
+
+nav ul {
+  margin-bottom: var(--size-4);
+
+  li {
+    margin-right: var(--size-1);
+  }
+
+  li:last-child {
+    margin: 0;
+  }
+}
