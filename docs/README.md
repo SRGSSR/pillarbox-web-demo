@@ -18,6 +18,16 @@ To run this demo, you need to have the following installed on your system:
 
 To run this demo locally, follow these steps:
 
+Add the `@srgssr` registry in your `.npmrc` file:
+
+```text
+//npm.pkg.github.com/:_authToken=TOKEN
+@srgssr:registry=https://npm.pkg.github.com
+```
+
+To generate an authentication token follow this
+guide: [Authenticating with a personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
+
 Clone this repository:
 ```shell
 git clone https://github.com/SRGSSR/pillarbox-web-demo.git`
@@ -33,7 +43,7 @@ Start the development server:
 npm run start
 ```
 
-4. Open your browser and go to `http://localhost:9696`
+Open your browser and go to `http://localhost:9696`
 
 You should see a web page with a video player that uses `pillarbox-web`. You can play around with
 the player settings and see how they affect the player behavior and appearance.

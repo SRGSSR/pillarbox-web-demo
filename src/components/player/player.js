@@ -4,10 +4,10 @@
  * @module
  */
 import '../dialog/demo-dialog-component';
-// import '../../../../src/middleware/srgssr.js';
-import PreferencesProvider from '../../layout/content/settings/preferences-provider';
+import PreferencesProvider
+  from '../../layout/content/settings/preferences-provider';
 import router from '../../router/router';
-import Pillarbox from 'video.js';
+import Pillarbox from '@srgssr/pillarbox-web';
 
 const DEMO_PLAYER_ID = 'player';
 const DEFAULT_OPTIONS = {
