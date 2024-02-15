@@ -1,26 +1,10 @@
-import { css, html, LitElement } from 'lit';
+import { html, LitElement, unsafeCSS } from 'lit';
 import '../../../components/code-block/code-block';
 import { theme } from '../../../theme/theme';
+import showcaseComponentCss from './showcase-component.scss?inline';
 
 export class ShowcaseComponent extends LitElement {
-  static styles = [theme, css`
-    ::slotted([slot='demo']) {
-      aspect-ratio: var(--ratio-widescreen);
-    }
-
-    ::slotted([slot='description']) {
-      padding-left: var(--size-2);
-      color: var(--color-4);
-      font-weight: var(--font-weight-1);
-      font-size: var(--font-size-1);
-      text-align: justify;
-      border-left: 3px solid var(--color-5);
-    }
-
-    .hidden {
-      display: none;
-    }
-  `];
+  static styles = [theme, unsafeCSS(showcaseComponentCss)];
 
   static properties = {
     hasCodeExample: { type: Boolean, state: true },

@@ -1,4 +1,7 @@
 import { defineConfig } from 'vite';
+import { glob } from 'glob';
+
+const showcases = glob.sync('./static/**/*.html');
 
 /**
  * Vite configuration file.
@@ -8,6 +11,9 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   base: './',
   build: {
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      input: ['./index.html', ...showcases]
+    }
   }
 });

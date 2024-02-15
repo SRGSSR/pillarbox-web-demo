@@ -1,0 +1,16 @@
+::slotted([slot='demo']) {
+  aspect-ratio: var(--ratio-widescreen);
+}
+
+::slotted([slot='description']) {
+  padding-left: var(--size-2);
+  color: var(--color-4);
+  font-weight: var(--font-weight-3);
+  font-size: var(--font-size-1);
+  text-align: justify;
+  border-left: 3px solid var(--color-5);
+}
+
+.hidden {
+  display: none;
+}
