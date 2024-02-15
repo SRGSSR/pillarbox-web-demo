@@ -25,6 +25,7 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.1.1",
+    "glob": "^10.3.10",
     "husky": "^9.0.6",
     "postcss-lit": "^1.1.1",
     "sass": "^1.70.0",

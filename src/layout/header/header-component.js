@@ -1,6 +1,5 @@
 import githubLogoSvg from '../../../img/github-logo.svg?raw';
 import srgssrLogo from '../../../img/srgssr-logo.png';
-// import Pillarbox from '../../../../src/pillarbox';
 import { html, LitElement, unsafeCSS } from 'lit';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import '../../router/route-link-component';
@@ -50,7 +49,6 @@ export class DemoHeaderElement extends LitElement {
         <h1>
           <img class="pbw-logo" src="${srgssrLogo}"/>
           <span>Pillarbox</span>
-          <!--<span class="version-txt">{Pillarbox.VERSION.pillarbox}</span>-->
         </h1>
         <div class="header-end">
           <a href="https://github.com/srgssr/pillarbox-web" class="github-link"
