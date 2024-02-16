@@ -1,0 +1,18 @@
+import pillarbox from '@srgssr/pillarbox-web';
+
+// Initialize the Main Player
+const mainPlayer = pillarbox('main-player', { fill: true, debug: true });
+mainPlayer.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
+
+// Initialize the Second Player
+const secondPlayer = pillarbox('second-player', { fill: true, muted: true, debug: true });
+// Tracking is disabled for this source, only one source can be tracked at a time.
+secondPlayer.src({ src: 'urn:rts:video:6735513', type: 'srgssr/urn', disableTrackers: true });
+
+// Add an event listener to a button with the id 'toggle-player'
+document.querySelector('#toggle-player').addEventListener('click', () => {
+  // Toggle the mute state for both mainPlayer and secondPlayer
+  pillarbox.getAllPlayers().forEach(player => {
+    player.muted(!player.muted());
+  });
+});

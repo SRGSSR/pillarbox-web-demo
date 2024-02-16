@@ -6,35 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pillarbox Demo - Start Time Showcase</title>
   <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="../../scss/index.scss"/>
-  <link rel="stylesheet" href="../../src/theme/theme.scss"/>
-  <style>
-    .showcase-content {
-      border: 1px solid var(--color-7);
-      border-radius: var(--radius-3);
-      padding: 0;
-      margin-top: var(--size-8);
-    }
-
-    .video-container {
-      width: 100%;
-      height: auto;
-      aspect-ratio: var(--ratio-widescreen);
-      padding: 0;
-    }
-
-    h2 {
-      padding-left: var(--size-2);
-    }
-
-    #close-btn {
-      width: 100%;
-      padding: var(--size-4) var(--size-3);
-      border: 0;
-      border-radius: 0 0 var(--radius-3) var(--radius-3);
-    }
-  </style>
-  <!-- End Single Page Apps for GitHub Pages -->
+  <link rel="stylesheet" href="./static-showcase.scss"/>
 </head>
 
 <body>
@@ -44,7 +16,7 @@
     <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
   </div>
 
-  <button id="close-btn">Close this window</button>
+  <button class="showcase-btn" id="close-btn">Close this window</button>
 </div>
 
 <script type="module">
@@ -63,10 +35,14 @@
   });
 </script>
 
-<script>
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+
   document.querySelector('#close-btn').addEventListener('click', () => {
     window.close();
   });
+
+  window.pillarbox = pillarbox;
 </script>
 
 </body>
