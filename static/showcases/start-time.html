@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox - Demo Page</title>
+  <link rel="icon" type="image/x-icon" href="../../assets/favicon-BQGqil3k.ico">
+  <style>
+    .showcase-content {
+      border: 1px solid var(--color-7);
+      border-radius: var(--radius-3);
+      padding: 0;
+      margin-top: var(--size-8);
+    }
+
+    .video-container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: var(--ratio-widescreen);
+      padding: 0;
+    }
+
+    h2{
+      padding-left: var(--size-2);
+    }
+
+    #close-btn {
+      width: 100%;
+      padding: var(--size-4) var(--size-3);
+      border: 0;
+      border-radius: 0 0 var(--radius-3) var(--radius-3);
+    }
+  </style>
+  <!-- End Single Page Apps for GitHub Pages -->
+  <script type="module" crossorigin src="../../assets/start-time-C2EQ0w2a.js"></script>
+  <link rel="modulepreload" crossorigin href="../../assets/header-component-DjTwBpLw.js">
+  <link rel="stylesheet" crossorigin href="../../assets/header-component-DU_ycwcZ.css">
+  <link rel="stylesheet" crossorigin href="../../assets/start-time-CZbb-kMc.css">
+</head>
+
+<body>
+<div class="showcase-content">
+  <h2>Start the player at a given position</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+  </div>
+
+  <button id="close-btn">Close this window</button>
+</div>
+
+
+<script>
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+</script>
+
+</body>
+</html>
