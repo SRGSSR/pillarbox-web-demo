@@ -1,8 +1,10 @@
+import pillarbox from '@srgssr/pillarbox-web';
+
 // Create by referencing the video element with its unique ID
-const player = new Pillarbox('video-element-id')
+const player = pillarbox('video-element-id', { fill: true });
 
 // Load the video source
-player.src({src: 'urn:swi:video:48115940', type: 'srgssr/urn'});
+player.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
 
 // Listen for the 'loadeddata' event, indicating that the video data has loaded
 player.on('loadeddata', () => {
