@@ -4,23 +4,29 @@
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pillarbox Demo - Start Time Showcase</title>
+  <title>Pillarbox Demo - Multi Player Showcase</title>
   <link rel="icon" type="image/x-icon" href="../../assets/favicon-BQGqil3k.ico">
-  <script type="module" crossorigin src="../../assets/start-time-DSUwtC_f.js"></script>
+  <script type="module" crossorigin src="../../assets/multi-player-DlnoFKQ_.js"></script>
   <link rel="modulepreload" crossorigin href="../../assets/pillarbox.es-B5lSq2Wr.js">
   <link rel="stylesheet" crossorigin href="../../assets/static-showcase-s2JBaCj5.css">
 </head>
 
 <body>
 <div class="showcase-content">
-  <h2>Start the player at a given position</h2>
+  <h2>Multiple players</h2>
+
   <div class="video-container">
-    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="main-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+  </div>
+
+  <button class="showcase-btn" id="toggle-player">Toggle main player</button>
+
+  <div class="video-container">
+    <video-js id="second-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
   </div>
 
   <button class="showcase-btn" id="close-btn">Close this window</button>
 </div>
-
 
 
 </body>
