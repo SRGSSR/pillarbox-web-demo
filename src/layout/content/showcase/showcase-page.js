@@ -4,8 +4,12 @@ import { animations, theme } from '../../../theme/theme';
 import './showcase-component.js';
 import '../../../components/code-block/code-block';
 import showcasePageCss from './showcase-page.scss?inline';
-import startTimeExampleTxt from './examples/starttime-example.txt?raw';
-import multiPlayerExample from './examples/multi-player-example.txt?raw';
+import rawStartTimeExample from '../../../../static/showcases/start-time.html?raw';
+import raeMultiPlayerExample from '../../../../static/showcases/multi-player.html?raw';
+import { getTextFromHTML } from './example-parser.js';
+
+const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
+const multiPlayerExampleTxt = getTextFromHTML(raeMultiPlayerExample);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -50,7 +54,7 @@ export class ShowCasePage extends LitElement {
           with its own configuration, a button allows to toggle the mute state
           for both players.
         </p>
-        <code-block slot="code" language="javascript">${multiPlayerExample}</code-block>
+        <code-block slot="code" language="javascript">${multiPlayerExampleTxt}</code-block>
       </showcase-component>
       <a href="./static/showcases/multi-player.html" target="_blank">
         Open this showcase
