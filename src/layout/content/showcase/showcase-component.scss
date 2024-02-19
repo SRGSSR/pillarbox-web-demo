@@ -11,6 +11,31 @@
   border-left: 3px solid var(--color-5);
 }
 
+[part="implementation"] {
+  margin-bottom: var(--size-4);
+  background-color: var(--color-10);
+  border: 2px solid var(--color-5);
+  border-radius: var(--radius-1);
+  box-shadow: var(--inner-shadow-4);
+}
+
+[part="implementation-code"] {
+  padding-inline: var(--size-3);
+}
+
+[part="implementation-footer"] {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  border-top: 1px solid var(--color-6);
+  padding-inline: var(--size-2);
+}
+
+[part="implementation-link"] {
+  padding: var(--size-2);
+  font-size: var(--font-size-0);
+}
+
 .hidden {
   display: none;
 }

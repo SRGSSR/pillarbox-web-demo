@@ -25,7 +25,7 @@ export class ShowCasePage extends LitElement {
     return html`
       <div class="fade-in"
            @animationend="${e => e.target.classList.remove('fade-in')}">
-        <showcase-component>
+        <showcase-component href="start-time.html">
           <h2 slot="title">Start the player at a given position</h2>
           <p slot="description">
             In this showcase, we'll demonstrate how to load a video source and
@@ -46,7 +46,7 @@ export class ShowCasePage extends LitElement {
   #renderMultiplePlayers() {
     return html`
       <div class="fade-in" @animationend="${e => e.target.classList.remove('fade-in')}">
-      <showcase-component>
+      <showcase-component href="multi-player.html">
         <h2 slot="title">Multiple Players</h2>
         <p slot="description">
           This example demonstrates how to incorporate multiple video players
