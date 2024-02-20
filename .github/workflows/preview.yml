@@ -1,14 +1,18 @@
-name: Github Page
+name: Deploy PR previews
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
 
 jobs:
-  github-page:
+  deploy-preview:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -24,6 +28,7 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install dependencies
+        if: github.event.action != 'closed'
         env:
           CI: true
         run: |
@@ -31,14 +36,13 @@ jobs:
           npm ci
 
       - name: Run build
+        if: github.event.action != 'closed'
         run: |
           npm run build
 
-      - name: Deploy GitHub Page 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
         with:
-          branch: gh-pages
-          folder: dist
-          force: false
-          clean-exclude: pr-preview/
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-dir: dist
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
