@@ -10,7 +10,7 @@ import './layout/content/lists/lists-page';
 import './layout/content/search/search-page';
 import './layout/content/settings/settings-page';
 import './layout/content/showcase/showcase-page';
-import './layout/header/header-component';
+import './layout/header/demo-header-component.js';
 import './router/route-outlet-component';
 import router from './router/router';
 import PreferencesProvider from './layout/content/settings/preferences-provider';

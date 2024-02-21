@@ -1,16 +1,21 @@
-import githubLogoSvg from '../../../img/github-logo.svg?raw';
-import srgssrLogo from '../../../img/srgssr-logo.png';
 import { html, LitElement, unsafeCSS } from 'lit';
-import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import '../../router/route-link-component';
 import { theme } from '../../theme/theme';
-import headerCSS from './header-component.scss?inline';
+import headerCSS from './demo-header-component.scss?inline';
 import router from '../../router/router';
+import './core-demo-header-component.js';
 
 /**
- * A web component that represents the header element of the demo page.
+ * A web component that represents the header of the demo page. This header contains
+ * the {@link CoreDemoHeaderComponent} as well as the navigation menu of the
+ * different demo app sections.
  *
- * @element pbw-header
+ * @element demo-header
+ *
+ * @prop {Boolean} debug - Indicates whether the debug mode is enabled.
+ *
+ * @example
+ * <demo-header></demo-header>
  */
 export class DemoHeaderElement extends LitElement {
   static properties = {
@@ -45,22 +50,13 @@ export class DemoHeaderElement extends LitElement {
 
   #renderHeaderElement() {
     return html`
-      <header>
-        <h1>
-          <img class="pbw-logo" src="${srgssrLogo}"/>
-          <span>Pillarbox</span>
-        </h1>
-        <div class="header-end">
-          <a href="https://github.com/srgssr/pillarbox-web" class="github-link"
-             title="Source on Github">
-            ${unsafeSVG(githubLogoSvg)}
-          </a>
-          <route-link href="settings${this.debug ? '?debug=true' : ''}"
-                      title="Settings">
-            <i class="material-icons-outlined">settings</i>
-          </route-link>
-        </div>
-      </header>`;
+      <core-demo-header>
+        <route-link href="settings${this.debug ? '?debug=true' : ''}"
+                    title="Settings" slot="actions">
+          <i class="material-icons-outlined">settings</i>
+        </route-link>
+      </core-demo-header>
+    `;
   }
 
   #renderNavElement() {

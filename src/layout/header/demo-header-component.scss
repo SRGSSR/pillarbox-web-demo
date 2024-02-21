@@ -8,45 +8,6 @@ li {
   display: inline-block;
 }
 
-header {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin: var(--size-4) 0;
-
-  h1 {
-    display: flex;
-    gap: .15em;
-    align-items: center;
-    margin: 0;
-  }
-}
-
-.pbw-logo {
-  height: var(--size-7);
-}
-
-.version-txt {
-  align-self: flex-end;
-  color: var(--color-6);
-  font-weight: var(--font-weight-4);
-  font-size: var(--size-3);
-  line-height: var(--size-5);
-}
-
-.github-link {
-  display: flex;
-  align-items: center;
-}
-
-.github-icon {
-  fill: var(--color-5);
-
-  &:hover {
-    fill: var(--color-2);
-  }
-}
-
 route-link::part(a) {
   padding: var(--size-1) var(--size-1);
   font-size: var(--size-4);
@@ -62,7 +23,7 @@ route-link::part(a active) {
   transition: background-color 0.8s, color 0.4s;
 }
 
-.header-end {
+core-demo-header {
   display: flex;
   align-items: center;
 

@@ -1,0 +1,36 @@
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  margin: var(--size-4) 0;
+}
+
+h1 {
+  display: flex;
+  gap: .15em;
+  align-items: center;
+  margin: 0;
+}
+
+.pbw-logo {
+  height: var(--size-7);
+}
+
+.github-link {
+  display: flex;
+  align-items: center;
+}
+
+.github-icon {
+  fill: var(--color-5);
+
+  &:hover {
+    fill: var(--color-2);
+  }
+}
+
+.header-end {
+  display: flex;
+  align-items: center;
+}
