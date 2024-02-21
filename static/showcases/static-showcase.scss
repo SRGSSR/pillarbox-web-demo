@@ -5,10 +5,7 @@ body {
 }
 
 .showcase-content {
-  margin-top: var(--size-8);
   padding: 0;
-  border: 1px solid var(--color-7);
-  border-radius: var(--radius-3);
 }
 
 .video-container {
@@ -25,6 +22,7 @@ h2 {
 
 .showcase-btn {
   width: 100%;
+  margin: var(--size-3) 0;
   padding: var(--size-4) var(--size-3);
   color: var(--color-0);
   font-weight: var(--font-weight-6);
@@ -33,6 +31,7 @@ h2 {
   text-decoration: none;
   background-color: var(--color-9);
   border: 0;
+  border-radius: var(--radius-2);
   cursor: pointer;
   transition: background-color 0.4s, border-color 0.4s;
 }
@@ -40,8 +39,4 @@ h2 {
 .showcase-btn:hover {
   background-color: var(--color-8);
   border-color: var(--color-9);
-}
-
-.showcase-btn:last-child {
-  border-radius: 0 0 var(--radius-3) var(--radius-3);
 }

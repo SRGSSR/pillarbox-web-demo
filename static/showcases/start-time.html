@@ -10,6 +10,7 @@
 </head>
 
 <body>
+<core-demo-header></core-demo-header>
 <div class="showcase-content">
   <h2>Start the player at a given position</h2>
   <div class="video-container">
@@ -37,6 +38,7 @@
 
 <script type="module">
   import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
 
   document.querySelector('#close-btn').addEventListener('click', () => {
     window.close();
