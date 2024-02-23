@@ -1,0 +1,18 @@
+.vjs-control.vjs-button.pbw-skip-btn {
+  position: absolute;
+  right: var(--size-5);
+  bottom: var(--size-9);
+  width: var(--size-10);
+  height: var(--size-6);
+  color: white;
+  background-color: rgb(0 0 0 / 70%);
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-3);
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+
+  .vjs-icon-placeholder::before {
+    font-size: var(--font-size-1);
+    content: 'Skip >>';
+  }
+}

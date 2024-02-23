@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Detect blocked segment</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./static-showcase.scss"/>
+  <link rel="stylesheet" href="./blocked-segment.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Detect blocked segment</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  // Import the pillarbox library
+  import pillarbox from '@srgssr/pillarbox-web';
+
+  const Plugin = pillarbox.getPlugin('plugin');
+
+  // A Pillarbox plugin to display a blocked segment notification.
+  class BlockedSegmentNotification extends Plugin {
+    // Reference to the component used to display the blocked segment notification.
+    #component;
+    // The id for the timeout function responsible for managing the auto-hide of the notification.
+    #timeoutId;
+
+    constructor(player, options) {
+      super(player, options);
+
+      // Attach the DOM element when the player is ready,
+      this.player.ready(() => this.#attachComponent());
+      // Wait for the 'loadeddata' event to ensure the text tracks are available
+      this.player.on('loadeddata', () => this.#handleBlockedSegmentChange());
+    }
+
+    #attachComponent() {
+      this.#component = player.addChild('component', {
+        // Set the class for styling and hide the element with 'vjs-hidden'
+        className: 'pbw-blocked-segment-notification vjs-hidden'
+      });
+    }
+
+    #handleBlockedSegmentChange() {
+      // Get the text track with the ID 'srgssr-blocked-segments'
+      const blockedSegments = this.player.textTracks().getTrackById('srgssr-blocked-segments');
+
+      // Add a listener for the 'cuechange' event on the blocked segments text track
+      blockedSegments?.on('cuechange', () => {
+        // Check if there are active cues in the blocked segments text track
+        if (!blockedSegments.activeCues.length) return;
+
+        // Cancel the previous timeout
+        clearTimeout(this.#timeoutId);
+
+        // Parse the JSON content of the active cue to get the blocked segment information
+        const blockSegment = JSON.parse(blockedSegments.activeCues[0].text);
+        const blockReason = blockSegment.blockReason ?? 'UNKNOWN';
+        // Block reasons are localized out of the box, alternatively you can make your own
+        const message = this.#component.localize(blockReason);
+
+        // Update the displayed notification text with the appropriate message
+        this.#component.el().textContent = `ⓘ ${message}`;
+
+        // Show the blocked segment notification
+        this.#component.show();
+
+        // Set a timeout to hide the notification after a specified delay
+        this.#timeoutId = setTimeout(() => {
+          this.#component.hide();
+          this.#timeoutId = undefined;
+        }, this.options.delay);
+      });
+    }
+
+    // Get the options of this plugin
+    get options() {
+      return this.player.options().plugins.blockedSegmentNotification;
+    }
+  }
+
+  // Register a plugin to display notifications on blocked segments
+  pillarbox.registerPlugin('blockedSegmentNotification', BlockedSegmentNotification);
+
+  // Create a pillarbox player instance with the blockedSegmentNotification plugin
+  const player = pillarbox(
+    'video-element-id', {
+      fill: true,
+      plugins: {
+        blockedSegmentNotification: {
+          delay: 5000, // Delay in milliseconds before hiding the notification
+        }
+      }
+    }
+  );
+
+  // Load the video source for the player
+  player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>

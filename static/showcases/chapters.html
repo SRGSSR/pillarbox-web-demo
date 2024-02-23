@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Display Current Chapter</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./static-showcase.scss"/>
+  <link rel="stylesheet" href="./chapters-showcase.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Display Current Chapter</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  // Import the pillarbox library
+  import pillarbox from '@srgssr/pillarbox-web';
+
+  const Plugin = pillarbox.getPlugin('plugin');
+
+  // A Pillarbox plugin to display information about the current chapter.
+  class CurrentChapterPlugin extends Plugin {
+    // Reference to the component used to display the current chapter information.
+    #component;
+
+    constructor(player, options) {
+      super(player, options);
+
+      // Attach the DOM element when the player is ready,
+      this.player.ready(() => this.#attachComponent());
+      // Wait for the 'loadeddata' event to handle the chapter change
+      this.player.on('loadeddata', () => this.#handleChapterChange());
+    }
+
+    #attachComponent() {
+      // Create a new component to display the current chapter information
+      this.#component = this.player.getChild('ControlBar').addChild('component', {
+        id: 'current-chapter',
+        // Set the class for styling and hide the element with 'vjs-hidden'
+        className: 'pbw-current-chapter vjs-hidden'
+      });
+
+      // Create an image element for the chapter thumbnail
+      const thumbnailImg = document.createElement('img');
+      thumbnailImg.className = 'pbw-chapter-thumbnail';
+
+      // Create a span element for the chapter title
+      const chapterText = document.createElement('span');
+      chapterText.className = 'pbw-chapter-title';
+
+      // Append the thumbnail and title elements to the component
+      this.#component.el().appendChild(thumbnailImg);
+      this.#component.el().appendChild(chapterText);
+
+      // Add a function to the component to update the chapter information
+      this.#component.updateData = (img, text) => {
+        chapterText.textContent = text;
+        thumbnailImg.src = img;
+      };
+    }
+
+    #handleChapterChange() {
+      // Get the text track with the ID 'srgssr-chapters'
+      const chapters = this.player.textTracks().getTrackById('srgssr-chapters');
+
+      // Add a listener for the 'cuechange' event on the chapters text track
+      chapters?.on('cuechange', () => {
+        // Check if there are active cues in the chapters text track
+        if (!chapters.activeCues.length) {
+          // Hide the current chapter component if there are no active cues
+          this.#component.hide();
+          return;
+        }
+
+        // Parse the JSON content of the active cue to get the current chapter information
+        const currentChapter = JSON.parse(chapters.activeCues[0].text);
+
+        // Update the displayed chapter title and thumbnail
+        this.#component.updateData(currentChapter.imageUrl, currentChapter.title);
+
+        // Show the current chapter component
+        this.#component.show();
+      });
+    }
+  }
+
+  // Register a plugin to display the currently playing chapter
+  pillarbox.registerPlugin('currentChapter', CurrentChapterPlugin);
+
+  // Create a pillarbox player instance with the currentChapter plugin
+  const player = pillarbox(
+    'video-element-id',
+    { fill: true, plugins: { currentChapter: true } }
+  );
+
+  // Set the video source for the player
+  player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>
