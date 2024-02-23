@@ -564,7 +564,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
       // Create a new component to display the current chapter information
       const currentChapterComponent = player.getChild('ControlBar').addChild('component', {
         // Set the class for styling and hide the element with 'vjs-hidden'
-        className: 'pbw-blocked-segment-notification vjs-hidden'
+        className: 'pbw-current-chapter vjs-hidden'
       });
 
       // Create an image element for the chapter thumbnail
@@ -849,4 +849,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
           </li>
         </ul>
       </nav>`},x(dn,"properties",{debug:{type:Boolean,state:!0}}),x(dn,"styles",[P,O(qr)]);customElements.define("demo-header",dn);class Wo extends A{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var t;(t=this.route)==null||t.destroy(),this.route=n})}render(){return jn(`<${this.route.component}></${this.route.component}>`)}}x(Wo,"properties",{route:{state:!0}});customElements.define("route-outlet",Wo);const Zt=he.loadPreferences();w.start({defaultPath:"examples"});w.queryParams.debug?(Zt.debug=w.queryParams.debug==="true",he.savePreferences(Zt)):Zt.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-DaOi-gCy.js.map
+//# sourceMappingURL=index-1pM4Y98a.js.map
