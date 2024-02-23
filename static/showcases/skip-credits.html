@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Skip Credits</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./static-showcase.scss"/>
+  <link rel="stylesheet" href="./skip-showcase.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Skip Credits</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  // Import the pillarbox library
+  import pillarbox from '@srgssr/pillarbox-web';
+
+  const Plugin = pillarbox.getPlugin('plugin');
+
+  // A Pillarbox plugin to display a skip button.
+  class SkipButton extends Plugin {
+    // Reference to the component used to display the skip button.
+    #component;
+
+    constructor(player, options) {
+      super(player, options);
+
+      // Attach the DOM element when the player is ready,
+      this.player.ready(() => this.#attachComponent());
+      // Wait for the 'loadeddata' event to handle the time intervals change
+      this.player.on('loadeddata', () => this.#timeIntervalsChange());
+    }
+
+    #attachComponent() {
+      this.#component = this.player.addChild('button', {
+        // Define the click handler for the button
+        clickHandler: () => {
+          // Get the text track with the ID 'srgssr-intervals'
+          const timeIntervals = this.player.textTracks().getTrackById('srgssr-intervals');
+          // Get the active time interval cue
+          const timeInterval = timeIntervals.activeCues[0];
+
+          // Set the player's current time to the 'markOut' value of the time interval
+          this.player.currentTime(timeInterval.endTime);
+        },
+        // Set the class for styling and hide the element with 'vjs-hidden'
+        className: 'pbw-skip-btn vjs-hidden',
+        // Set the control text for accessibility
+        controlText: 'Skip'
+      });
+    }
+
+    #timeIntervalsChange() {
+      // Get the text track with the ID 'srgssr-intervals'
+      const timeIntervals = player.textTracks().getTrackById('srgssr-intervals');
+
+      // Add a listener for the 'cuechange' event on the time intervals text track
+      timeIntervals?.on('cuechange', () => {
+        // Check if there are active cues in the time intervals text track
+        if (!timeIntervals.activeCues.length) {
+          // Hide the skip button if there are no active cues
+          this.#component.hide();
+          return;
+        }
+
+        // Show the skip button if there are active cues
+        this.#component.show();
+      });
+    }
+  }
+
+  // Register a plugin to skip credits
+  pillarbox.registerPlugin('skipButton', SkipButton);
+
+  // Create a pillarbox player instance with the skipButton plugin
+  const player = pillarbox(
+    'video-element-id',
+    { fill: true, plugins: { skipButton: true } }
+  );
+
+  // Load the video source for the player
+  player.src({ src: 'urn:rts:video:14683290', type: 'srgssr/urn' });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>
