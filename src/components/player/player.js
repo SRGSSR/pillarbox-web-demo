@@ -124,7 +124,11 @@ export const openPlayerModal = (
   player.src({ src, type, keySystems });
 
   if (shouldUpdateRouter) {
-    router.updateState({ src, type, ...toParams(keySystems) });
+    router.updateState({
+      src,
+      ...(type ? { type } : {}),
+      ...toParams(keySystems)
+    });
   }
 
   return player;
