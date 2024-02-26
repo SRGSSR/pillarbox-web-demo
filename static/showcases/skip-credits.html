@@ -54,9 +54,10 @@
           this.player.currentTime(timeInterval.endTime);
         },
         // Set the class for styling and hide the element with 'vjs-hidden'
-        className: 'pbw-skip-btn vjs-hidden',
-        // Set the control text for accessibility
-        controlText: 'Skip'
+        // 'vjs-visible-text' allows to show the controlText, otherwise it is hidden by default
+        className: 'pbw-skip-btn vjs-hidden vjs-visible-text',
+        // Set the control text
+        controlText: `${this.player.localize('skip')} >>`
       });
     }
 
@@ -81,6 +82,13 @@
 
   // Register a plugin to skip credits
   pillarbox.registerPlugin('skipButton', SkipButton);
+
+  // Add the translations for the button
+  pillarbox.addLanguage('en', { 'skip': 'Skip' });
+  pillarbox.addLanguage('fr', { 'skip': 'Passer' });
+  pillarbox.addLanguage('de', { 'skip': 'Überspringen' });
+  pillarbox.addLanguage('it', { 'skip': 'Saltare' });
+  pillarbox.addLanguage('rm', { 'skip': 'Sursiglir' });
 
   // Create a pillarbox player instance with the skipButton plugin
   const player = pillarbox(
