@@ -719,9 +719,9 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
           this.player.currentTime(timeInterval.endTime);
         },
         // Set the class for styling and hide the element with 'vjs-hidden'
-        // 'vjs-visible-text' allows to show the controlText
+        // 'vjs-visible-text' allows to show the controlText, otherwise it is hidden by default
         className: 'pbw-skip-btn vjs-hidden vjs-visible-text',
-        // Set the control text for accessibility
+        // Set the control text
         controlText: \`\${this.player.localize('skip')} >>\`
       });
     }
@@ -901,4 +901,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
           </li>
         </ul>
       </nav>`},x(dn,"properties",{debug:{type:Boolean,state:!0}}),x(dn,"styles",[P,z(qr)]);customElements.define("demo-header",dn);class Wo extends A{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var t;(t=this.route)==null||t.destroy(),this.route=n})}render(){return jn(`<${this.route.component}></${this.route.component}>`)}}x(Wo,"properties",{route:{state:!0}});customElements.define("route-outlet",Wo);const Zt=ue.loadPreferences();w.start({defaultPath:"examples"});w.queryParams.debug?(Zt.debug=w.queryParams.debug==="true",ue.savePreferences(Zt)):Zt.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-BWGXPgmr.js.map
+//# sourceMappingURL=index-Dr-aLnqA.js.map
