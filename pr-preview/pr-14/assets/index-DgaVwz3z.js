@@ -604,7 +604,12 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
       // Append the thumbnail and title elements to the component
       this.#component.el().appendChild(thumbnailImg);
       this.#component.el().appendChild(chapterText);
-      this.#component.hide();
+
+      // Add a function to the component to update the chapter information
+      this.#component.updateData = (img, text) => {
+        chapterText.textContent = text;
+        thumbnailImg.src = img;
+      };
     }
 
     #handleChapterChange() {
@@ -616,19 +621,15 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
         // Check if there are active cues in the chapters text track
         if (!chapters.activeCues.length) {
           // Hide the current chapter component if there are no active cues
-          this.player.getChildById('current-chapter').hide();
+          this.#component.hide();
           return;
         }
 
         // Parse the JSON content of the active cue to get the current chapter information
         const currentChapter = JSON.parse(chapters.activeCues[0].text);
-        const chapterText = this.#component.$('.pbw-chapter-title');
-        const thumbnailImg = this.#component.$('.pbw-chapter-thumbnail');
 
         // Update the displayed chapter title and thumbnail
-        chapterText.textContent = currentChapter.title;
-        chapterText.title = currentChapter.title;
-        thumbnailImg.src = currentChapter.imageUrl;
+        this.#component.updateData(currentChapter.imageUrl, currentChapter.title);
 
         // Show the current chapter component
         this.#component.show();
@@ -642,7 +643,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
   // Create a pillarbox player instance with the currentChapter plugin
   const player = pillarbox(
     'video-element-id',
-    { fill: true, plugins: { currentChapter: {} } }
+    { fill: true, plugins: { currentChapter: true } }
   );
 
   // Set the video source for the player
@@ -749,7 +750,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
   // Create a pillarbox player instance with the skipButton plugin
   const player = pillarbox(
     'video-element-id',
-    { fill: true, plugins: { skipButton: {} } }
+    { fill: true, plugins: { skipButton: true } }
   );
 
   // Load the video source for the player
@@ -892,4 +893,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
           </li>
         </ul>
       </nav>`},x(dn,"properties",{debug:{type:Boolean,state:!0}}),x(dn,"styles",[P,z(qr)]);customElements.define("demo-header",dn);class Wo extends A{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var t;(t=this.route)==null||t.destroy(),this.route=n})}render(){return jn(`<${this.route.component}></${this.route.component}>`)}}x(Wo,"properties",{route:{state:!0}});customElements.define("route-outlet",Wo);const Zt=ue.loadPreferences();w.start({defaultPath:"examples"});w.queryParams.debug?(Zt.debug=w.queryParams.debug==="true",ue.savePreferences(Zt)):Zt.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-DA5kI3cC.js.map
+//# sourceMappingURL=index-DgaVwz3z.js.map
