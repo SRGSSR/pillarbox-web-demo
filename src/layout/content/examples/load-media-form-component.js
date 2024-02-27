@@ -124,17 +124,17 @@ export class LoadMediaFormComponent extends LitElement {
   }
 
   #onFormAnimationEnd(e) {
-    if (e.target.classList.contains('shrink')) {
+    if (e.target.classList.contains('fade-out-shrink')) {
       e.target.classList.remove('active');
     }
 
-    e.target.classList.remove('fade-in-grow', 'shrink');
+    e.target.classList.remove('fade-in-grow', 'fade-out-shrink');
   }
 
   #formAnimationClassMap() {
     return {
       'fade-in-grow': this.drmSettingsShown === true,
-      shrink: this.drmSettingsShown === false
+      'fade-out-shrink': this.drmSettingsShown === false
     };
   }
 

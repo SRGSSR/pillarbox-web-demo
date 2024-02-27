@@ -18,3 +18,25 @@
   animation: fade-in .4s var(--ease-elastic-in-3) forwards,
              slide-in-up .4s var(--ease-elastic-in-3);
 }
+
+.fade-in-grow {
+  opacity: 0;
+  animation: fade-in .4s var(--ease-elastic-in-3) forwards,
+  grow .4s ease;
+}
+
+.fade-out-shrink {
+  opacity: 0;
+  animation: fade-in .4s var(--ease-elastic-in-3) forwards, grow .4s ease;
+  animation-direction: reverse;
+}
+
+@keyframes grow {
+  from {
+    max-height: 0;
+  }
+
+  to {
+    max-height: var(--size-15);
+  }
+}
