@@ -11,12 +11,27 @@
   border-left: 3px solid var(--color-5);
 }
 
+[part="implementation-toggle"] {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  i {
+    margin-right: var(--size-1);
+  }
+}
+
 [part="implementation"] {
+  display: none;
   margin-bottom: var(--size-4);
   background-color: var(--color-10);
   border: 2px solid var(--color-5);
   border-radius: var(--radius-1);
   box-shadow: var(--inner-shadow-4);
+
+  &.active {
+    display: block;
+  }
 }
 
 [part="implementation-code"] {
