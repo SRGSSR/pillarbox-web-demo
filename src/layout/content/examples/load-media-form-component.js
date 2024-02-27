@@ -124,10 +124,7 @@ export class LoadMediaFormComponent extends LitElement {
   }
 
   #onFormAnimationEnd(e) {
-    if (e.target.classList.contains('fade-out-shrink')) {
-      e.target.classList.remove('active');
-    }
-
+    e.target.classList.toggle('active', !e.target.classList.contains('fade-out-shrink'));
     e.target.classList.remove('fade-in-grow', 'fade-out-shrink');
   }
 
