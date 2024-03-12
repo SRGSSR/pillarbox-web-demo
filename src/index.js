@@ -13,9 +13,14 @@ import './layout/content/showcase/showcase-page';
 import './layout/header/demo-header-component.js';
 import './router/route-outlet-component';
 import router from './router/router';
-import PreferencesProvider from './layout/content/settings/preferences-provider';
+import PreferencesProvider
+  from './layout/content/settings/preferences-provider';
+import ilProvider from './utils/il-provider.js';
 
+// Load preferences and initializes il host
 const preferences = PreferencesProvider.loadPreferences();
+
+ilProvider.host = preferences.dataProviderHost;
 
 // Initialize the router with the current path or 'examples' if none is found
 router.start({ defaultPath: 'examples' });

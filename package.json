@@ -12,7 +12,7 @@
     "build": "vite build",
     "eslint": "eslint src/**",
     "outdated": "npm outdated",
-    "start": "vite --port 9696",
+    "start": "vite --port 9696 --host",
     "stylelint": "stylelint **/*.{css,scss,js}",
     "stylelint:fix": "stylelint **/*.{css,scss,js} --fix",
     "prepare": "husky"

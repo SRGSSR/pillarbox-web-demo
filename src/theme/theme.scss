@@ -73,7 +73,7 @@ h3 {
   font-size: var(--size-3);
 }
 
-input[type="text"], select {
+input, select {
   margin: var(--size-1) 0 0 0;
   padding: var(--size-4) var(--size-3);
   color: var(--color-2);
@@ -85,6 +85,7 @@ input[type="text"], select {
 
 select {
   cursor: pointer;
+  appearance: none;
 }
 
 select:required:invalid {

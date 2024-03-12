@@ -1,4 +1,5 @@
-const IL_DEFAULT_HOST = 'il.srgssr.ch';
+export const IL_DEFAULT_HOST = 'il.srgssr.ch';
+
 const DEFAULT_QUERY_PARAMS = {
   vector: 'srgplay'
 };
@@ -25,13 +26,34 @@ const toMedia = ({ title, urn, mediaType, date, duration }) => ({
  * @class
  */
 class ILProvider {
+  #host;
+
   /**
    * Creates an instance of ILProvider.
    *
-   * @param {string} [hostName='il.srgssr.ch'] - The hostname for the integration layer (without the protocol).
+   * @param {string} [host='il.srgssr.ch'] - The hostname for the integration layer (without the protocol).
    */
-  constructor(hostName = IL_DEFAULT_HOST) {
-    this.baseUrl = `${hostName}/integrationlayer/2.0`;
+  constructor(host = IL_DEFAULT_HOST) {
+    this.host = host;
+  }
+
+  /**
+   * Get the current hostname for the integration layer.
+   *
+   * @returns {string} the hostname for the integration layer.
+   */
+  get host() {
+    return this.#host;
+  }
+
+  /**
+   * Set the hostname for the integration layer (without the protocol). Forces
+   * `il.srgssr.ch` if null, undefined or empty string is passed.
+   *
+   * @param {string} host The hostname for the integration layer,
+   */
+  set host(host) {
+    this.#host = host || IL_DEFAULT_HOST;
   }
 
   /**
@@ -311,7 +333,7 @@ class ILProvider {
    */
   async #fetch(path, params = DEFAULT_QUERY_PARAMS, signal = undefined) {
     const queryParams = new URLSearchParams(params).toString();
-    const url = `https://${this.baseUrl}/${path.replace(/^\/+/, '')}?${queryParams}`;
+    const url = `https://${this.host}/integrationlayer/2.0/${path.replace(/^\/+/, '')}?${queryParams}`;
 
     return fetch(url, { signal }).then(response => {
       if (!response.ok) {
