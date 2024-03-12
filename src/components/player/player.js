@@ -8,6 +8,7 @@ import PreferencesProvider
   from '../../layout/content/settings/preferences-provider';
 import router from '../../router/router';
 import Pillarbox from '@srgssr/pillarbox-web';
+import { IL_DEFAULT_HOST } from '../../utils/il-provider.js';
 
 const DEMO_PLAYER_ID = 'player';
 const DEFAULT_OPTIONS = {
@@ -30,7 +31,10 @@ const createPlayer = (options = {}) => {
     ...{
       muted: preferences.muted ?? true,
       autoplay: preferences.autoplay ?? false,
-      debug: preferences.debug ?? false
+      debug: preferences.debug ?? false,
+      srgOptions: {
+        dataProviderHost: preferences.dataProviderHost ?? IL_DEFAULT_HOST
+      }
     },
     ...options
   });

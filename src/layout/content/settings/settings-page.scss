@@ -3,7 +3,7 @@
   padding: var(--size-3) 0;
 }
 
-[part="toggle-container"] {
+[part="toggle-container"], [part="input-container"] {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,16 +25,27 @@
 }
 
 [part="label"] {
-  flex: 1;
   line-height: var(--size-8);
-  cursor: pointer;
   padding-inline: var(--size-3);
 }
 
+[part="toggle-container"] [part="label"] {
+  flex: 1;
+  cursor: pointer;
+}
 
 [part="toggle-switch"] {
   display: flex;
   align-items: center;
   height: var(--size-8);
   padding-inline: var(--size-3);
+}
+
+[part="input"] {
+  flex: 1;
+  margin: 0;
+  padding: var(--size-1) var(--size-3);
+  text-align: right;
+  background-color: var(--color-9);
+  border-bottom-right-radius: var(--radius-3);
 }
