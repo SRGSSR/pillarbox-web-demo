@@ -1,4 +1,4 @@
-# pillarbox-web typescript sample
+# pillarbox-web react sample
 
 This project demonstrates the integration og pillarbox with react. Feel free to explore and
 experiment with this sample via the following playground:
