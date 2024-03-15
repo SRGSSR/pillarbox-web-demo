@@ -12,7 +12,7 @@ You can also use this project as a template.
 This project uses [Vite][vite] for building and previewing the example. The following commands are
 available:
 
-- Rune the server in development mode.
+- Run the server in development mode.
   ```shell
   npm run dev
   ```
