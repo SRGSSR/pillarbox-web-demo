@@ -13,7 +13,7 @@
     "vite": "^5.1.4"
   },
   "dependencies": {
-    "@srgssr/pillarbox-web": "^1.4.0",
+    "@srgssr/pillarbox-web": "^1.4.3",
     "open-props": "^1.6.21"
   }
 }
