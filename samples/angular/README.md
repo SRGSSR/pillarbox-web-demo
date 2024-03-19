@@ -1,6 +1,6 @@
 # pillarbox-web angular sample
 
-This project demonstrates the integration og pillarbox with angular. Feel free to explore and
+This project demonstrates the integration of pillarbox with angular. Feel free to explore and
 experiment with this sample via the following playground:
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)][stackblitz]
