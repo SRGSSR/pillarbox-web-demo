@@ -483,7 +483,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
 
       // Attach the DOM element when the player is ready,
       this.player.ready(() => this.#attachComponent());
-      // Wait for the 'loadeddata' event to ensure the text tracks are available
+      // Wait for the blocked segment change event.
       this.player.on('srgssr/blocked-segment', ({ data }) => this.#handleBlockedSegmentChange(data));
     }
 
@@ -594,7 +594,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
 
       // Attach the DOM element when the player is ready,
       this.player.ready(() => this.#attachComponent());
-      // Wait for the 'loadeddata' event to handle the chapter change
+      // Wait for the chapter change event
       this.player.on('srgssr/chapter', ({ data }) => this.#handleChapterChange(data));
     }
 
@@ -711,7 +711,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
 
       // Attach the DOM element when the player is ready,
       this.player.ready(() => this.#attachComponent());
-      // Wait for the 'loadeddata' event to handle the time intervals change
+      // Wait for the time interval change event.
       this.player.on('srgssr/interval', ({ data }) => this.#timeIntervalsChange(data));
     }
 
@@ -901,4 +901,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,k=f),g===void 0&&(
           </li>
         </ul>
       </nav>`},x(yn,"properties",{debug:{type:Boolean,state:!0}}),x(yn,"styles",[P,O(Xr)]);customElements.define("demo-header",yn);class ti extends A{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return Un(`<${this.route.component}></${this.route.component}>`)}}x(ti,"properties",{route:{state:!0}});customElements.define("route-outlet",ti);const Ye=he.loadPreferences();N.host=Ye.dataProviderHost;w.start({defaultPath:"examples"});w.queryParams.debug?(Ye.debug=w.queryParams.debug==="true",he.savePreferences(Ye)):Ye.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-ViIMCfhO.js.map
+//# sourceMappingURL=index-BT7JSdLX.js.map
