@@ -12,7 +12,6 @@ import { IL_DEFAULT_HOST } from '../../utils/il-provider.js';
 
 const DEMO_PLAYER_ID = 'player';
 const DEFAULT_OPTIONS = {
-  fill: true,
   restoreEl: true
 };
 
