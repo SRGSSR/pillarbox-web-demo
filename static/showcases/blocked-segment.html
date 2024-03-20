@@ -34,13 +34,18 @@
     // The id for the timeout function responsible for managing the auto-hide of the notification.
     #timeoutId;
 
+    /**
+     *
+     * @param player {import('@srgssr/pillarbox-web').Player}
+     * @param options
+     */
     constructor(player, options) {
       super(player, options);
 
       // Attach the DOM element when the player is ready,
       this.player.ready(() => this.#attachComponent());
-      // Wait for the 'loadeddata' event to ensure the text tracks are available
-      this.player.on('loadeddata', () => this.#handleBlockedSegmentChange());
+      // Wait for the blocked segment change event.
+      this.player.on('srgssr/blocked-segment', ({ data }) => this.#handleBlockedSegmentChange(data));
     }
 
     #attachComponent() {
@@ -50,36 +55,27 @@
       });
     }
 
-    #handleBlockedSegmentChange() {
-      // Get the text track with the ID 'srgssr-blocked-segments'
-      const blockedSegments = this.player.textTracks().getTrackById('srgssr-blocked-segments');
+    async #handleBlockedSegmentChange(data) {
+      // Cancel the previous timeout
+      clearTimeout(this.#timeoutId);
 
-      // Add a listener for the 'cuechange' event on the blocked segments text track
-      blockedSegments?.on('cuechange', () => {
-        // Check if there are active cues in the blocked segments text track
-        if (!blockedSegments.activeCues.length) return;
+      // Parse the JSON content of the active cue to get the blocked segment information
+      const blockSegment = JSON.parse(data.text);
+      const blockReason = blockSegment.blockReason ?? 'UNKNOWN';
+      // Block reasons are localized out of the box, alternatively you can make your own
+      const message = this.#component.localize(blockReason);
 
-        // Cancel the previous timeout
-        clearTimeout(this.#timeoutId);
+      // Update the displayed notification text with the appropriate message
+      this.#component.el().textContent = `ⓘ ${message}`;
 
-        // Parse the JSON content of the active cue to get the blocked segment information
-        const blockSegment = JSON.parse(blockedSegments.activeCues[0].text);
-        const blockReason = blockSegment.blockReason ?? 'UNKNOWN';
-        // Block reasons are localized out of the box, alternatively you can make your own
-        const message = this.#component.localize(blockReason);
+      // Show the blocked segment notification
+      this.#component.show();
 
-        // Update the displayed notification text with the appropriate message
-        this.#component.el().textContent = `ⓘ ${message}`;
-
-        // Show the blocked segment notification
-        this.#component.show();
-
-        // Set a timeout to hide the notification after a specified delay
-        this.#timeoutId = setTimeout(() => {
-          this.#component.hide();
-          this.#timeoutId = undefined;
-        }, this.options.delay);
-      });
+      // Set a timeout to hide the notification after a specified delay
+      this.#timeoutId = setTimeout(() => {
+        this.#component.hide();
+        this.#timeoutId = undefined;
+      }, this.options.delay);
     }
 
     // Get the options of this plugin
