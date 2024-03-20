@@ -4,7 +4,7 @@ import '@srgssr/pillarbox-web/dist/pillarbox.min.css';
 
 export default function Pillarbox({ src, type = 'srgssr/urn' }) {
   useEffect(() => {
-    const player = pillarbox('main-player', { fill: true });
+    const player = pillarbox('main-player');
     player.src({ src, type });
   }, []);
 
