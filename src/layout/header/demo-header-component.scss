@@ -4,10 +4,6 @@ ul, li {
   list-style: none;
 }
 
-li {
-  display: inline-block;
-}
-
 route-link::part(a) {
   padding: var(--size-1) var(--size-2);
   font-size: var(--size-4);
@@ -43,13 +39,10 @@ core-demo-header {
 }
 
 nav ul {
+  display: flex;
   margin-bottom: var(--size-4);
 
   li {
-    margin-right: var(--size-1);
-  }
-
-  li:last-child {
     margin: 0;
   }
 }
