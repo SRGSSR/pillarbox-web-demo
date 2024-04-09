@@ -37,8 +37,16 @@ export class LoadMediaFormComponent extends LitElement {
     };
   }
 
+  #getSource() {
+    try {
+      return new URL(this.src).searchParams.get('urn') ?? this.src;
+    } catch (error) {
+      return this.src;
+    }
+  }
+
   #submitMedia() {
-    const src = this.src;
+    const src = this.#getSource();
     const type = src.startsWith('urn:') ? 'srgssr/urn' : undefined;
     const keySystems = this.#keySystems;
 
