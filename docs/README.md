@@ -30,12 +30,12 @@ guide: [Authenticating with a personal access token](https://docs.github.com/en/
 
 Clone this repository:
 ```shell
-git clone https://github.com/SRGSSR/pillarbox-web-demo.git`
+git clone https://github.com/SRGSSR/pillarbox-web-demo.git
 ```
 
 Install the dependencies:
 ```shell
-npm instal
+npm install
 ```
 
 Start the development server:
