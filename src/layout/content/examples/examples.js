@@ -2,7 +2,7 @@ const EXAMPLES = {
   SRGSSR: [
     {
       title: 'Horizontal video',
-      src: 'urn:rts:video:6820736',
+      src: 'urn:rts:video:14827306',
       type: 'srgssr/urn'
     },
     {
