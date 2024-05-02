@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
-    "vite": "^5.1.6",
-    "@srgssr/pillarbox-web": "^1.10.0",
-    "open-props": "^1.6.21"
+    "vite": "^5.2.11",
+    "@srgssr/pillarbox-web": "^1.12.1",
+    "open-props": "^1.7.4"
   }
 }

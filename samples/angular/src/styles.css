@@ -1,4 +1,4 @@
-@import '@srgssr/pillarbox-web';
+@import '@srgssr/pillarbox-web/dist/pillarbox.min.css';
 @import "open-props/open-props.min.css";
 
 *,
