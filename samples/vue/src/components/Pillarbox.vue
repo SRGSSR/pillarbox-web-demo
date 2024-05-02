@@ -1,7 +1,6 @@
 <script setup>
 import { onMounted } from 'vue';
 import pillarbox from '@srgssr/pillarbox-web';
-import '@srgssr/pillarbox-web/dist/pillarbox.min.css';
 
 // Define props
 const props = defineProps({
@@ -22,6 +21,5 @@ onMounted(() => {
   <video id="main-player" class="video-js pillarbox-js" controls crossOrigin="anonymous"></video>
 </template>
 
-<style scoped>
-@import "@srgssr/pillarbox-web";
+<style src='@srgssr/pillarbox-web/dist/pillarbox.min.css'>
 </style>

@@ -9,11 +9,11 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
-    "vite": "^5.1.4"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
   },
   "dependencies": {
-    "@srgssr/pillarbox-web": "^1.10.0",
-    "open-props": "^1.6.21"
+    "@srgssr/pillarbox-web": "^1.12.1",
+    "open-props": "^1.7.4"
   }
 }
