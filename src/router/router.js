@@ -137,7 +137,11 @@ class Router extends EventTarget {
   /**
    * Updates the state by navigating to the current path with the provided query parameters.
    *
-   * @param {Object} queryParams - The new query parameters to be merged with the current ones.
+   * @param {Object} queryParams The new query parameters to be merged with the current ones.
+   * @param {String[]} [keysToRemove=[]] (Optional) An array of keys to remove from
+   *                   the current query parameters before merging with the new parameters.
+   *                   This allows for selectively removing parameters that are
+   *                   no longer needed or should be excluded from the current state.
    */
   updateState(queryParams, keysToRemove = []) {
     const filteredParams = Object.fromEntries(
