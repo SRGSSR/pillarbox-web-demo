@@ -10,7 +10,7 @@ import router from '../../router/router';
 import Pillarbox from '@srgssr/pillarbox-web';
 import { IL_DEFAULT_HOST } from '../../utils/il-provider.js';
 
-const DEMO_PLAYER_ID = 'player';
+const DEMO_PLAYER_ID = 'demo-player';
 const DEFAULT_OPTIONS = {
   restoreEl: true
 };
@@ -63,7 +63,7 @@ const toParams = (keySystems) => {
 
   return {
     vendor,
-    ...keySystems[vendor]
+    ...(vendor === 'com.apple.fps.1_0' ? keySystems[vendor] : { licenseUri: keySystems[vendor] })
   };
 };
 
@@ -72,12 +72,13 @@ const toKeySystem = (params) => {
     return undefined;
   }
 
-  const keySystem = {};
-  const { certificateUrl, licenseUrl } = params;
+  const { certificateUri, licenseUri } = params;
 
-  keySystem[params.vendor] = { certificateUrl, licenseUrl };
+  if (params.vendor === 'com.apple.fps.1_0') {
+    return { [params.vendor]: { certificateUri, licenseUri } };
+  }
 
-  return keySystem;
+  return { [params.vendor]: licenseUri };
 };
 
 export const asQueryParams = ({ src, type, keySystems }) => {
@@ -86,10 +87,14 @@ export const asQueryParams = ({ src, type, keySystems }) => {
 
 playerDialog.addEventListener('close', () => {
   destroyPlayer();
-  router.updateState({}, ['src', 'type', 'vendor', 'certificateUrl', 'licenseUrl']);
+  router.updateState({}, ['src', 'type', 'vendor', 'certificateUri', 'licenseUri']);
 });
 
 const loadPlayerFromRouter = (e) => {
+  if (window.player) {
+    return;
+  }
+
   const params = e.detail.queryParams;
 
   if ('src' in params) {

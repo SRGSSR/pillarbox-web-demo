@@ -11,7 +11,7 @@ import { classMap } from 'lit/directives/class-map.js';
  * @fires LoadMediaFormComponent#submit-media - Dispatched when the user submits media with the specified details.
  *
  * @prop {String} src - The URL or URN of the media content to be loaded.
- * @prop {{vendor: String, certificateUrl: String, licenseUrl: String}} drmSettings - DRM settings for the loaded media.
+ * @prop {{vendor: String, certificateUri: String, licenseUri: String}} drmSettings - DRM settings for the loaded media.
  */
 export class LoadMediaFormComponent extends LitElement {
   static properties = {
@@ -32,8 +32,8 @@ export class LoadMediaFormComponent extends LitElement {
   #initDrmSettings() {
     this.drmSettings = {
       vendor: '',
-      certificateUrl: '',
-      licenseUrl: ''
+      certificateUri: '',
+      licenseUri: ''
     };
   }
 
@@ -46,7 +46,7 @@ export class LoadMediaFormComponent extends LitElement {
   }
 
   #submitMedia() {
-    const src = this.#getSource();
+    const src = this.#getSource()?.trim();
     const type = src.startsWith('urn:') ? 'srgssr/urn' : undefined;
     const keySystems = this.#keySystems;
 
@@ -78,14 +78,14 @@ export class LoadMediaFormComponent extends LitElement {
       return undefined;
     }
 
-    const certificateUrl = this.drmSettings.certificateUrl;
-    const licenseUrl = this.drmSettings.licenseUrl;
+    const certificateUri = this.drmSettings.certificateUri?.trim();
+    const licenseUri = this.drmSettings.licenseUri?.trim();
 
     if (this.drmSettings.vendor === 'com.apple.fps.1_0') {
-      return { [this.drmSettings.vendor]: { certificateUrl, licenseUrl } };
+      return { [this.drmSettings.vendor]: { certificateUri, licenseUri } };
     }
 
-    return { [this.drmSettings.vendor]: { licenseUrl } };
+    return { [this.drmSettings.vendor]: licenseUri };
   }
 
   render() {
@@ -160,13 +160,13 @@ export class LoadMediaFormComponent extends LitElement {
           <option value="com.microsoft.playready">PlayReady</option>
         </select>
         <input type="text"
-               placeholder="Enter the license url..."
-               .value="${this.drmSettings.licenseUrl}"
-               @input="${e => { this.drmSettings.licenseUrl = e.target.value; }}">
+               placeholder="Enter the license uri..."
+               .value="${this.drmSettings.licenseUri}"
+               @input="${e => { this.drmSettings.licenseUri = e.target.value; }}">
         <input type="text"
-               placeholder="Enter the certificate url..."
-               .value="${this.drmSettings.certificateUrl}"
-               @input="${e => { this.drmSettings.certificateUrl = e.target.value; }}">
+               placeholder="Enter the certificate uri..."
+               .value="${this.drmSettings.certificateUri}"
+               @input="${e => { this.drmSettings.certificateUri = e.target.value; }}">
         <button class="icon-btn warning-text" type="reset">
           <i class="material-icons-outlined">delete</i>Clear Settings
         </button>
