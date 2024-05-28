@@ -1,4 +1,4 @@
-a {
+[part="showcase-link"] {
   display: flex;
   flex-direction: column;
   gap: var(--size-2);
@@ -25,4 +25,8 @@ a {
 
 div {
   margin-top: var(--size-7);
+}
+
+a {
+  font-size: inherit;
 }

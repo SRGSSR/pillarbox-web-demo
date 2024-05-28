@@ -47,7 +47,7 @@ export class ShowCasePage extends LitElement {
           </p>
           <code-block slot="code" language="javascript">${startTimeExampleTxt}</code-block>
         </showcase-component>
-        <a href="./static/showcases/start-time.html" target="_blank">
+        <a part="showcase-link" href="./static/showcases/start-time.html" target="_blank">
           Open this showcase
         </a>
       </div>
@@ -68,7 +68,7 @@ export class ShowCasePage extends LitElement {
           </p>
           <code-block slot="code" language="javascript">${multiPlayerExampleTxt}</code-block>
         </showcase-component>
-        <a href="./static/showcases/multi-player.html" target="_blank">
+        <a part="showcase-link" href="./static/showcases/multi-player.html" target="_blank">
           Open this showcase
         </a>
       </div>
@@ -87,7 +87,7 @@ export class ShowCasePage extends LitElement {
           </p>
           <code-block slot="code" language="javascript">${detectBlockedSegmentsExampleTxt}</code-block>
         </showcase-component>
-        <a href="./static/showcases/blocked-segment.html"
+        <a part="showcase-link" href="./static/showcases/blocked-segment.html"
            target="_blank">
           Open this showcase
         </a>
@@ -108,7 +108,7 @@ export class ShowCasePage extends LitElement {
           </p>
           <code-block slot="code" language="javascript">${displayCurrentChapterExampleTxt}</code-block>
         </showcase-component>
-        <a href="./static/showcases/chapters.html"
+        <a part="showcase-link" href="./static/showcases/chapters.html"
            target="_blank">
           Open this showcase
         </a>
@@ -123,12 +123,13 @@ export class ShowCasePage extends LitElement {
         <showcase-component href="skip-credits.html">
           <h2 slot="title">Skip Credits</h2>
           <p slot="description">
-            This example shows how to use pillarbox to create a plugin that adds
-            a "Skip" button during detected credit intervals.
+            This example shows how to use the
+            <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/skip-button#readme" target="_blank">Pillarbox Skip Button component</a>
+            to add a "Skip" button during detected credit intervals.
           </p>
           <code-block slot="code" language="javascript">${skipCreditsExampleTxt}</code-block>
         </showcase-component>
-        <a href="./static/showcases/skip-credits.html" target="_blank">
+        <a part="showcase-link" href="./static/showcases/skip-credits.html" target="_blank">
           Open this showcase
         </a>
       </div>
