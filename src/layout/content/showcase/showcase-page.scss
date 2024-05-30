@@ -27,6 +27,10 @@ div {
   margin-top: var(--size-7);
 }
 
+div:last-child {
+  margin-bottom: var(--size-7);
+}
+
 a {
   font-size: inherit;
 }
