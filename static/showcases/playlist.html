@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Skip Credits</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./static-showcase.scss"/>
+  <link rel="stylesheet" href="./playlist-showcase.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Playlist</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  // Import the pillarbox library and the SrgSsr utility class
+  import { default as pillarbox, SrgSsr } from '@srgssr/pillarbox-web';
+  // Import the playlist plugin for pillarbox
+  import '@srgssr/pillarbox-playlist';
+  // Import the playlist UI plugin for pillarbox
+  import '@srgssr/pillarbox-playlist/ui';
+
+  // Create a pillarbox player instance with the playlist plugin
+  const player = pillarbox('video-element-id', {
+    // Activate autoplay to automatically start the next element
+    autoplay: true,
+    plugins: {
+      // Configure the playlist plugin
+      pillarboxPlaylist: { autoadvance: true, repeat: true },
+      // Configure the playlist UI plugin and specify where to insert it in the UI
+      pillarboxPlaylistUI: { insertChildBefore: 'fullscreenToggle' }
+    }
+  });
+
+  // Define an array of video sources
+  const sources = [
+    'urn:rts:video:14827742',
+    'urn:srf:video:05457f66-fd67-4131-8e0a-6d85743efc39',
+    'urn:rtr:video:33136b80-bec6-40cd-a771-b8954c805098',
+    'urn:rts:video:9883196',
+  ];
+
+  Promise.all(sources.map(async urn => {
+    // Fetch the media composition data for each URN
+    const mediaComposition = await SrgSsr.getMediaComposition(urn, SrgSsr.dataProvider(player));
+    // Get the main chapter of the media composition
+    const mainChapter = mediaComposition.getMainChapter();
+
+    return {
+      // Define the sources of this playlist item URL and type
+      sources: [{ src: urn, type: 'srgssr/urn' }],
+      // Define the title and duration in seconds
+      data: { title: mainChapter.title, duration: mainChapter.duration / 1000 },
+      // Define the poster image
+      poster: mainChapter.imageUrl
+    };
+  })).then(playlist => {
+    // Load the playlist
+    player.pillarboxPlaylist().load(playlist);
+  });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>

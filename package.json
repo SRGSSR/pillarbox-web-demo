@@ -37,6 +37,7 @@
     "vite": "^5.2.11"
   },
   "dependencies": {
+    "@srgssr/pillarbox-playlist": "^1.0.0",
     "@srgssr/pillarbox-web": "^1.12.1",
     "@srgssr/skip-button": "^1.0.0",
     "highlight.js": "^11.9.0",

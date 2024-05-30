@@ -9,6 +9,7 @@ import rawMultiPlayerExample from '../../../../static/showcases/multi-player.htm
 import rawDetectBlockedSegmentsExample from '../../../../static/showcases/blocked-segment.html?raw';
 import rawDisplayCurrentChapterExample from '../../../../static/showcases/chapters.html?raw';
 import rawSkipCreditsExample from '../../../../static/showcases/skip-credits.html?raw';
+import rawPlaylistExample from '../../../../static/showcases/playlist.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -18,6 +19,7 @@ const detectBlockedSegmentsExampleTxt =
 const displayCurrentChapterExampleTxt =
   getTextFromHTML(rawDisplayCurrentChapterExample);
 const skipCreditsExampleTxt = getTextFromHTML(rawSkipCreditsExample);
+const playlistExampleTxt = getTextFromHTML(rawPlaylistExample);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -29,6 +31,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderDetectBlockedSegments()}
       ${this.#renderDisplayCurrentChapter()}
       ${this.#renderSkipCredits()}
+      ${this.#renderPlaylist()}
     `;
   }
 
@@ -130,6 +133,26 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${skipCreditsExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/skip-credits.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderPlaylist() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="playlist.html">
+          <h2 slot="title">Playlist</h2>
+          <p slot="description">
+            This example show how to fetch media data for a set of video sources 
+            and load them into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/pillarbox-playlist#readme" target="_blank">Pillarbox Playlist plugin</a>
+            with metadata such as title and duration.
+          </p>
+          <code-block slot="code" language="javascript">${playlistExampleTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/playlist.html" target="_blank">
           Open this showcase
         </a>
       </div>
