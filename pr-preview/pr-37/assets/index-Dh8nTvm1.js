@@ -445,7 +445,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=b),g===void 0&&(
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pillarbox Demo - Detect blocked segment</title>
   <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="./static-showcase.scss"/>
   <link rel="stylesheet" href="./blocked-segment.scss"/>
 </head>
 
@@ -562,7 +561,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=b),g===void 0&&(
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pillarbox Demo - Display Current Chapter</title>
   <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="./static-showcase.scss"/>
   <link rel="stylesheet" href="./chapters-showcase.scss"/>
 </head>
 
@@ -677,7 +675,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=b),g===void 0&&(
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pillarbox Demo - Skip Credits</title>
   <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="./static-showcase.scss"/>
   <link rel="stylesheet" href="./skip-showcase.scss"/>
 </head>
 
@@ -724,9 +721,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=b),g===void 0&&(
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pillarbox Demo - Skip Credits</title>
+  <title>Pillarbox Demo - Playlist</title>
   <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="./static-showcase.scss"/>
   <link rel="stylesheet" href="./playlist-showcase.scss"/>
 </head>
 
@@ -943,4 +939,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=b),g===void 0&&(
           </li>
         </ul>
       </nav>`},x(wn,"properties",{debug:{type:Boolean,state:!0}}),x(wn,"styles",[D,z(nc)]);customElements.define("demo-header",wn);class ri extends A{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return Hn(`<${this.route.component}></${this.route.component}>`)}}x(ri,"properties",{route:{state:!0}});customElements.define("route-outlet",ri);const Ye=he.loadPreferences();N.host=Ye.dataProviderHost;w.start({defaultPath:"examples"});w.queryParams.debug?(Ye.debug=w.queryParams.debug==="true",he.savePreferences(Ye)):Ye.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-xGohMyDU.js.map
+//# sourceMappingURL=index-Dh8nTvm1.js.map
