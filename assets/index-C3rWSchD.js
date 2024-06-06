@@ -340,7 +340,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=f),g===void 0&&(
 <div class="showcase-content">
   <h2>Start the player at a given position</h2>
   <div class="video-container">
-    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
   </div>
 
   <button class="showcase-btn" id="close-btn">Close this window</button>
@@ -392,13 +392,13 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=f),g===void 0&&(
   <h2>Multiple players</h2>
 
   <div class="video-container">
-    <video-js id="main-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="main-player" class="pillarbox-js" controls></video-js>
   </div>
 
   <button class="showcase-btn" id="toggle-player">Toggle main player</button>
 
   <div class="video-container">
-    <video-js id="second-player" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="second-player" class="pillarbox-js" controls></video-js>
   </div>
 
   <button class="showcase-btn" id="close-btn">Close this window</button>
@@ -454,7 +454,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=f),g===void 0&&(
 <div class="showcase-content">
   <h2>Detect blocked segment</h2>
   <div class="video-container">
-    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
   </div>
 
   <button class="showcase-btn" id="close-btn">Close this window</button>
@@ -571,7 +571,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=f),g===void 0&&(
 <div class="showcase-content">
   <h2>Display Current Chapter</h2>
   <div class="video-container">
-    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
   </div>
 
   <button class="showcase-btn" id="close-btn">Close this window</button>
@@ -686,7 +686,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=f),g===void 0&&(
 <div class="showcase-content">
   <h2>Skip Credits</h2>
   <div class="video-container">
-    <video-js id="video-element-id" class="pillarbox-js" controls crossorigin="anonymous"></video-js>
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
   </div>
 
   <button class="showcase-btn" id="close-btn">Close this window</button>
@@ -842,4 +842,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,k=f),g===void 0&&(
           </li>
         </ul>
       </nav>`},x(vn,"properties",{debug:{type:Boolean,state:!0}}),x(vn,"styles",[P,O(Jr)]);customElements.define("demo-header",vn);class oi extends A{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return Bn(`<${this.route.component}></${this.route.component}>`)}}x(oi,"properties",{route:{state:!0}});customElements.define("route-outlet",oi);const Ye=he.loadPreferences();N.host=Ye.dataProviderHost;w.start({defaultPath:"examples"});w.queryParams.debug?(Ye.debug=w.queryParams.debug==="true",he.savePreferences(Ye)):Ye.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-DcAZLqpf.js.map
+//# sourceMappingURL=index-C3rWSchD.js.map
