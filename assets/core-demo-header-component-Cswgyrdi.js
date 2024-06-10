@@ -272,5 +272,5 @@ ${ns(e)}`),t.map&&!t.map.bytes&&(this.logger_("going to request init segment."),
           </a>
           <slot name="actions"></slot>
         </div>
-      </header>`}}Se(oT,"styles",[ff,Oa(sI)]);customElements.define("core-demo-header",oT);export{V2 as a,Fo as b,Jk as c,aI as d,aT as e,ni as g,Zk as i,lI as o,De as p,Oa as r,ms as s,ff as t,L as v,Gi as w,df as x};
-//# sourceMappingURL=core-demo-header-component-BkP0G6v2.js.map
+      </header>`}}Se(oT,"styles",[ff,Oa(sI)]);customElements.define("core-demo-header",oT);export{Z as S,V2 as a,Fo as b,Jk as c,aI as d,aT as e,ni as g,Zk as i,lI as o,De as p,Oa as r,ms as s,ff as t,L as v,Gi as w,df as x};
+//# sourceMappingURL=core-demo-header-component-Cswgyrdi.js.map
