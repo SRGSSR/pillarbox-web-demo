@@ -16,29 +16,20 @@ To run this demo, you need to have the following installed on your system:
 
 ## Quick start
 
-To run this demo locally, follow these steps:
+To run this demo locally, clone this repository:
 
-Add the `@srgssr` registry in your `.npmrc` file:
-
-```text
-//npm.pkg.github.com/:_authToken=TOKEN
-@srgssr:registry=https://npm.pkg.github.com
-```
-
-To generate an authentication token follow this
-guide: [Authenticating with a personal access token](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#authenticating-with-a-personal-access-token)
-
-Clone this repository:
 ```shell
 git clone https://github.com/SRGSSR/pillarbox-web-demo.git
 ```
 
 Install the dependencies:
+
 ```shell
 npm install
 ```
 
 Start the development server:
+
 ```shell
 npm run start
 ```
