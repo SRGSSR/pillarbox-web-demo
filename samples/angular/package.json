@@ -7,24 +7,23 @@
     "build": "ng build"
   },
   "dependencies": {
-    "@angular/animations": "^18.0.5",
-    "@angular/common": "^18.0.5",
-    "@angular/compiler": "^18.0.5",
-    "@angular/core": "^18.0.5",
-    "@angular/forms": "^18.0.5",
-    "@angular/platform-browser": "^18.0.5",
-    "@angular/platform-browser-dynamic": "^18.0.5",
-    "@angular/router": "^18.0.5",
-    "@srgssr/pillarbox-web": "^1.12.2",
-    "video.js": "^8.11.8",
-    "open-props": "^1.7.4",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
+    "@angular/animations": "^18.2.9",
+    "@angular/common": "^18.2.9",
+    "@angular/compiler": "^18.2.9",
+    "@angular/core": "^18.2.9",
+    "@angular/forms": "^18.2.9",
+    "@angular/platform-browser": "^18.2.9",
+    "@angular/platform-browser-dynamic": "^18.2.9",
+    "@angular/router": "^18.2.9",
+    "@srgssr/pillarbox-web": "^1.14.1",
+    "open-props": "^1.7.7",
+    "rxjs": "~7.8.1",
+    "tslib": "^2.8.0"
   },
   "devDependencies": {
-    "@angular/build": "^18.0.6",
-    "@angular/cli": "^18.0.6",
-    "@angular/compiler-cli": "^18.0.5",
-    "typescript": "~5.4.2"
+    "@angular/build": "^18.2.10",
+    "@angular/cli": "^18.2.10",
+    "@angular/compiler-cli": "^18.2.9",
+    "typescript": "~5.5.4"
   }
 }

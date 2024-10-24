@@ -49,7 +49,10 @@ class ListsPageStateManager {
     const nodeIndex = this.#findNodeIndex(this.level[sectionIndex].nodes, bu);
 
     await this.fetchNextState(sectionIndex, nodeIndex);
+    await this.#processNodeString(nodes);
+  }
 
+  async #processNodeString(nodes) {
     for (const nodeStr of (nodes?.split(',') || [])) {
       const nodeIndex = this.#findNodeIndex(this.level[0].nodes, nodeStr);
 

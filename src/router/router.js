@@ -175,28 +175,36 @@ class Router extends EventTarget {
    */
   #handleRouteChange(path, queryParams = {}, popstate = false) {
     if (this.isActiveRoute(path)) {
-      if (!this.#matchCurrentParams(queryParams)) {
-        this.#currentQueryParams = queryParams;
-        this.dispatchEvent(new CustomEvent('queryparams', {
-          detail: {
-            route: this.#currentRoute,
-            popstate,
-            queryParams
-          }
-        }));
-      }
+      this.#handleActiveRoute(queryParams, popstate);
 
       return;
     }
 
-    const route = this.findRoute(path);
+    this.#handleRouteUpdate(path, queryParams, popstate);
+  }
 
-    if (route) {
-      this.#updateCurrentRoute(route, queryParams, popstate);
+  #handleRouteUpdate(path, queryParams, popstate = false) {
+    const targetRoute = this.findRoute(path);
+
+    if (targetRoute) {
+      this.#updateCurrentRoute(targetRoute, queryParams, popstate);
     } else if (this.#defaultPath) {
       this.#handleRouteChange(this.#defaultPath, queryParams, popstate);
     } else {
       throw Error(`No route found for '${path}'`);
+    }
+  }
+
+  #handleActiveRoute(queryParams, popstate = false) {
+    if (!this.#matchCurrentParams(queryParams)) {
+      this.#currentQueryParams = queryParams;
+      this.dispatchEvent(new CustomEvent('queryparams', {
+        detail: {
+          route: this.#currentRoute,
+          popstate,
+          queryParams
+        }
+      }));
     }
   }
 

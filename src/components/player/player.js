@@ -15,6 +15,16 @@ const DEFAULT_OPTIONS = {
   restoreEl: true
 };
 
+const preferencesToPlayerOptions = (preferences) => {
+  return {
+    muted: preferences.muted ?? true,
+    autoplay: preferences.autoplay ?? false,
+    debug: preferences.debug ?? false,
+    srgOptions: {
+      dataProviderHost: preferences.dataProviderHost ?? IL_DEFAULT_HOST
+    }
+  };
+};
 /**
  * Creates and configures a Pillarbox player.
  *
@@ -23,18 +33,9 @@ const DEFAULT_OPTIONS = {
  * @returns {Object} The configured Pillarbox player instance.
  */
 const createPlayer = (options = {}) => {
-  const preferences = PreferencesProvider.loadPreferences();
-
   window.player = new Pillarbox(DEMO_PLAYER_ID, {
     ...DEFAULT_OPTIONS,
-    ...{
-      muted: preferences.muted ?? true,
-      autoplay: preferences.autoplay ?? false,
-      debug: preferences.debug ?? false,
-      srgOptions: {
-        dataProviderHost: preferences.dataProviderHost ?? IL_DEFAULT_HOST
-      }
-    },
+    ...preferencesToPlayerOptions(PreferencesProvider.loadPreferences()),
     ...options
   });
 
