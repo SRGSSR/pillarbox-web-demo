@@ -40,7 +40,7 @@ export class LoadMediaFormComponent extends LitElement {
   #getSource() {
     try {
       return new URL(this.src).searchParams.get('urn') ?? this.src;
-    } catch (error) {
+    } catch {
       return this.src;
     }
   }
@@ -78,6 +78,10 @@ export class LoadMediaFormComponent extends LitElement {
       return undefined;
     }
 
+    return this.#toKeySystem();
+  }
+
+  #toKeySystem() {
     const certificateUri = this.drmSettings.certificateUri?.trim();
     const licenseUri = this.drmSettings.licenseUri?.trim();
 
