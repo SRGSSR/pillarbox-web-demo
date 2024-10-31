@@ -6,7 +6,7 @@ This is a demo application for the [pillarbox-web](https://github.com/SRGSSR/pil
 SDK that extends the functionality of video.js. You can use this demo to see how `pillarbox-web`
 works and how to integrate it into your own web projects.
 
-The latest demo build is also accessible here: https://srgssr.github.io/pillarbox-web-demo/
+The latest demo build is also accessible here: https://demo.pillarbox.ch
 
 ## Requirements
 
