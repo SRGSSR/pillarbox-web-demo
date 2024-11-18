@@ -10,6 +10,7 @@ import rawDetectBlockedSegmentsExample from '../../../../static/showcases/blocke
 import rawDisplayCurrentChapterExample from '../../../../static/showcases/chapters.html?raw';
 import rawSkipCreditsExample from '../../../../static/showcases/skip-credits.html?raw';
 import rawPlaylistExample from '../../../../static/showcases/playlist.html?raw';
+import rawqualityMenuExample from '../../../../static/showcases/quality-menu.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -20,6 +21,7 @@ const displayCurrentChapterExampleTxt =
   getTextFromHTML(rawDisplayCurrentChapterExample);
 const skipCreditsExampleTxt = getTextFromHTML(rawSkipCreditsExample);
 const playlistExampleTxt = getTextFromHTML(rawPlaylistExample);
+const qualityMenuExampleTxt = getTextFromHTML(rawqualityMenuExample);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -32,6 +34,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderDisplayCurrentChapter()}
       ${this.#renderSkipCredits()}
       ${this.#renderPlaylist()}
+      ${this.#renderQualityMenu()}
     `;
   }
 
@@ -146,13 +149,33 @@ export class ShowCasePage extends LitElement {
         <showcase-component href="playlist.html">
           <h2 slot="title">Playlist</h2>
           <p slot="description">
-            This example show how to fetch media data for a set of video sources 
+            This example shows how to fetch media data for a set of video sources 
             and load them into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/pillarbox-playlist#readme" target="_blank">Pillarbox Playlist plugin</a>
             with metadata such as title and duration.
           </p>
           <code-block slot="code" language="javascript">${playlistExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/playlist.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderQualityMenu() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="quality-menu.html">
+          <h2 slot="title">Quality Menu</h2>
+          <p slot="description">
+            In this showcase, we'll demonstrate howto display a quality selector
+            menu using the <a href="https://github.com/videojs/videojs-contrib-quality-menu">videojs-contrib-quality-menu</a>
+            plugin.
+          </p>
+          <code-block slot="code" language="javascript">${qualityMenuExampleTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/quality-menu.html" target="_blank">
           Open this showcase
         </a>
       </div>

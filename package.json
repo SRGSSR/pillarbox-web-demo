@@ -43,6 +43,7 @@
     "lit": "^3.2.1",
     "material-icons": "^1.13.12",
     "minimatch": "^10.0.1",
-    "open-props": "^1.7.7"
+    "open-props": "^1.7.7",
+    "videojs-contrib-quality-menu": "^1.0.3"
   }
 }
