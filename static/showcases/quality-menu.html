@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Quality Menu</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./quality-menu.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Quality Menu</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  import pillarbox from '@srgssr/pillarbox-web';
+  // Import the quality menu plugin
+  import 'videojs-contrib-quality-menu';
+
+  // Create a pillarbox player instance with the quality menu plugin
+  const player = pillarbox('video-element-id', { plugins: { qualityMenu: true } });
+
+  // Load the video source
+  player.src({ src: 'urn:srf:video:593535b2-87c0-433a-8d2c-baf819233df1', type: 'srgssr/urn' });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>
