@@ -806,7 +806,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),h===void 0&&(
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pillarbox Demo - Quality Menu</title>
   <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
-  <link rel="stylesheet" href="./static-showcase.scss"/>
+  <link rel="stylesheet" href="./quality-menu.scss"/>
 </head>
 
 <body>
@@ -1003,4 +1003,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),h===void 0&&(
           </li>
         </ul>
       </nav>`},x(jt,"properties",{debug:{type:Boolean,state:!0}}),x(jt,"styles",[q,B(Sr)]);customElements.define("demo-header",jt);class So extends N{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(So,"properties",{route:{state:!0}});customElements.define("route-outlet",So);const et=Se.loadPreferences();z.host=et.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(et.debug=v.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-XKQDRvQE.js.map
+//# sourceMappingURL=index-9SZSMbQ4.js.map
