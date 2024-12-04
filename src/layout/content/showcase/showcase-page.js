@@ -11,6 +11,7 @@ import rawDisplayCurrentChapterExample from '../../../../static/showcases/chapte
 import rawSkipCreditsExample from '../../../../static/showcases/skip-credits.html?raw';
 import rawPlaylistExample from '../../../../static/showcases/playlist.html?raw';
 import rawqualityMenuExample from '../../../../static/showcases/quality-menu.html?raw';
+import rawCountdown from '../../../../static/showcases/countdown.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -22,6 +23,7 @@ const displayCurrentChapterExampleTxt =
 const skipCreditsExampleTxt = getTextFromHTML(rawSkipCreditsExample);
 const playlistExampleTxt = getTextFromHTML(rawPlaylistExample);
 const qualityMenuExampleTxt = getTextFromHTML(rawqualityMenuExample);
+const countdownExampleTxt = getTextFromHTML(rawCountdown);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -35,6 +37,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderSkipCredits()}
       ${this.#renderPlaylist()}
       ${this.#renderQualityMenu()}
+      ${this.#renderCountdown()}
     `;
   }
 
@@ -149,7 +152,7 @@ export class ShowCasePage extends LitElement {
         <showcase-component href="playlist.html">
           <h2 slot="title">Playlist</h2>
           <p slot="description">
-            This example shows how to fetch media data for a set of video sources 
+            This example shows how to fetch media data for a set of video sources
             and load them into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/pillarbox-playlist#readme" target="_blank">Pillarbox Playlist plugin</a>
             with metadata such as title and duration.
           </p>
@@ -176,6 +179,24 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${qualityMenuExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/quality-menu.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderCountdown() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="countdown.html">
+          <h2 slot="title">Countdown Timer</h2>
+          <p slot="description">
+            In this showcase, we'll demonstrate how to display a countdown timer.
+          </p>
+          <code-block slot="code" language="javascript">${countdownExampleTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/countdown.html" target="_blank">
           Open this showcase
         </a>
       </div>
