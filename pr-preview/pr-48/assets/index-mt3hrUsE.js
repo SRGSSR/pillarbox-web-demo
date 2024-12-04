@@ -925,10 +925,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,w=f),h===void 0&&(
          * Resets the countdown timer.
          *
          * Clears the interval, closes the modal, and empties its content.
-         *
-         * @param {Event} [e] - Optional event object.
          */
-        reset(e) {
+        reset() {
           this.clearInterval(this.intervalId);
           this.close();
           this.empty();
@@ -1246,4 +1244,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,w=f),h===void 0&&(
           </li>
         </ul>
       </nav>`},x(It,"properties",{debug:{type:Boolean,state:!0}}),x(It,"styles",[q,B(Cr)]);customElements.define("demo-header",It);class Eo extends j{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(Eo,"properties",{route:{state:!0}});customElements.define("route-outlet",Eo);const et=Se.loadPreferences();P.host=et.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(et.debug=v.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-DbYAX9vQ.js.map
+//# sourceMappingURL=index-mt3hrUsE.js.map
