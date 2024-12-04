@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Display Countdown</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="./countdown.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Display Countdown</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from '@srgssr/pillarbox-web';
+
+      const ModalDialog = pillarbox.getComponent('ModalDialog');
+
+      /**
+       * Provides a countdown timer functionality within a modal dialog.
+       */
+      class Countdown extends ModalDialog {
+        /**
+         * Creates an instance of Countdown.
+         *
+         * @param {Player} player The video.js player instance
+         * @param {Object} options Configuration options for the modal dialog
+         */
+        constructor(player, options) {
+          const opts = pillarbox.obj.merge(options, {
+            pauseOnOpen: false,
+            fillAlways: true,
+            temporary: false,
+            uncloseable: true
+          });
+
+          super(player, opts);
+
+          this.intervalId = undefined;
+          this.reset = this.reset.bind(this);
+
+          this.on(player, ['loadstart', 'playerreset', 'dispose', 'error'], this.reset);
+        }
+
+        /**
+         * The CSS class name for the countdown modal dialog.
+         *
+         * @returns {string} The CSS class name
+         */
+        buildCSSClass() {
+          return `pillarbox-countdown ${super.buildCSSClass()}`;
+        }
+
+        /**
+         * Disposes of the countdown component.
+         *
+         * Cleans up any resources and event listeners.
+         */
+        dispose() {
+          this.reset();
+          this.off(this.player(), ['loadstart', 'playerreset', 'dispose', 'error'], this.reset);
+
+          super.dispose();
+        }
+
+        /**
+         * Resets the countdown timer.
+         *
+         * Clears the interval, closes the modal, and empties its content.
+         */
+        reset() {
+          this.clearInterval(this.intervalId);
+          this.close();
+          this.empty();
+
+          this.intervalId = undefined;
+        }
+
+        /**
+         * Starts the countdown timer.
+         *
+         * @param {number} timestamp The target timestamp in milliseconds
+         * @param {string} source The source to play when the countdown ends
+         *
+         * @returns {boolean} True if the countdown started successfully
+         */
+        start(timestamp, source) {
+          this.reset();
+
+          if (typeof timestamp !== 'number') return;
+
+          this.intervalId = this.setInterval(() => {
+            const remainingDuration = this.remainingDuration(timestamp);
+
+            if (remainingDuration.totalInMilliseconds <= 0) {
+              this.reset();
+              this.player().src(source);
+
+              return;
+            }
+
+            this.fillWith(`${remainingDuration.days
+              }d ${remainingDuration.hours
+              }h ${remainingDuration.minutes
+              }m ${remainingDuration.seconds
+              }s remaining`);
+          }, 1_000);
+
+          this.open();
+
+          return true;
+        }
+
+        /**
+         * The remaining duration until the target timestamp.
+         *
+         * @param {number} timestamp The target timestamp in milliseconds
+         *
+         * @returns {Object} An object containing the remaining days, hours, minutes, seconds, and total in milliseconds
+         */
+        remainingDuration(timestamp) {
+          const SECONDS_IN_MS = 1_000;
+          const MINUTES = 60 * SECONDS_IN_MS;
+          const HOURS = 60 * MINUTES;
+          const DAYS = 24 * HOURS;
+          const totalInMilliseconds = timestamp - Date.now();
+
+          let diff = totalInMilliseconds;
+          // Calculate days, hours, minutes, and seconds
+          let days = Math.floor(diff / (DAYS));
+          diff -= days * (DAYS);
+
+          let hours = Math.floor(diff / (HOURS));
+          diff -= hours * (HOURS);
+
+          let minutes = Math.floor(diff / (MINUTES));
+          diff -= minutes * (MINUTES);
+
+          let seconds = Math.floor(diff / SECONDS_IN_MS);
+
+          return {
+            days: days.toString().padStart(2, '0'),
+            hours: hours.toString().padStart(2, '0'),
+            minutes: minutes.toString().padStart(2, '0'),
+            seconds: seconds.toString().padStart(2, '0'),
+            totalInMilliseconds
+          }
+        }
+      }
+
+      // Register Countdown component
+      pillarbox.registerComponent('Countdown', Countdown);
+
+      // Create a pillarbox player instance with the currentChapter plugin
+      const player = pillarbox(
+        'video-element-id',
+        {
+          fill: true,
+          // Add the countdown component to the player
+          countdown: true,
+        }
+      );
+
+      // Listen for player errors
+      player.on('error', () => {
+        // Get the metadata associated with the error
+        const { metadata = {} } = player.error() || {};
+
+        // If the error is not of type STARTDATE we do nothing
+        if (metadata.errorType !== 'STARTDATE') return;
+
+        // Extract the validFrom property from the mediaData
+        const {
+          src: {
+            mediaData: {
+              chapters: [{ validFrom } = {}] = []
+            } = {}
+          } = {}
+        } = metadata;
+        const timestamp = new Date(validFrom).getTime();
+
+        if (!player.countdown.start(timestamp, player.currentSource())) return;
+
+        // Closes error display component to prevent overlapping
+        if (player.errorDisplay && player.errorDisplay.opened()) {
+          player.errorDisplay.close();
+        }
+      });
+
+      // In the absence of media generating a STARTDATE error, this function
+      // manually activates the countdown
+      player.countdown.start(Date.now() + 5_977_235_000, { src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
+
+      // If a media sends a STARTDATE error, the countdown is automatically
+      // activated, since the logic for activating the countdown is handled by
+      // the error event handler
+      // player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
+
+      window.player = player;
+    </script>
+
+    <script type="module">
+      import pillarbox from '@srgssr/pillarbox-web';
+      import '../../src/layout/header/core-demo-header-component.js';
+
+      document.querySelector('#close-btn').addEventListener('click', () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+    </script>
+
+  </body>
+
+</html>
