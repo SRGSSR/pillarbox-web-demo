@@ -897,7 +897,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,w=f),h===void 0&&(
           this.intervalId = undefined;
           this.reset = this.reset.bind(this);
 
-          this.on(player, ['loadstart', 'playerreset', 'dipose', 'error'], this.reset);
+          this.on(player, ['loadstart', 'playerreset', 'dispose', 'error'], this.reset);
         }
 
         /**
@@ -916,7 +916,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,w=f),h===void 0&&(
          */
         dispose() {
           this.reset();
-          this.off(this.player(), ['loadstart', 'playerreset', 'dipose', 'error'], this.reset);
+          this.off(this.player(), ['loadstart', 'playerreset', 'dispose', 'error'], this.reset);
 
           super.dispose();
         }
@@ -1244,4 +1244,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,w=f),h===void 0&&(
           </li>
         </ul>
       </nav>`},x(It,"properties",{debug:{type:Boolean,state:!0}}),x(It,"styles",[q,B(Cr)]);customElements.define("demo-header",It);class Eo extends j{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(Eo,"properties",{route:{state:!0}});customElements.define("route-outlet",Eo);const et=Se.loadPreferences();P.host=et.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(et.debug=v.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-6eDPI85s.js.map
+//# sourceMappingURL=index-Drld_34e.js.map
