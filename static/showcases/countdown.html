@@ -138,14 +138,14 @@
 
           let diff = totalInMilliseconds;
           // Calculate days, hours, minutes, and seconds
-          let days = Math.floor(diff / (DAYS));
-          diff -= days * (DAYS);
+          let days = Math.floor(diff / DAYS);
+          diff -= days * DAYS;
 
-          let hours = Math.floor(diff / (HOURS));
-          diff -= hours * (HOURS);
+          let hours = Math.floor(diff / HOURS);
+          diff -= hours * HOURS;
 
-          let minutes = Math.floor(diff / (MINUTES));
-          diff -= minutes * (MINUTES);
+          let minutes = Math.floor(diff / MINUTES);
+          diff -= minutes * MINUTES;
 
           let seconds = Math.floor(diff / SECONDS_IN_MS);
 
