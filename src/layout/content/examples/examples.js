@@ -73,8 +73,8 @@ const EXAMPLES = {
   HLS: [
     {
       title: 'VOD - HLS',
-      description: 'Switzerland says sorry! The fondue invasion',
-      src: 'https://swi-vod.akamaized.net/videoJson/47603186/master.m3u8',
+      description: 'Sacha part à la rencontre d\'univers atypiques',
+      src: 'https://rts-vod-amd.akamaized.net/ww/14970442/da2b38fb-ca9f-3c76-80c6-e6fa7f3c2699/master.m3u8',
       type: 'application/x-mpegURL'
     },
     {
