@@ -12,6 +12,7 @@ import rawSkipCreditsExample from '../../../../static/showcases/skip-credits.htm
 import rawPlaylistExample from '../../../../static/showcases/playlist.html?raw';
 import rawqualityMenuExample from '../../../../static/showcases/quality-menu.html?raw';
 import rawCountdown from '../../../../static/showcases/countdown.html?raw';
+import rawPlaybackRate from '../../../../static/showcases/playback-rate.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -24,6 +25,7 @@ const skipCreditsExampleTxt = getTextFromHTML(rawSkipCreditsExample);
 const playlistExampleTxt = getTextFromHTML(rawPlaylistExample);
 const qualityMenuExampleTxt = getTextFromHTML(rawqualityMenuExample);
 const countdownExampleTxt = getTextFromHTML(rawCountdown);
+const playbackRateExampleTxt = getTextFromHTML(rawPlaybackRate);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -38,6 +40,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderPlaylist()}
       ${this.#renderQualityMenu()}
       ${this.#renderCountdown()}
+      ${this.#renderPlaybackRate()}
     `;
   }
 
@@ -197,6 +200,24 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${countdownExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/countdown.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderPlaybackRate() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="playback-rate.html">
+          <h2 slot="title">Playback Rate</h2>
+          <p slot="description">
+            In this showcase, we'll demonstrate how to display the playback rate compoment.
+          </p>
+          <code-block slot="code" language="javascript">${playbackRateExampleTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/playback-rate.html" target="_blank">
           Open this showcase
         </a>
       </div>
