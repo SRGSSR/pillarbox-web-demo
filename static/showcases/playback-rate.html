@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Playback Rate</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="./playback-rate.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Playback Rate</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from '@srgssr/pillarbox-web';
+
+      const player = pillarbox(
+        'video-element-id',
+        {
+          fill: true,
+          muted: true,
+          // Add the playback rate component to the player
+          playbackRates: [0.5, 0.75, 1, 1.25, 1.5, 2],
+        }
+      );
+
+      player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+
+      window.player = player;
+    </script>
+
+    <script type="module">
+      import pillarbox from '@srgssr/pillarbox-web';
+      import '../../src/layout/header/core-demo-header-component.js';
+
+      document.querySelector('#close-btn').addEventListener('click', () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+    </script>
+
+  </body>
+
+</html>
