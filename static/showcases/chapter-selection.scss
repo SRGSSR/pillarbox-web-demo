@@ -1,0 +1,53 @@
+@import './static-showcase';
+
+#chapter-selector {
+  display: grid;
+  gap: var(--size-2);
+}
+
+.chapter {
+  display: inline-block;
+  padding: var(--size-3);
+  color: var(--color-4);
+  text-decoration: none;
+  background: var(--color-10);
+  border-radius: var(--size-2);
+}
+
+.chapter-selected {
+  background: var(--red-11);
+}
+
+.chapter:hover:not(.chapter-selected) {
+  background: var(--color-9);
+}
+
+.chapter figure {
+  display: grid;
+  grid-template-columns: var(--size-12) 1fr;
+  gap: var(--size-5);
+  margin: 0;
+}
+
+.chapter figcaption {
+  display: grid;
+}
+
+.chapter img {
+  width: 100%;
+  border-radius: var(--size-2);
+}
+
+.chapter p {
+  margin: 0;
+}
+
+.chapter span {
+  justify-self: end;
+  float: right;
+  margin-top: var(--size-4);
+  padding: var(--size-1);
+  background-color: var(--color-8);
+  border-color: var(--color-9);
+  border-radius: var(--radius-2);
+}
