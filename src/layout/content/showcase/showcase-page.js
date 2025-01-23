@@ -13,6 +13,7 @@ import rawPlaylistExample from '../../../../static/showcases/playlist.html?raw';
 import rawqualityMenuExample from '../../../../static/showcases/quality-menu.html?raw';
 import rawCountdown from '../../../../static/showcases/countdown.html?raw';
 import rawPlaybackRate from '../../../../static/showcases/playback-rate.html?raw';
+import rawChapterSelection from '../../../../static/showcases/chapter-selection.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -26,6 +27,7 @@ const playlistExampleTxt = getTextFromHTML(rawPlaylistExample);
 const qualityMenuExampleTxt = getTextFromHTML(rawqualityMenuExample);
 const countdownExampleTxt = getTextFromHTML(rawCountdown);
 const playbackRateExampleTxt = getTextFromHTML(rawPlaybackRate);
+const chapterSelectionExampleTxt = getTextFromHTML(rawChapterSelection);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -41,6 +43,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderQualityMenu()}
       ${this.#renderCountdown()}
       ${this.#renderPlaybackRate()}
+      ${this.#renderChapterSelection()}
     `;
   }
 
@@ -218,6 +221,24 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${playbackRateExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/playback-rate.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderChapterSelection() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="chapter-selection.html">
+          <h2 slot="title">Chapter Selection</h2>
+          <p slot="description">
+            In this showcase, we'll demonstrate how to display a chapter selector.
+          </p>
+          <code-block slot="code" language="javascript">${chapterSelectionExampleTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/chapter-selection.html" target="_blank">
           Open this showcase
         </a>
       </div>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Chapter Selection</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./chapter-selection.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Chapter Selection</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  // Import the pillarbox library
+  import pillarbox from '@srgssr/pillarbox-web';
+
+  // Create a pillarbox player instance with the currentChapter plugin
+  window.player = pillarbox(
+    'video-element-id',
+    {muted: true}
+  );
+
+  // Listen for a chapter change
+  player.on('srgssr/chapter', ({ data = { text : null} }) => {
+    const currentChapter = JSON.parse(data.text);
+
+    // Select the current chapter
+    document.querySelectorAll('.chapter').forEach(chapter => {
+      const isChapterSelected = currentChapter && currentChapter.urn === chapter.dataset.urn;
+      chapter.classList.toggle('chapter-selected', isChapterSelected);
+    });
+  });
+
+  // Listens for the loadeddata event to build the chapter selector
+  player.on('loadeddata', () => {
+    // Remove the chapter selector element each time a new media is loaded
+    if(document.getElementById('chapter-selector')){
+      document.getElementById('chapter-selector').remove();
+    }
+
+    // Get each cue from the srgssr-chapters text track
+    const chapters = Array.from(player.textTracks().getTrackById('srgssr-chapters').cues);
+
+    if(!chapters) return;
+
+    // Create the chapter selector element
+    const chapterSelector = document.createElement('div');
+
+    chapterSelector.id ="chapter-selector";
+
+    // Create the chapter element
+    chapters.forEach(({startTime, text}, i) => {
+      // Extract the data used to create the chapter UI
+      const {
+        duration,
+        imageUrl,
+        imageTitle,
+        mediaType,
+        title,
+        urn,
+        vendor
+      } = JSON.parse(text);
+      const chapterId = `${'chapter-' + i}`;
+      const chapter = document.createElement('a');
+
+      chapter.dataset.urn = urn;
+      chapter.className = 'chapter';
+      chapter.setAttribute('aria-labelledby', chapterId);
+      // Create the Play URL for the chapter
+      chapter.href = `https://www.${vendor.toLowerCase()}.ch/play/tv/-/${mediaType.toLowerCase()}/-?urn=${urn}`;
+      // The UI to display the chapter
+      chapter.innerHTML = /*html*/`
+        <figure>
+          <img
+            src="${imageUrl}"
+            alt="${imageTitle}"
+            loading="lazy"
+          />
+          <figcaption id="${chapterId}">
+            <p class="title">${title}</p>
+            <span aria-hidden="true" class="duration">${pillarbox.time.formatTime(duration/1_000, 600)}</span>
+          </figcaption>
+        </figure>
+      `;
+
+      // Handle the click on a chapter
+      chapter.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Add a small tolerance to avoid selecting the previous chapter when
+        // endTime matches the selected chapter’s startTime
+        player.currentTime(startTime + 0.1);
+      });
+
+      // Append the chapter to the chapter selector element
+      chapterSelector.append(chapter);
+    });
+
+    // Append the chapter selector element to the document body
+    document.body.append(chapterSelector);
+  });
+
+  // Set the video source for the player
+  player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>
