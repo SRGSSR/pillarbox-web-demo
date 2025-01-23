@@ -1345,7 +1345,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,w=f),u===void 0&&(
       <div class="fade-in"
            @animationend="${e=>e.target.classList.remove("fade-in")}">
         <showcase-component href="chapter-selection.html">
-          <h2 slot="title">Chapter Selection Timer</h2>
+          <h2 slot="title">Chapter Selection</h2>
           <p slot="description">
             In this showcase, we'll demonstrate how to display a chapter selector.
           </p>
@@ -1388,4 +1388,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=c,w=f),u===void 0&&(
           </li>
         </ul>
       </nav>`},x($t,"properties",{debug:{type:Boolean,state:!0}}),x($t,"styles",[q,B(Lr)]);customElements.define("demo-header",$t);class Co extends j{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(Co,"properties",{route:{state:!0}});customElements.define("route-outlet",Co);const et=Se.loadPreferences();P.host=et.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(et.debug=v.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-BS7GEN8V.js.map
+//# sourceMappingURL=index-CEPB-sOA.js.map

@@ -11,4 +11,4 @@ import{p as n}from"./core-demo-header-component-BNyRgtzK.js";window.player=n("vi
           </figcaption>
         </figure>
       `,e.addEventListener("click",y=>{y.preventDefault(),player.currentTime(a+.1)}),t.append(e)}),document.body.append(t)});player.src({src:"urn:rts:video:10894383",type:"srgssr/urn"});document.querySelector("#close-btn").addEventListener("click",()=>{window.close()});window.pillarbox=n;
-//# sourceMappingURL=chapter-selection-DSghezLv.js.map
+//# sourceMappingURL=chapter-selection-DSV4SONv.js.map
