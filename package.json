@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@srgssr/pillarbox-playlist": "^2.1.0",
-    "@srgssr/pillarbox-web": "^1.14.1",
+    "@srgssr/pillarbox-web": "^1.17.0",
     "@srgssr/skip-button": "^1.0.4",
     "highlight.js": "^11.10.0",
     "lit": "^3.2.1",
