@@ -1,0 +1,33 @@
+@import './static-showcase';
+@import "@silvermine/videojs-chromecast/dist/silvermine-videojs-chromecast.css";
+
+// Material icons
+@import 'material-icons/css/material-icons';
+
+.video-js .vjs-chromecast-button .vjs-icon-placeholder  {
+  display: unset;
+  width: unset;
+  height: unset;
+  /* stylelint-disable-next-line font-family-no-missing-generic-family-keyword */
+  font-family: 'Material Icons';
+  background: unset;
+  background-size: unset;
+}
+
+.video-js .vjs-chromecast-button .vjs-icon-placeholder::before {
+  content: 'cast';
+}
+
+.video-js .vjs-chromecast-casting-state .vjs-icon-placeholder::before {
+  content: 'cast_connected';
+}
+
+// Needs css adjustment
+// @import "@silvermine/videojs-chromecast/dist/silvermine-videojs-chromecast.css";
+
+// Misses the connected icon, the icon size is correct
+// @import '@srgssr/pillarbox-web/scss/pillarbox';
+// .video-js .vjs-chromecast-button .vjs-icon-placeholder {
+//   @extend .vjs-icon-cast;
+// }
+

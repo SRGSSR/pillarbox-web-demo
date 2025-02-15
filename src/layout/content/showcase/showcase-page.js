@@ -14,6 +14,7 @@ import rawqualityMenuExample from '../../../../static/showcases/quality-menu.htm
 import rawCountdown from '../../../../static/showcases/countdown.html?raw';
 import rawPlaybackRate from '../../../../static/showcases/playback-rate.html?raw';
 import rawChapterSelection from '../../../../static/showcases/chapter-selection.html?raw';
+import rawGoogleCast from '../../../../static/showcases/google-cast.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -28,6 +29,7 @@ const qualityMenuExampleTxt = getTextFromHTML(rawqualityMenuExample);
 const countdownExampleTxt = getTextFromHTML(rawCountdown);
 const playbackRateExampleTxt = getTextFromHTML(rawPlaybackRate);
 const chapterSelectionExampleTxt = getTextFromHTML(rawChapterSelection);
+const googleCastExampleTxt = getTextFromHTML(rawGoogleCast);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -44,6 +46,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderCountdown()}
       ${this.#renderPlaybackRate()}
       ${this.#renderChapterSelection()}
+      ${this.#renderGoogleCast()}
     `;
   }
 
@@ -239,6 +242,24 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${chapterSelectionExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/chapter-selection.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderGoogleCast() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="google-cast.html">
+          <h2 slot="title">Google Cast</h2>
+          <p slot="description">
+            In this showcase, we'll demonstrate how to use the Google Cast.
+          </p>
+          <code-block slot="code" language="javascript">${googleCastExampleTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/google-cast.html" target="_blank">
           Open this showcase
         </a>
       </div>

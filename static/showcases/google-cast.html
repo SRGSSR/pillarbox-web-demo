@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Google Cast</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico" />
+    <link rel="stylesheet" href="./google-cast.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Google Cast</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+
+    <script type="text/javascript"
+      src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
+
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from "@srgssr/pillarbox-web";
+      import chromecast from "@silvermine/videojs-chromecast";
+
+      // Meh...
+      chromecast(pillarbox);
+
+
+      class ChromeCastTech extends pillarbox.getTech('Chromecast') {
+        setCurrentTime(time) {
+          this.isSeeking = true;
+          super.setCurrentTime(time);
+          this.trigger('seeking');
+        }
+
+        _playSource(source, startTime) {
+          const castSession = this._getCastSession();
+          const mediaInfo = new chrome.cast.media.MediaInfo(source.src, source.type);
+          const title = this._requestTitle(source);
+          const subtitle = this._requestSubtitle(source);
+          const poster = this.poster();
+          const customData = this._requestCustomData(source)
+
+          this.trigger("waiting");
+          this._clearSessionTimeout();
+
+          mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+          mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.GENERIC;
+          mediaInfo.metadata.title = title;
+          mediaInfo.metadata.subtitle = subtitle;
+          mediaInfo.streamType = this.videojsPlayer.liveTracker && this.videojsPlayer.liveTracker.isLive() ? chrome.cast.media.StreamType.LIVE : chrome.cast.media.StreamType.BUFFERED;
+
+          if (poster) {
+            mediaInfo.metadata.images = [{ url: poster }];
+          }
+          if (customData) {
+            mediaInfo.customData = customData;
+          }
+
+          this._ui.updateTitle(title);
+          this._ui.updateSubtitle(subtitle);
+
+          let request = new chrome.cast.media.LoadRequest(mediaInfo);
+          request.autoplay = true;
+          request.currentTime = startTime;
+          request = this._modifyLoadRequestFn(request);
+
+          this._isMediaLoading = true;
+          this._hasPlayedCurrentItem = false;
+
+          castSession.loadMedia(request).then((function () {
+            this._clearSessionTimeout();
+            if (!this._hasPlayedAnyItem) {
+              this.triggerReady();
+            }
+            this.trigger("loadstart");
+            this.trigger("loadeddata");
+            this.trigger("play");
+            this.trigger("playing");
+            this._hasPlayedAnyItem = true;
+            this._isMediaLoading = false;
+
+            setTimeout(() => {
+              this._getMediaSession().addUpdateListener(this._onMediaSessionStatusChanged.bind(this));
+            }, 10_000);
+
+          }).bind(this), this._triggerErrorEvent.bind(this));
+        }
+
+        _onPlayerStateChanged() {
+          const playerState = this._remotePlayer.playerState;
+
+          super._onPlayerStateChanged();
+
+          if (['BUFFERING', 'PAUSE'].includes(playerState) && this.isSeeking) {
+            this.isSeeking = false;
+            this.trigger('seeked');
+          }
+        }
+
+        _onMediaSessionStatusChanged(isAlive) {
+          super._onMediaSessionStatusChanged(isAlive);
+
+          if (isAlive) {
+            this.videojsPlayer.getDescendant('controlBar')?.lockShowing();
+            this.videojsPlayer.getDescendant('controlBar', 'pictureInPictureToggle')?.hide();
+
+            return;
+          }
+
+          this.videojsPlayer.getDescendant('controlBar')?.unlockShowing();
+          this.videojsPlayer.getDescendant('controlBar', 'pictureInPictureToggle')?.show();
+        }
+
+        seeking() {
+          return Boolean(this.isSeeking);
+        }
+      }
+
+      pillarbox.registerTech('chromecast', ChromeCastTech);
+
+
+      const player = pillarbox("video-element-id", {
+        fill: true,
+        muted: true,
+        hasStarted: true,
+        techOrder: ["chromecast", "html5"],
+        chromecast: {
+          modifyLoadRequestFn(loadRequest) {
+            // loadRequest.media.contentId = this.player().videojsPlayer.currentSource().mediaData.urn;
+            // Or
+            loadRequest.media.contentId = this.options().source.mediaData.urn;
+
+            return loadRequest;
+          },
+        },
+        plugins: {
+          chromecast: {
+            receiverAppID: "1AC2931D",
+            addButtonToControlBar: true,
+          },
+        },
+      });
+
+      player.src({ src: "urn:rts:video:9883196", type: "srgssr/urn" });
+      // player.src({ src: "urn:rts:video:15480182", type: "srgssr/urn" });
+
+      window.player = player;
+    </script>
+
+    <script type="module">
+      import pillarbox from "@srgssr/pillarbox-web";
+      import "../../src/layout/header/core-demo-header-component.js";
+
+      document.querySelector("#close-btn").addEventListener("click", () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+    </script>
+  </body>
+
+</html>
