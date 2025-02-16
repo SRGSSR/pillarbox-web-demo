@@ -34,10 +34,26 @@
 
 
       class ChromeCastTech extends pillarbox.getTech('Chromecast') {
+        // Fixes: VIDEOJS: Video.js: seeking method not defined for Chromecast playback technology. TypeError: this.tech_[method] is not a function
+        seeking() {
+          return Boolean(this.isSeeking);
+        }
+
         setCurrentTime(time) {
           this.isSeeking = true;
           super.setCurrentTime(time);
           this.trigger('seeking');
+        }
+
+        _onPlayerStateChanged() {
+          const playerState = this._remotePlayer.playerState;
+
+          super._onPlayerStateChanged();
+
+          if (['BUFFERING', 'PAUSE'].includes(playerState) && this.isSeeking) {
+            this.isSeeking = false;
+            this.trigger('seeked');
+          }
         }
 
         _playSource(source, startTime) {
@@ -77,9 +93,11 @@
 
           castSession.loadMedia(request).then((function () {
             this._clearSessionTimeout();
+
             if (!this._hasPlayedAnyItem) {
               this.triggerReady();
             }
+
             this.trigger("loadstart");
             this.trigger("loadeddata");
             this.trigger("play");
@@ -87,27 +105,19 @@
             this._hasPlayedAnyItem = true;
             this._isMediaLoading = false;
 
+            // Workaround because of https://issuetracker.google.com/issues/379140415
+            // Avoids: Uncaught TypeError: Cannot read properties of null (reading 'addUpdateListener')
             setTimeout(() => {
               this._getMediaSession().addUpdateListener(this._onMediaSessionStatusChanged.bind(this));
-            }, 10_000);
+            }, 15_000);
 
           }).bind(this), this._triggerErrorEvent.bind(this));
-        }
-
-        _onPlayerStateChanged() {
-          const playerState = this._remotePlayer.playerState;
-
-          super._onPlayerStateChanged();
-
-          if (['BUFFERING', 'PAUSE'].includes(playerState) && this.isSeeking) {
-            this.isSeeking = false;
-            this.trigger('seeked');
-          }
         }
 
         _onMediaSessionStatusChanged(isAlive) {
           super._onMediaSessionStatusChanged(isAlive);
 
+          // Locks the control bar display and hides the PiP button
           if (isAlive) {
             this.videojsPlayer.getDescendant('controlBar')?.lockShowing();
             this.videojsPlayer.getDescendant('controlBar', 'pictureInPictureToggle')?.hide();
@@ -117,10 +127,6 @@
 
           this.videojsPlayer.getDescendant('controlBar')?.unlockShowing();
           this.videojsPlayer.getDescendant('controlBar', 'pictureInPictureToggle')?.show();
-        }
-
-        seeking() {
-          return Boolean(this.isSeeking);
         }
       }
 
