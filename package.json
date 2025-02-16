@@ -36,6 +36,7 @@
     "vite": "^5.4.10"
   },
   "dependencies": {
+    "@silvermine/videojs-chromecast": "^1.5.0",
     "@srgssr/pillarbox-playlist": "^2.1.0",
     "@srgssr/pillarbox-web": "^1.17.0",
     "@srgssr/skip-button": "^1.0.4",
