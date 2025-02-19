@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Hide Firefox PiP Button</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="./firefox-pip.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Hide Firefox PiP Button</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from '@srgssr/pillarbox-web';
+
+      const player = pillarbox(
+        'video-element-id',
+        {
+          fill: true,
+          muted: true,
+          // For Firefox compatibility refer to https://caniuse.com/mdn-api_htmlvideoelement_disablepictureinpicture
+          disablePictureInPicture: pillarbox.browser.IS_FIREFOX
+        }
+      );
+
+      player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
+
+      window.player = player;
+    </script>
+
+    <script type="module">
+      import pillarbox from '@srgssr/pillarbox-web';
+      import '../../src/layout/header/core-demo-header-component.js';
+
+      document.querySelector('#close-btn').addEventListener('click', () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+    </script>
+
+  </body>
+
+</html>
