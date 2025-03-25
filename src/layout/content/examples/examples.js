@@ -24,7 +24,7 @@ const EXAMPLES = {
     {
       title: 'Superfluously token-protected video',
       description: 'Telegiornale flash',
-      src: 'urn:rsi:video:15916771',
+      src: 'urn:rsi:video:2660088',
       type: 'srgssr/urn'
     },
     {
