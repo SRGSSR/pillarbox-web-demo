@@ -50,6 +50,8 @@ const destroyPlayer = () => {
   window.player = null;
 };
 
+// Expose videojs to avoid breaking Commander's Act
+window.videojs = Pillarbox;
 // Expose Pillarbox and player in the window object for debugging
 window.pillarbox = Pillarbox;
 // Configure the dialog
