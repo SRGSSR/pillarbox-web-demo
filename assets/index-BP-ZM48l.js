@@ -699,7 +699,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,v=f),u===void 0&&(
   const player = pillarbox('video-element-id', { SkipButton: true });
 
   // Load the video source for the player
-  player.src({ src: 'urn:rts:video:14683290', type: 'srgssr/urn' });
+  player.src({ src: 'urn:rts:video:15532586', type: 'srgssr/urn' });
 <\/script>
 
 <script type="module">
@@ -1530,4 +1530,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),C=c,v=f),u===void 0&&(
           </li>
         </ul>
       </nav>`},x($t,"properties",{debug:{type:Boolean,state:!0}}),x($t,"styles",[q,B(Dr)]);customElements.define("demo-header",$t);class _o extends D{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(_o,"properties",{route:{state:!0}});customElements.define("route-outlet",_o);const et=Se.loadPreferences();O.host=et.dataProviderHost;w.start({defaultPath:"examples"});w.queryParams.debug?(et.debug=w.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-DSBpIjaj.js.map
+//# sourceMappingURL=index-BP-ZM48l.js.map
