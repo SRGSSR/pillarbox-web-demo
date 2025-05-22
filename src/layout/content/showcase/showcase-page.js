@@ -15,6 +15,7 @@ import rawCountdown from '../../../../static/showcases/countdown.html?raw';
 import rawPlaybackRate from '../../../../static/showcases/playback-rate.html?raw';
 import rawChapterSelection from '../../../../static/showcases/chapter-selection.html?raw';
 import rawFirefoxPiP from '../../../../static/showcases/firefox-pip.html?raw';
+import rawSpatialNavigation from '../../../../static/showcases/spatial-navigation.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -30,6 +31,7 @@ const countdownExampleTxt = getTextFromHTML(rawCountdown);
 const playbackRateExampleTxt = getTextFromHTML(rawPlaybackRate);
 const chapterSelectionExampleTxt = getTextFromHTML(rawChapterSelection);
 const FirefoxPiPExampleTxt = getTextFromHTML(rawFirefoxPiP);
+const spatialNavigationTxt = getTextFromHTML(rawSpatialNavigation);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -47,6 +49,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderPlaybackRate()}
       ${this.#renderChapterSelection()}
       ${this.#renderFirefoxPiP()}
+      ${this.#renderSpatialNavigation()}
     `;
   }
 
@@ -260,6 +263,27 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${FirefoxPiPExampleTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/firefox-pip.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderSpatialNavigation() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="spatial-navigation.html">
+          <h2 slot="title">Enable Spatial Navigation</h2>
+          <p slot="description">
+            In this showcase, we will demonstrate how to enable <a href="https://videojs.com/guides/spatial-navigation/" target="_blank" rel="noopener noreferrer">spatial navigation</a>, allowing users to control the player with a remote on smart TVs like Tizen and webOS.
+            <br>
+            <br>
+            <i>Note: If you're targeting TV devices with spatial navigation, consider removing the volume button and setting muted: false, as volume is typically handled by the device itself.</i>
+          </p>
+          <code-block slot="code" language="javascript">${spatialNavigationTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/spatial-navigation.html" target="_blank">
           Open this showcase
         </a>
       </div>
