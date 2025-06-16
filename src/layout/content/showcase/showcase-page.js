@@ -184,7 +184,7 @@ export class ShowCasePage extends LitElement {
         <showcase-component href="quality-menu.html">
           <h2 slot="title">Quality Menu</h2>
           <p slot="description">
-            In this showcase, we'll demonstrate howto display a quality selector
+            In this showcase, we'll demonstrate how to display a quality selector
             menu using the <a href="https://github.com/videojs/videojs-contrib-quality-menu">videojs-contrib-quality-menu</a>
             plugin.
           </p>
