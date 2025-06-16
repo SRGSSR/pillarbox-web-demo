@@ -1494,7 +1494,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
         <showcase-component href="quality-menu.html">
           <h2 slot="title">Quality Menu</h2>
           <p slot="description">
-            In this showcase, we'll demonstrate howto display a quality selector
+            In this showcase, we'll demonstrate how to display a quality selector
             menu using the <a href="https://github.com/videojs/videojs-contrib-quality-menu">videojs-contrib-quality-menu</a>
             plugin.
           </p>
@@ -1610,4 +1610,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
           </li>
         </ul>
       </nav>`},x($t,"properties",{debug:{type:Boolean,state:!0}}),x($t,"styles",[q,B(Or)]);customElements.define("demo-header",$t);class To extends P{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(To,"properties",{route:{state:!0}});customElements.define("route-outlet",To);const et=Se.loadPreferences();O.host=et.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(et.debug=v.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-C5nSTmnd.js.map
+//# sourceMappingURL=index-Chp7LMNA.js.map
