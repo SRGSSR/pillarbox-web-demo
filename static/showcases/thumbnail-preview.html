@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pillarbox Demo - Thumbnail Preview</title>
+  <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+  <link rel="stylesheet" href="./thumbnail-preview.scss"/>
+</head>
+
+<body>
+<core-demo-header></core-demo-header>
+<div class="showcase-content">
+  <h2>Thumbnail Preview</h2>
+  <div class="video-container">
+    <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+  </div>
+
+  <button class="showcase-btn" id="close-btn">Close this window</button>
+</div>
+
+<script type="module" data-implementation>
+  // Import the pillarbox library
+  import pillarbox from '@srgssr/pillarbox-web';
+  // Import the thumbnail-preview plugin
+  import '@srgssr/thumbnail-preview';
+
+  // Create a pillarbox player instance with the thumbnail-preview component
+  const player = pillarbox('video-element-id', { plugins: { thumbnailPreview: {} } });
+
+  // Find and set the sprite sheet on loaded metadata
+  player.on('loadedmetadata', () => {
+    const thumbnailPreview = player.thumbnailPreview();
+    const spriteSheet = player
+      .currentSource()
+      .mediaData
+      ?.chapters
+      ?.find(chapter => chapter.urn === 'urn:rts:video:15532586')
+      ?.spriteSheet;
+
+    // Set the sprite of the thumbnail preview plugin
+    thumbnailPreview.updateSprite(spriteSheet);
+  });
+
+  // Load the video source for the player
+  player.src({ src: 'urn:rts:video:15532586', type: 'srgssr/urn' });
+</script>
+
+<script type="module">
+  import pillarbox from '@srgssr/pillarbox-web';
+  import '../../src/layout/header/core-demo-header-component.js';
+
+  document.querySelector('#close-btn').addEventListener('click', () => {
+    window.close();
+  });
+
+  window.pillarbox = pillarbox;
+</script>
+
+</body>
+</html>

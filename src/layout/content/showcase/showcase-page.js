@@ -16,6 +16,7 @@ import rawPlaybackRate from '../../../../static/showcases/playback-rate.html?raw
 import rawChapterSelection from '../../../../static/showcases/chapter-selection.html?raw';
 import rawFirefoxPiP from '../../../../static/showcases/firefox-pip.html?raw';
 import rawSpatialNavigation from '../../../../static/showcases/spatial-navigation.html?raw';
+import rawThumbnailPreview from '../../../../static/showcases/thumbnail-preview.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 
 const startTimeExampleTxt = getTextFromHTML(rawStartTimeExample);
@@ -32,6 +33,7 @@ const playbackRateExampleTxt = getTextFromHTML(rawPlaybackRate);
 const chapterSelectionExampleTxt = getTextFromHTML(rawChapterSelection);
 const FirefoxPiPExampleTxt = getTextFromHTML(rawFirefoxPiP);
 const spatialNavigationTxt = getTextFromHTML(rawSpatialNavigation);
+const thumbnailPreviewTxt = getTextFromHTML(rawThumbnailPreview);
 
 export class ShowCasePage extends LitElement {
   static styles = [theme, animations, unsafeCSS(showcasePageCss)];
@@ -50,6 +52,7 @@ export class ShowCasePage extends LitElement {
       ${this.#renderChapterSelection()}
       ${this.#renderFirefoxPiP()}
       ${this.#renderSpatialNavigation()}
+      ${this.#renderThumbnailPreview()}
     `;
   }
 
@@ -288,6 +291,25 @@ export class ShowCasePage extends LitElement {
           <code-block slot="code" language="javascript">${spatialNavigationTxt}</code-block>
         </showcase-component>
         <a part="showcase-link" href="./static/showcases/spatial-navigation.html" target="_blank">
+          Open this showcase
+        </a>
+      </div>
+    `;
+  }
+
+  #renderThumbnailPreview() {
+    return html`
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        <showcase-component href="thumbnail-preview.html">
+          <h2 slot="title">Show Thumbnail Preview from IL Metadata</h2>
+          <p slot="description">
+            This example shows how to use the thumbnail preview metadata from the current SRGSSR source
+            and inject it into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/thumbnail-preview#readme" target="_blank">Thumbnail Preview plugin</a>.
+          </p>
+          <code-block slot="code" language="javascript">${thumbnailPreviewTxt}</code-block>
+        </showcase-component>
+        <a part="showcase-link" href="./static/showcases/thumbnail-preview.html" target="_blank">
           Open this showcase
         </a>
       </div>
