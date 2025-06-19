@@ -105,6 +105,8 @@ export class ShowCasePage extends LitElement {
           <p slot="description">
             This tutorial covers how to use pillarbox to create a plugin that
             detects and notifies when a blocked segment is skipped.
+            <br><br>
+            <b>Note:</b> The block segement starts at 29:26 for this example.
           </p>
           <code-block slot="code" language="javascript">${detectBlockedSegmentsExampleTxt}</code-block>
         </showcase-component>
@@ -147,6 +149,8 @@ export class ShowCasePage extends LitElement {
             This example shows how to use the
             <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/skip-button#readme" target="_blank">Pillarbox Skip Button component</a>
             to add a "Skip" button during detected credit intervals.
+            <br><br>
+            <b>Note:</b> Seek to 26:40 to see the button.
           </p>
           <code-block slot="code" language="javascript">${skipCreditsExampleTxt}</code-block>
         </showcase-component>
