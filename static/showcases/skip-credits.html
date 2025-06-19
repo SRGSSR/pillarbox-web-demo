@@ -27,7 +27,13 @@
   import '@srgssr/skip-button';
 
   // Create a pillarbox player instance with the skip-button component
-  const player = pillarbox('video-element-id', { SkipButton: true });
+  const player = pillarbox(
+    'video-element-id',
+    {
+      muted: true,
+      SkipButton: true
+    }
+  );
 
   // Load the video source for the player
   player.src({ src: 'urn:rts:video:15532586', type: 'srgssr/urn' });
