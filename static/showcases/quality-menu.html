@@ -26,7 +26,13 @@
   import 'videojs-contrib-quality-menu';
 
   // Create a pillarbox player instance with the quality menu plugin
-  const player = pillarbox('video-element-id', { plugins: { qualityMenu: true } });
+  const player = pillarbox(
+    'video-element-id',
+    {
+      muted: true,
+      plugins: { qualityMenu: true }
+    }
+  );
 
   // Load the video source
   player.src({ src: 'urn:srf:video:593535b2-87c0-433a-8d2c-baf819233df1', type: 'srgssr/urn' });
