@@ -16,21 +16,8 @@ const EXAMPLES = {
       type: 'srgssr/urn'
     },
     {
-      title: 'Token-protected video',
-      description: 'Ski alpin, Slalom Messieurs',
-      src: 'urn:swisstxt:video:rts:c56ea781-99ad-40c3-8d9b-444cc5ac3aea',
-      type: 'srgssr/urn'
-    },
-    {
-      title: 'Superfluously token-protected video',
-      description: 'Telegiornale flash',
-      src: 'urn:rsi:video:2660088',
-      type: 'srgssr/urn'
-    },
-    {
-      title: 'DRM-protected video',
-      description: 'Top Models 8870',
-      src: 'urn:rts:video:13639837',
+      title: 'A bon entendeur',
+      src: 'urn:rts:video:14080915',
       type: 'srgssr/urn'
     },
     {
@@ -46,15 +33,15 @@ const EXAMPLES = {
       type: 'srgssr/urn'
     },
     {
-      title: 'DVR audio livestream',
-      description: 'Couleur 3 (DVR)',
-      src: 'urn:rts:audio:3262363',
+      title: 'Content with a blocked time range',
+      description: 'Puls - Gehirnerschütterung, Akutgeriatrie, Erlenpollen im Winter',
+      src: 'urn:srf:video:40ca0277-0e53-4312-83e2-4710354ff53e',
       type: 'srgssr/urn'
     },
     {
-      title: 'On-demand audio stream',
-      description: 'Il lavoro di TerraProject per una fotografia documentaria',
-      src: 'urn:rsi:audio:8833144',
+      title: 'DVR audio livestream',
+      description: 'Couleur 3 (DVR)',
+      src: 'urn:rts:audio:3262363',
       type: 'srgssr/urn'
     },
     {
@@ -74,7 +61,7 @@ const EXAMPLES = {
     {
       title: 'VOD - HLS',
       description: 'Sacha part à la rencontre d\'univers atypiques',
-      src: 'https://rts-vod-amd.akamaized.net/ww/14970442/da2b38fb-ca9f-3c76-80c6-e6fa7f3c2699/master.m3u8',
+      src: 'https://rts-vod-amd.akamaized.net/ww/14970442/96fc7429-64c1-34b0-8c05-62cf114695ac/master.m3u8',
       type: 'application/x-mpegURL'
     },
     {
