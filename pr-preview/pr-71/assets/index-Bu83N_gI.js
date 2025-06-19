@@ -537,7 +537,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,v=f),u===void 0&&(
   );
 
   // Load the video source for the player
-  player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
+  player.src({ src: 'urn:srf:video:40ca0277-0e53-4312-83e2-4710354ff53e', type: 'srgssr/urn' });
 <\/script>
 
 <script type="module">
@@ -1432,7 +1432,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,v=f),u===void 0&&(
             This tutorial covers how to use pillarbox to create a plugin that
             detects and notifies when a blocked segment is skipped.
             <br><br>
-            <b>Note:</b> The block segement starts at 12:40 for this example.
+            <b>Note:</b> The block segement starts at 29:26 for this example.
           </p>
           <code-block slot="code" language="javascript">${Tr}</code-block>
         </showcase-component>
@@ -1614,4 +1614,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,v=f),u===void 0&&(
           </li>
         </ul>
       </nav>`},x($t,"properties",{debug:{type:Boolean,state:!0}}),x($t,"styles",[q,B(Or)]);customElements.define("demo-header",$t);class To extends P{constructor(){super(),this.route=w.currentRoute,w.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(To,"properties",{route:{state:!0}});customElements.define("route-outlet",To);const et=Se.loadPreferences();O.host=et.dataProviderHost;w.start({defaultPath:"examples"});w.queryParams.debug?(et.debug=w.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&w.updateState({debug:"true"});
-//# sourceMappingURL=index-Cq5YusWw.js.map
+//# sourceMappingURL=index-Bu83N_gI.js.map
