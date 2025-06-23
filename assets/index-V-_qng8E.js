@@ -350,7 +350,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   import pillarbox from '@srgssr/pillarbox-web';
 
   // Create by referencing the video element with its unique ID
-  const player = pillarbox('video-element-id');
+  const player = pillarbox('video-element-id', { muted: true });
 
   // Load the video source
   player.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
@@ -528,6 +528,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   // Create a pillarbox player instance with the blockedSegmentNotification plugin
   const player = pillarbox(
     'video-element-id', {
+      muted: true,
       plugins: {
         blockedSegmentNotification: {
           delay: 5000, // Delay in milliseconds before hiding the notification
@@ -647,7 +648,10 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   // Create a pillarbox player instance with the currentChapter plugin
   const player = pillarbox(
     'video-element-id',
-    { plugins: { currentChapter: true } }
+    {
+      muted: true,
+      plugins: { currentChapter: true }
+    }
   );
 
   // Set the video source for the player
@@ -696,7 +700,13 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   import '@srgssr/skip-button';
 
   // Create a pillarbox player instance with the skip-button component
-  const player = pillarbox('video-element-id', { SkipButton: true });
+  const player = pillarbox(
+    'video-element-id',
+    {
+      muted: true,
+      SkipButton: true
+    }
+  );
 
   // Load the video source for the player
   player.src({ src: 'urn:rts:video:15532586', type: 'srgssr/urn' });
@@ -749,6 +759,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   const player = pillarbox('video-element-id', {
     // Activate autoplay to automatically start the next element
     autoplay: true,
+    muted: true,
     plugins: {
       // Configure the playlist plugin
       pillarboxPlaylist: { autoadvance: true, repeat: true },
@@ -826,7 +837,13 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   import 'videojs-contrib-quality-menu';
 
   // Create a pillarbox player instance with the quality menu plugin
-  const player = pillarbox('video-element-id', { plugins: { qualityMenu: true } });
+  const player = pillarbox(
+    'video-element-id',
+    {
+      muted: true,
+      plugins: { qualityMenu: true }
+    }
+  );
 
   // Load the video source
   player.src({ src: 'urn:srf:video:593535b2-87c0-433a-8d2c-baf819233df1', type: 'srgssr/urn' });
@@ -1013,6 +1030,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
       const player = pillarbox(
         'video-element-id',
         {
+          muted: true,
           fill: true,
           // Add the countdown component to the player
           countdown: true,
@@ -1156,7 +1174,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
   // Create a pillarbox player instance with the currentChapter plugin
   window.player = pillarbox(
     'video-element-id',
-    {muted: true}
+    { muted: true }
   );
 
   // Listen for a chapter change
@@ -1610,4 +1628,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),_=c,w=f),u===void 0&&(
           </li>
         </ul>
       </nav>`},x($t,"properties",{debug:{type:Boolean,state:!0}}),x($t,"styles",[q,B(Or)]);customElements.define("demo-header",$t);class To extends P{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return nn(`<${this.route.component}></${this.route.component}>`)}}x(To,"properties",{route:{state:!0}});customElements.define("route-outlet",To);const et=Se.loadPreferences();O.host=et.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(et.debug=v.queryParams.debug==="true",Se.savePreferences(et)):et.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-Chp7LMNA.js.map
+//# sourceMappingURL=index-V-_qng8E.js.map
