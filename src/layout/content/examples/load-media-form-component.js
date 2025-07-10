@@ -102,14 +102,14 @@ export class LoadMediaFormComponent extends LitElement {
       <div class="fade-in"
            @animationend="${e => e.target.classList.remove('fade-in')}">
         <div class="load-bar-container">
-          <i class="material-icons-outlined">insert_link</i>
+          <i class="material-symbols-outlined">link</i>
           <input type="text"
                  placeholder="Enter a URL or URN to play its content..."
                  @keyup="${this.#handleLoadBarKeyUp}"
                  .value="${this.src ?? ''}">
           <button title="Open DRM Settings"
                   @click="${() => { this.drmSettingsShown = !this.drmSettingsShown; }}">
-            <i class="material-icons-outlined ${classMap(btnSettingsClassMap)}"
+            <i class="material-symbols-outlined ${classMap(btnSettingsClassMap)}"
                @animationend="${e => e.target.classList.remove('spin', 'spin-back')}">
               key
             </i>
@@ -121,7 +121,7 @@ export class LoadMediaFormComponent extends LitElement {
         <button class="icon-btn load-bar-action"
                 ?disabled="${!this.src}"
                 @click="${this.#submitMedia}">
-          <i class="material-icons-outlined">play_circle</i> Play content
+          <i class="material-symbols-outlined">play_circle</i> Play content
         </button>
       </div>
     `;
@@ -172,7 +172,7 @@ export class LoadMediaFormComponent extends LitElement {
                .value="${this.drmSettings.certificateUri}"
                @input="${e => { this.drmSettings.certificateUri = e.target.value; }}">
         <button class="icon-btn warning-text" type="reset">
-          <i class="material-icons-outlined">delete</i>Clear Settings
+          <i class="material-symbols-outlined">delete</i>Clear Settings
         </button>
         <hr>
       </form>

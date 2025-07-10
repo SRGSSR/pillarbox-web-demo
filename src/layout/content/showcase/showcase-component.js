@@ -56,7 +56,7 @@ export class ShowcaseComponent extends LitElement {
         <h3 part="implementation-toggle" @click="${() => {
           this.collapsed = !this.collapsed;
         }}">
-          <i class="material-icons-outlined">${this.collapsed ? 'visibility' : 'visibility_off'}</i>
+          <i class="material-symbols-outlined">${this.collapsed ? 'visibility' : 'visibility_off'}</i>
           ${this.collapsed ? 'See the Implementation' : 'Hide the Implementation'} 
         </h3>
         <div part="implementation"
