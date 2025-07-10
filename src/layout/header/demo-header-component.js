@@ -53,7 +53,7 @@ export class DemoHeaderElement extends LitElement {
       <core-demo-header>
         <route-link href="settings${this.debug ? '?debug=true' : ''}"
                     title="Settings" slot="actions">
-          <i class="material-icons-outlined">settings</i>
+          <i class="material-symbols-outlined">settings</i>
         </route-link>
       </core-demo-header>
     `;

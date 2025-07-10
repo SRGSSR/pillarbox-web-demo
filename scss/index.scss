@@ -1,8 +1,12 @@
 @import "open-props/open-props.min.css";
-@import 'material-icons/iconfont/material-icons.css';
 @import '@srgssr/pillarbox-web/dist/pillarbox.min.css';
 
-$material-icons-font-path: '../node_modules/material-icons/iconfont/';
+@font-face {
+  font-weight: 400;
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url('/fonts/material-symbols-outlined.woff2') format('woff2');
+}
 
 *,
 *::before,
