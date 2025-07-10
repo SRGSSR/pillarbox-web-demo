@@ -136,7 +136,7 @@ export class ListsPage extends LitElement {
     return html`
       <content-link title="${node.title}" href="lists?${this.#toMediaButtonParams(node)}">
         <div slot="description">
-          <i class="material-icons-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+          <i class="material-symbols-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
           <span>&nbsp;| ${date} | ${duration}</span>
         </div>
       </content-link>
@@ -236,7 +236,7 @@ export class ListsPage extends LitElement {
                 <button data-navigation-idx="0">Home</button>
             `)}
             ${map(this.stack.slice(1), (step, idx) => html`
-                <i class="material-icons-outlined">chevron_right</i>
+                <i class="material-symbols-outlined">chevron_right</i>
                 <button data-navigation-idx="${idx + 1}">
                     ${step.level[step.sectionIndex].title}
                 </button>
