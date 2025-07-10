@@ -1,7 +1,15 @@
-$material-icons-font-path: '../../../../node_modules/material-icons/iconfont/';
+@use 'sass:string';
 
-@import 'material-icons/iconfont/material-icons';
-@import 'material-icons/css/material-icons';
+@mixin material-symbol($name, $variant: 'Outlined') {
+  &::before {
+    font-weight: normal;
+    font-family: 'Material Symbols #{string.quote($variant)}';
+    font-style: normal;
+    line-height: 1;
+    content: string.quote($name);
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+  }
+}
 
 .results-container {
   display: flex;
@@ -9,7 +17,7 @@ $material-icons-font-path: '../../../../node_modules/material-icons/iconfont/';
   margin-top: var(--size-3);
 }
 
-.results-container.empty, .results-container.no-results  {
+.results-container.empty, .results-container.no-results {
   gap: var(--size-3);
   align-items: center;
   justify-content: center;
@@ -27,7 +35,7 @@ $material-icons-font-path: '../../../../node_modules/material-icons/iconfont/';
 }
 
 .results-container.empty {
-  @include material-icon('search');
+  @include material-symbol('search');
 
   &::after {
     content: "Enter something to search";
@@ -35,7 +43,7 @@ $material-icons-font-path: '../../../../node_modules/material-icons/iconfont/';
 }
 
 .results-container.no-results {
-  @include material-icon('do_not_disturb_alt');
+  @include material-symbol('do_not_disturb_alt');
 
   &::after {
     content: "No results";

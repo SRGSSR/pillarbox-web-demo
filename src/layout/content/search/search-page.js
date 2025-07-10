@@ -160,7 +160,7 @@ export class SearchPage extends LitElement {
                     href="search?${this.#toQueryParams(r)}">
         <div slot="description">
           <i
-            class="material-icons-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+            class="material-symbols-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
           <span>&nbsp;| ${date} | ${duration}</span>
         </div>
       </content-link>

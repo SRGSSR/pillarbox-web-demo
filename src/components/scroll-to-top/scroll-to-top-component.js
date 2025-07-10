@@ -35,7 +35,7 @@ export class ScrollToTopComponent extends LitElement {
     return html`
       <button class="scroll-to-top-button" title="Scroll to top" 
               @click="${() => window.scrollTo({ top: 0, behavior: 'smooth' })}">
-        <i class="material-icons-outlined">arrow_circle_up</i>
+        <i class="material-symbols-outlined">arrow_circle_up</i>
       </button>
     `;
   }
