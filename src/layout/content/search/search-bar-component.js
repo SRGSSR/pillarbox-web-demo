@@ -80,7 +80,7 @@ export class SearchBarComponent extends LitElement {
                .value="${this.query ?? ''}">
         <button title="Clear search"
                 @click="${this.#clearSearchBar}">
-          <i class="material-icons-outlined">close</i>
+          <i class="material-symbols-outlined">close</i>
         </button>
       </div>
     `;
