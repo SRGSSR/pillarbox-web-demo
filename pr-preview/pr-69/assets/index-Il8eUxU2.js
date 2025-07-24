@@ -1434,14 +1434,12 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,w=b),h===void 0&&(
       ?.find(chapter => chapter.urn === 'urn:rts:video:15532586')
       ?.spriteSheet;
 
-
     // Set the sprite of the thumbnail preview plugin
     thumbnailPreview.updateSprite(spriteSheet);
   });
 
   // Load the video source for the player
   player.src({ src: 'urn:rts:video:15532586', type: 'srgssr/urn' });
-  window.player = player;
 <\/script>
 
 <script type="module">
@@ -1713,4 +1711,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),R=a,w=b),h===void 0&&(
           </li>
         </ul>
       </nav>`},x(Pt,"properties",{debug:{type:Boolean,state:!0}}),x(Pt,"styles",[G,B(Ur)]);customElements.define("demo-header",Pt);class _o extends j{constructor(){super(),this.route=v.currentRoute,v.addEventListener("routechanged",({detail:{route:n}})=>{var e;(e=this.route)==null||e.destroy(),this.route=n})}render(){return tn(`<${this.route.component}></${this.route.component}>`)}}x(_o,"properties",{route:{state:!0}});customElements.define("route-outlet",_o);const Je=Ee.loadPreferences();O.host=Je.dataProviderHost;v.start({defaultPath:"examples"});v.queryParams.debug?(Je.debug=v.queryParams.debug==="true",Ee.savePreferences(Je)):Je.debug&&v.updateState({debug:"true"});
-//# sourceMappingURL=index-CdS9OaaG.js.map
+//# sourceMappingURL=index-Il8eUxU2.js.map
