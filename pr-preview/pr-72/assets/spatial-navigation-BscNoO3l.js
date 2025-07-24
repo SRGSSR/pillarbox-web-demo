@@ -1,2 +1,0 @@
-import{p as r}from"./core-demo-header-component-CKumsNp2.js";const e=r("video-element-id",{fill:!0,muted:!0,spatialNavigation:{enabled:!0,horizontalSeek:!0}},()=>{e.spatialNavigation.start()});e.src({src:"urn:rts:video:9883196",type:"srgssr/urn"});window.player=e;document.querySelector("#close-btn").addEventListener("click",()=>{window.close()});window.pillarbox=r;
-//# sourceMappingURL=spatial-navigation-BscNoO3l.js.map
