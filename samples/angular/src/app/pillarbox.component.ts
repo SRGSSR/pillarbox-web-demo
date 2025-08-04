@@ -2,10 +2,9 @@ import {AfterViewInit, Component, Input, OnChanges, SimpleChanges} from "@angula
 import {default as pillarbox, Player as PillarboxPlayer} from "@srgssr/pillarbox-web";
 
 @Component({
-  selector: 'pb-player',
-  standalone: true,
-  imports: [],
-  template: `
+    selector: 'pb-player',
+    imports: [],
+    template: `
     <video id="main-player" class="video-js pillarbox-js" controls crossOrigin="anonymous"></video>
   `
 })
