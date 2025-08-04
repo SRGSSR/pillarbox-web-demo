@@ -1,0 +1,12 @@
+{
+  "name": "pillarbox-umd-sample",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "serve"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
