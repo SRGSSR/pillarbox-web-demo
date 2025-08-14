@@ -17,6 +17,10 @@ export class RouteOutletComponent extends LitElement {
     });
   }
 
+  createRenderRoot() {
+    return this;
+  }
+
   render() {
     return unsafeHTML(`<${this.route.component}></${this.route.component}>`);
   }

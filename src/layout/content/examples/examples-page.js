@@ -1,12 +1,14 @@
 import router from '../../../router/router';
-import { css, html, LitElement } from 'lit';
-import { animations, theme } from '../../../theme/theme';
+import { html, LitElement } from 'lit';
 import './load-media-form-component';
 import '../../../components/content-link/content-link-component';
 import Examples from './examples';
 import { map } from 'lit/directives/map.js';
 import { when } from 'lit/directives/when.js';
-import { asQueryParams, openPlayerModal } from '../../../components/player/player';
+import {
+  asQueryParams,
+  openPlayerModal
+} from '../../../components/player/player';
 
 /**
  * A web component that represents the examples page.
@@ -14,19 +16,16 @@ import { asQueryParams, openPlayerModal } from '../../../components/player/playe
  * @element examples-page
  */
 export class ExamplesPage extends LitElement {
-  static styles = [
-    theme, animations, css`
-      .example-section p {
-        margin-bottom: 0;
-        color: var(--color-5);
-        font-size: var(--size-3);
-        text-align: left;
-      }`
-  ];
+  createRenderRoot() {
+    return this;
+  }
 
   render() {
     return html`
-      <load-media-form @submit-media="${e => openPlayerModal(e.detail)}">
+      <load-media-form
+        class="fade-in"
+        @animationend="${e => e.target.classList.remove('fade-in')}"
+        @submit-media="${e => openPlayerModal(e.detail)}">
       </load-media-form>
 
       <!-- List of examples -->
@@ -39,7 +38,7 @@ export class ExamplesPage extends LitElement {
               <content-link title="${example.description || example.title}"
                             href="examples?${asQueryParams(example)}">
                 ${when(example.description, () => html`
-                    <span slot="description">${example.title}</span>
+                  <span slot="description">${example.title}</span>
                 `)}
               </content-link>
             `)}

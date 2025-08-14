@@ -12,6 +12,8 @@ import componentCSS from './content-link-component.scss?inline';
  * @csspart title - The title span within the anchor.
  * @csspart description - The slot for additional description content within the anchor.
  *
+ * @element content-link
+ *
  * @example
  * <content-link href="/example" title="Example Link">
  *   Additional Description Content
@@ -19,7 +21,8 @@ import componentCSS from './content-link-component.scss?inline';
  */
 export class ContentLinkComponent extends LitElement {
   static properties = {
-    href: {}
+    href: {type: String},
+    title: {type: String},
   };
 
   static styles = unsafeCSS(componentCSS);

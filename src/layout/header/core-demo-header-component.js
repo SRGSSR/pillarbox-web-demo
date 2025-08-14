@@ -1,5 +1,5 @@
 import githubLogoSvg from '../../../img/github-logo.svg?raw';
-import srgssrLogo from '../../../img/srgssr-logo.png';
+import brandLogo from '../../../img/srgssr-logo.png';
 import { html, LitElement, unsafeCSS } from 'lit';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import '../../router/route-link-component';
@@ -27,11 +27,13 @@ export class CoreDemoHeaderComponent extends LitElement {
     return html`
       <header>
         <h1>
-          <img class="pbw-logo" src="${srgssrLogo}"/>
+          <img part="brand-logo" src="${brandLogo}"/>
           <span>Pillarbox</span>
         </h1>
-        <div class="header-end">
-          <a href="https://github.com/srgssr/pillarbox-web" class="github-link"
+        <div part="header-end">
+          <a href="https://github.com/srgssr/pillarbox-web" 
+             part="github-link"
+             target="_blank"
              title="Source on Github">
             ${unsafeSVG(githubLogoSvg)}
           </a>

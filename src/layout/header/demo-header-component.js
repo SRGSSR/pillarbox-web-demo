@@ -1,7 +1,5 @@
-import { html, LitElement, unsafeCSS } from 'lit';
+import { html, LitElement } from 'lit';
 import '../../router/route-link-component';
-import { theme } from '../../theme/theme';
-import headerCSS from './demo-header-component.scss?inline';
 import router from '../../router/router';
 import './core-demo-header-component.js';
 
@@ -22,7 +20,9 @@ export class DemoHeaderElement extends LitElement {
     debug: { type: Boolean, state: true }
   };
 
-  static styles = [theme, unsafeCSS(headerCSS)];
+  createRenderRoot() {
+    return this;
+  }
 
   #onRouteUpdated = ({ detail: { queryParams } }) => {
     this.debug = queryParams.debug === 'true';

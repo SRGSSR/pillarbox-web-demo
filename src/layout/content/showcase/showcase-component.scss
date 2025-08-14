@@ -1,3 +1,4 @@
+
 ::slotted([slot='demo']) {
   aspect-ratio: var(--ratio-widescreen);
 }
@@ -11,14 +12,11 @@
   border-left: 3px solid var(--color-5);
 }
 
-[part="implementation-toggle"] {
+::slotted([slot='toggle-collapsed']), ::slotted([slot='toggle-expanded']) {
   display: flex;
+  gap: var(--size-1);
   align-items: center;
   cursor: pointer;
-
-  i {
-    margin-right: var(--size-1);
-  }
 }
 
 [part="implementation"] {
@@ -51,6 +49,11 @@
   font-size: var(--font-size-0);
 }
 
-.hidden {
-  display: none;
+[part="implementation-toggle"] {
+  background: none;
+  border:none;
+
+  &:hover{
+    background: none;
+  }
 }

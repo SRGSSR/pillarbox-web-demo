@@ -1,0 +1,18 @@
+[part="scroll-to-top-button"] {
+  position: fixed;
+  right: var(--size-4);
+  bottom: var(--size-4);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-7);
+  height: var(--size-7);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-round);
+}
+
+::slotted([slot="icon"]) {
+  font-size: var(--size-8);
+}
