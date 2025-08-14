@@ -1,7 +1,7 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../../../theme/theme';
 import componentCSS from './search-bar-component.scss?inline';
-import Pillarbox from 'video.js';
+import pillarbox from '@srgssr/pillarbox-web';
+import { theme } from '../../../theme/theme.js';
 
 const DEFAULT_BU = 'rsi';
 
@@ -18,7 +18,7 @@ export class SearchBarComponent extends LitElement {
     query: { type: String }
   };
 
-  static styles = [theme, animations, unsafeCSS(componentCSS)];
+  static styles = [theme, unsafeCSS(componentCSS)];
 
   constructor() {
     super();
@@ -63,8 +63,7 @@ export class SearchBarComponent extends LitElement {
 
   render() {
     return html`
-      <div class="search-bar-container fade-in"
-           @animationend="${e => e.target.classList.remove('fade-in')}">
+      <div part="search-bar-container">
         <select aria-label="Select a business unit"
                 .value="${this.bu ?? DEFAULT_BU}"
                 @change="${this.#handleSelectChange}">
@@ -76,11 +75,11 @@ export class SearchBarComponent extends LitElement {
         </select>
         <input type="text"
                placeholder="Search for content..."
-               @keyup="${Pillarbox.fn.debounce(this.#handleSearchBarKeyUp, 500)}"
+               @keyup="${pillarbox.fn.debounce(this.#handleSearchBarKeyUp, 500)}"
                .value="${this.query ?? ''}">
         <button title="Clear search"
                 @click="${this.#clearSearchBar}">
-          <i class="material-symbols-outlined">close</i>
+          <slot name="clear-icon"></slot>
         </button>
       </div>
     `;

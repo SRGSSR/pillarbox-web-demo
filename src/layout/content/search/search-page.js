@@ -1,7 +1,5 @@
-import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../../../theme/theme';
+import { html, LitElement } from 'lit';
 import router from '../../../router/router';
-import componentCSS from './search-page.scss?inline';
 import './search-bar-component';
 import ilProvider from '../../../utils/il-provider';
 import '../../../components/spinner/spinner-component';
@@ -9,7 +7,7 @@ import '../../../components/intersection-observer/intersection-observer-componen
 import '../../../components/scroll-to-top/scroll-to-top-component';
 import '../../../components/content-link/content-link-component';
 import { map } from 'lit/directives/map.js';
-import Pillarbox from 'video.js';
+import pillarbox from '@srgssr/pillarbox-web';
 import { when } from 'lit/directives/when.js';
 import { classMap } from 'lit/directives/class-map.js';
 
@@ -29,9 +27,9 @@ export class SearchPage extends LitElement {
     }
   };
 
-  static styles = [
-    theme, animations, unsafeCSS(componentCSS)
-  ];
+  createRenderRoot() {
+    return this;
+  }
 
   /**
    * The abort controller for handling search cancellation.
@@ -153,14 +151,13 @@ export class SearchPage extends LitElement {
 
   #renderButton(r) {
     const date = new Intl.DateTimeFormat('fr-CH').format(new Date(r.date));
-    const duration = Pillarbox.formatTime(r.duration / 1000);
+    const duration = pillarbox.formatTime(r.duration / 1000);
 
     return html`
       <content-link title="${r.title}"
                     href="search?${this.#toQueryParams(r)}">
         <div slot="description">
-          <i
-            class="material-symbols-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+          <i class="material-symbols-outlined">${r.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
           <span>&nbsp;| ${date} | ${duration}</span>
         </div>
       </content-link>
@@ -189,21 +186,28 @@ export class SearchPage extends LitElement {
 
   #renderSpinner() {
     return html`
-      <loading-spinner loading class="slide-up-fade-in"
-                       @animationend="${e => e.target.classList.remove('slide-up-fade-in')}">
+      <loading-spinner
+        loading
+        class="slide-up-fade-in"
+        @animationend="${e => e.target.classList.remove('slide-up-fade-in')}">
       </loading-spinner>
     `;
   }
 
   #renderScrollToTopBtn() {
     return html`
-      <scroll-to-top-button></scroll-to-top-button>`;
+      <scroll-to-top-button>
+        <i class="material-symbols-outlined" slot="icon">arrow_circle_up</i>
+      </scroll-to-top-button>`;
   }
 
   render() {
     return html`
       <search-bar
+        class="fade-in"
+        @animationend="${e => e.target.classList.remove('fade-in')}"
         @change="${e => this.#onSearchBarChanged(e.detail.bu, e.detail.query)}">
+        <i class="material-symbols-outlined" slot="clear-icon">close</i>
       </search-bar>
 
       <!-- Search results -->

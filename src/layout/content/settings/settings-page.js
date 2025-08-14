@@ -1,9 +1,7 @@
 import router from '../../../router/router';
-import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../../../theme/theme';
+import { html, LitElement } from 'lit';
 import '../../../components/toggle-switch/toggle-switch-component.js';
 import PreferencesProvider from './preferences-provider';
-import componentCss from './settings-page.scss?inline';
 import ilProvider from '../../../utils/il-provider.js';
 
 /**
@@ -19,8 +17,6 @@ export class SettingsPage extends LitElement {
     dataProviderHost: { type: String, state: true }
   };
 
-  static styles = [theme, animations, unsafeCSS(componentCss)];
-
   constructor() {
     super();
     const preferences = PreferencesProvider.loadPreferences();
@@ -29,6 +25,10 @@ export class SettingsPage extends LitElement {
     this.muted = preferences.muted ?? true;
     this.debug = preferences.debug ?? false;
     this.dataProviderHost = preferences.dataProviderHost;
+  }
+
+  createRenderRoot() {
+    return this;
   }
 
   updated(_changedProperties) {

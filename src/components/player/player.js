@@ -7,7 +7,7 @@ import '../dialog/demo-dialog-component';
 import PreferencesProvider
   from '../../layout/content/settings/preferences-provider';
 import router from '../../router/router';
-import Pillarbox from '@srgssr/pillarbox-web';
+import pillarbox from '@srgssr/pillarbox-web';
 import { IL_DEFAULT_HOST } from '../../utils/il-provider.js';
 
 const DEMO_PLAYER_ID = 'demo-player';
@@ -33,7 +33,7 @@ const preferencesToPlayerOptions = (preferences) => {
  * @returns {Object} The configured Pillarbox player instance.
  */
 const createPlayer = (options = {}) => {
-  window.player = new Pillarbox(DEMO_PLAYER_ID, {
+  window.player = new pillarbox(DEMO_PLAYER_ID, {
     ...DEFAULT_OPTIONS,
     ...preferencesToPlayerOptions(PreferencesProvider.loadPreferences()),
     ...options
@@ -46,12 +46,12 @@ const createPlayer = (options = {}) => {
  * Disposes of the Pillarbox video player instance.
  */
 const destroyPlayer = () => {
-  Pillarbox.getPlayer(DEMO_PLAYER_ID).dispose();
+  pillarbox.getPlayer(DEMO_PLAYER_ID).dispose();
   window.player = null;
 };
 
 // Expose Pillarbox and player in the window object for debugging
-window.pillarbox = Pillarbox;
+window.pillarbox = pillarbox;
 // Configure the dialog
 const playerDialog = document.querySelector('demo-dialog');
 

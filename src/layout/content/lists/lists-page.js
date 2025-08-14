@@ -1,7 +1,5 @@
-import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../../../theme/theme';
+import { html, LitElement } from 'lit';
 import router from '../../../router/router';
-import componentCSS from './lists-page.scss?inline';
 import '../../../components/spinner/spinner-component';
 import '../../../components/intersection-observer/intersection-observer-component';
 import '../../../components/scroll-to-top/scroll-to-top-component';
@@ -9,7 +7,7 @@ import { map } from 'lit/directives/map.js';
 import { when } from 'lit/directives/when.js';
 import ListsPageStateManager from './lists-page-state-manager';
 import { listsSections } from './lists-sections';
-import Pillarbox from 'video.js';
+import pillarbox from '@srgssr/pillarbox-web';
 
 export class ListsPage extends LitElement {
   static properties = {
@@ -18,10 +16,6 @@ export class ListsPage extends LitElement {
     level: { state: true, type: Object },
     nextPage: { state: true, type: Function }
   };
-
-  static styles = [
-    theme, animations, unsafeCSS(componentCSS)
-  ];
 
   /**
    * The abort controller for handling search cancellation.
@@ -52,6 +46,10 @@ export class ListsPage extends LitElement {
     this.loading = false;
     this.#stateManager = new ListsPageStateManager(listsSections);
     this.#updateState();
+  }
+
+  createRenderRoot() {
+    return this;
   }
 
   connectedCallback() {
@@ -131,12 +129,14 @@ export class ListsPage extends LitElement {
 
   #renderMediaButton(node) {
     const date = new Intl.DateTimeFormat('fr-CH').format(new Date(node.date));
-    const duration = Pillarbox.formatTime(node.duration / 1000);
+    const duration = pillarbox.formatTime(node.duration / 1000);
 
     return html`
-      <content-link title="${node.title}" href="lists?${this.#toMediaButtonParams(node)}">
+      <content-link title="${node.title}"
+                    href="lists?${this.#toMediaButtonParams(node)}">
         <div slot="description">
-          <i class="material-symbols-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
+          <i
+            class="material-symbols-outlined">${node.mediaType === 'VIDEO' ? 'movie' : 'audiotrack'}</i>
           <span>&nbsp;| ${date} | ${duration}</span>
         </div>
       </content-link>
@@ -152,8 +152,8 @@ export class ListsPage extends LitElement {
   #renderLevelButton(node, sectionIdx, nodeIdx) {
     return html`
       <content-link title="${typeof node === 'string' ? node : node.title}"
-                   href="lists?${this.#toLevelParams(sectionIdx, nodeIdx)}"
-                   data-section-idx="${sectionIdx}" data-node-idx="${nodeIdx}">
+                    href="lists?${this.#toLevelParams(sectionIdx, nodeIdx)}"
+                    data-section-idx="${sectionIdx}" data-node-idx="${nodeIdx}">
       </content-link>
     `;
   }
@@ -170,14 +170,14 @@ export class ListsPage extends LitElement {
     const hasIntesectionObserver = this.level.length === 1 && firstSection.next;
 
     return html`
-        ${map(nodes, (node, idx) => html`
-            ${when(node.mediaType, () => this.#renderMediaButton(node, idx), () => this.#renderLevelButton(node, sectionIdx, idx))}
-        `)}
-        ${when(hasIntesectionObserver, () => html`
-            <intersection-observer
-                    @intersecting="${() => this.#nextPage(firstSection)}">
-            </intersection-observer>
-        `)}
+      ${map(nodes, (node, idx) => html`
+        ${when(node.mediaType, () => this.#renderMediaButton(node, idx), () => this.#renderLevelButton(node, sectionIdx, idx))}
+      `)}
+      ${when(hasIntesectionObserver, () => html`
+        <intersection-observer
+          @intersecting="${() => this.#nextPage(firstSection)}">
+        </intersection-observer>
+      `)}
     `;
   }
 
@@ -194,30 +194,32 @@ export class ListsPage extends LitElement {
 
   #renderResults() {
     return html`
-        <div class="fade-in"
-             @animationend="${e => e.target.classList.remove('fade-in')}"
-             @click="${this.#onSectionsClicked.bind(this)}">
-            ${map(this.level, (section, idx) => html`
-                <section>
-                    <h2 class="sticky">${section.title}</h2>
-                    ${this.#renderNodes(section.nodes, idx)}
-                </section>
-            `)}
-        </div>
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}"
+           @click="${this.#onSectionsClicked.bind(this)}">
+        ${map(this.level, (section, idx) => html`
+          <section>
+            <h2 class="sticky">${section.title}</h2>
+            ${this.#renderNodes(section.nodes, idx)}
+          </section>
+        `)}
+      </div>
     `;
   }
 
   #renderSpinner() {
     return html`
-        <loading-spinner loading class="slide-up-fade-in"
-                         @animationend="${e => e.target.classList.remove('slide-up-fade-in')}">
-        </loading-spinner>
+      <loading-spinner loading class="slide-up-fade-in"
+                       @animationend="${e => e.target.classList.remove('slide-up-fade-in')}">
+      </loading-spinner>
     `;
   }
 
   #renderScrollToTopBtn() {
     return html`
-        <scroll-to-top-button></scroll-to-top-button>`;
+      <scroll-to-top-button>
+        <i class="material-symbols-outlined" slot="icon">arrow_circle_up</i>
+      </scroll-to-top-button>`;
   }
 
   #onNavigationClicked(e) {
@@ -230,18 +232,18 @@ export class ListsPage extends LitElement {
 
   #renderNavigation() {
     return html`
-        <div class="tree-navigation-container"
-             @click="${this.#onNavigationClicked.bind(this)}">
-            ${when(this.stack.length > 0, () => html`
-                <button data-navigation-idx="0">Home</button>
-            `)}
-            ${map(this.stack.slice(1), (step, idx) => html`
-                <i class="material-symbols-outlined">chevron_right</i>
-                <button data-navigation-idx="${idx + 1}">
-                    ${step.level[step.sectionIndex].title}
-                </button>
-            `)}
-        </div>
+      <div class="tree-navigation-container"
+           @click="${this.#onNavigationClicked.bind(this)}">
+        ${when(this.stack.length > 0, () => html`
+          <button data-navigation-idx="0">Home</button>
+        `)}
+        ${map(this.stack.slice(1), (step, idx) => html`
+          <i class="material-symbols-outlined">chevron_right</i>
+          <button data-navigation-idx="${idx + 1}">
+            ${step.level[step.sectionIndex].title}
+          </button>
+        `)}
+      </div>
     `;
   }
 
@@ -249,9 +251,9 @@ export class ListsPage extends LitElement {
     const renderScrollBtn = this.level.length === 1 && this.level[0].next;
 
     return html`
-        ${this.#renderNavigation()}
-        ${when(this.loading, this.#renderSpinner.bind(this), this.#renderResults.bind(this))}
-        ${when(renderScrollBtn, this.#renderScrollToTopBtn.bind(this))}
+      ${this.#renderNavigation()}
+      ${when(this.loading, this.#renderSpinner.bind(this), this.#renderResults.bind(this))}
+      ${when(renderScrollBtn, this.#renderScrollToTopBtn.bind(this))}
     `;
   }
 }

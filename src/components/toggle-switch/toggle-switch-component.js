@@ -1,5 +1,4 @@
 import { html, LitElement, unsafeCSS } from 'lit';
-import { theme } from '../../theme/theme';
 import componentCSS from './toggle-switch-component.scss?inline';
 
 /**
@@ -36,9 +35,7 @@ export class ToggleSwitchComponent extends LitElement {
     this.disabled = false;
   }
 
-  static styles = [
-    theme, unsafeCSS(componentCSS)
-  ];
+  static styles = unsafeCSS(componentCSS);
 
   #onKeyDown = (e) => {
     if (e.key === ' ') {
@@ -98,9 +95,9 @@ export class ToggleSwitchComponent extends LitElement {
 
   render() {
     return html`
-        <div part="switch">
-            <div part="slider"></div>
-        </div>
+      <div part="switch">
+        <div part="slider"></div>
+      </div>
     `;
   }
 }

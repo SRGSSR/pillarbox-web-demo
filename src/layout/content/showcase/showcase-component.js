@@ -52,13 +52,13 @@ export class ShowcaseComponent extends LitElement {
       <slot name="title"></slot>
       <slot name="description"></slot>
 
-      <div class="${!this.hasCodeExample ? 'hidden' : ''}">
-        <h3 part="implementation-toggle" @click="${() => {
+      <div ?hidden="${!this.hasCodeExample}">
+        <button part="implementation-toggle" @click="${() => {
           this.collapsed = !this.collapsed;
         }}">
-          <i class="material-symbols-outlined">${this.collapsed ? 'visibility' : 'visibility_off'}</i>
-          ${this.collapsed ? 'See the Implementation' : 'Hide the Implementation'} 
-        </h3>
+          <slot name="toggle-collapsed" ?hidden="${!this.collapsed}"></slot>
+          <slot name="toggle-expanded" ?hidden="${this.collapsed}"></slot>
+        </button>
         <div part="implementation"
              class="${classMap(this.#implementationSectionClassMap())}"
              @animationend="${e => this.#implementationSectionAnimationEnd(e)}">

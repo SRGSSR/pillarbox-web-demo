@@ -13,24 +13,24 @@ h1 {
   margin: 0;
 }
 
-.pbw-logo {
+[part="brand-logo"] {
   height: var(--size-7);
 }
 
-.github-link {
+[part="github-link"] {
   display: flex;
   align-items: center;
-}
 
-.github-icon {
-  fill: var(--color-5);
+  svg {
+    fill: var(--color-5);
 
-  &:hover {
-    fill: var(--color-2);
+    &:hover {
+      fill: var(--color-2);
+    }
   }
 }
 
-.header-end {
+[part="header-end"] {
   display: flex;
   align-items: center;
 }

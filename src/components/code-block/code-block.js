@@ -13,8 +13,8 @@ export class CodeBlock extends LitElement {
     code: { tyoe: String, state: true }
   };
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.language = 'javascript';
   }
 

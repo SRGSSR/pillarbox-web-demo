@@ -1,6 +1,4 @@
-import { html, LitElement, unsafeCSS } from 'lit';
-import { animations, theme } from '../../../theme/theme';
-import componentCSS from './load-media-form-component.scss?inline';
+import { html, LitElement } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
 /**
@@ -20,7 +18,9 @@ export class LoadMediaFormComponent extends LitElement {
     drmSettingsShown: { state: true, type: Boolean }
   };
 
-  static styles = [theme, animations, unsafeCSS(componentCSS)];
+  createRenderRoot() {
+    return this;
+  }
 
   constructor() {
     super();
@@ -99,31 +99,28 @@ export class LoadMediaFormComponent extends LitElement {
     };
 
     return html`
-      <div class="fade-in"
-           @animationend="${e => e.target.classList.remove('fade-in')}">
-        <div class="load-bar-container">
-          <i class="material-symbols-outlined">link</i>
-          <input type="text"
-                 placeholder="Enter a URL or URN to play its content..."
-                 @keyup="${this.#handleLoadBarKeyUp}"
-                 .value="${this.src ?? ''}">
-          <button title="Open DRM Settings"
-                  @click="${() => { this.drmSettingsShown = !this.drmSettingsShown; }}">
-            <i class="material-symbols-outlined ${classMap(btnSettingsClassMap)}"
-               @animationend="${e => e.target.classList.remove('spin', 'spin-back')}">
-              key
-            </i>
-          </button>
-        </div>
-        
-        ${this.#drmSettingsTemplate()}
-
-        <button class="icon-btn load-bar-action"
-                ?disabled="${!this.src}"
-                @click="${this.#submitMedia}">
-          <i class="material-symbols-outlined">play_circle</i> Play content
+      <div part="load-bar-container">
+        <i class="material-symbols-outlined">link</i>
+        <input type="text"
+               placeholder="Enter a URL or URN to play its content..."
+               @keyup="${this.#handleLoadBarKeyUp}"
+               .value="${this.src ?? ''}">
+        <button title="Open DRM Settings"
+                @click="${() => { this.drmSettingsShown = !this.drmSettingsShown; }}">
+          <i class="material-symbols-outlined ${classMap(btnSettingsClassMap)}"
+             @animationend="${e => e.target.classList.remove('spin', 'spin-back')}">
+            key
+          </i>
         </button>
       </div>
+      
+      ${this.#drmSettingsTemplate()}
+
+      <button part="load-bar-action"
+              ?disabled="${!this.src}"
+              @click="${this.#submitMedia}">
+        <i class="material-symbols-outlined">play_circle</i> Play content
+      </button>
     `;
   }
 
@@ -131,7 +128,7 @@ export class LoadMediaFormComponent extends LitElement {
     super.updated(_changedProperties);
 
     if (_changedProperties.has('drmSettingsShown') && this.drmSettingsShown) {
-      this.shadowRoot.querySelector('.drm-settings-container').classList.add('active');
+      this.renderRoot.querySelector('[part="drm-settings-container"]').classList.add('active');
     }
   }
 
@@ -149,7 +146,7 @@ export class LoadMediaFormComponent extends LitElement {
 
   #drmSettingsTemplate() {
     return html`
-      <form class="drm-settings-container ${classMap(this.#formAnimationClassMap())}"
+      <form part="drm-settings-container" class="${classMap(this.#formAnimationClassMap())}"
             aria-hidden="${!this.drmSettingsShown}"
             @reset="${this.#initDrmSettings}"
             @animationend="${e => this.#onFormAnimationEnd(e)}">
@@ -171,8 +168,8 @@ export class LoadMediaFormComponent extends LitElement {
                placeholder="Enter the certificate uri..."
                .value="${this.drmSettings.certificateUri}"
                @input="${e => { this.drmSettings.certificateUri = e.target.value; }}">
-        <button class="icon-btn warning-text" type="reset">
-          <i class="material-symbols-outlined">delete</i>Clear Settings
+        <button part="clear-drm-settings-button" type="reset">
+          <i class="material-symbols-outlined">delete</i> Clear Settings
         </button>
         <hr>
       </form>
