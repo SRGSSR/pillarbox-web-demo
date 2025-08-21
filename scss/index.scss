@@ -1,4 +1,4 @@
-@use "../src/theme/theme";
+@use "theme-mixin";
 @use "../src/theme/animations";
 @use "../src/layout/header/demo-header-component";
 @use "../src/layout/content/examples/load-media-form-component";
@@ -92,7 +92,28 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-font-smoothing: antialiased;
 }
 
+route-outlet {
+  @include theme-mixin.base-theme-mixin;
 
-scroll-to-top-button > i.material-symbols-outlined {
-  font-size: var(--size-8);
+  dialog::backdrop {
+    background: rgb(0 0 0 / 50%);
+  }
+
+  content-link {
+    &:first-of-type::part(a) {
+      border-radius: var(--radius-3) var(--radius-3) 0 0;
+    }
+
+    &:last-of-type::part(a) {
+      border-radius: 0 0 var(--radius-3) var(--radius-3);
+    }
+
+    &:only-of-type::part(a) {
+      border-radius: var(--radius-3) var(--radius-3) var(--radius-3) var(--radius-3);
+    }
+  }
+
+  scroll-to-top-button > i.material-symbols-outlined {
+    font-size: var(--size-8);
+  }
 }
