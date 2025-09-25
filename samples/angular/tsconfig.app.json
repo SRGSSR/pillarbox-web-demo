@@ -2,7 +2,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "typeRoots": ["src/shims", "node_modules/@types"],
+    "typeRoots": ["node_modules/@types"],
     "outDir": "./out-tsc/app",
     "types": []
   },
