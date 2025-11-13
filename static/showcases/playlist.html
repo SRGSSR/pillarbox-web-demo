@@ -58,8 +58,14 @@
     return {
       // Define the sources of this playlist item URL and type
       sources: [{ src: urn, type: 'srgssr/urn' }],
-      // Define the title and duration in seconds
-      data: { title: mainChapter.title, duration: mainChapter.duration / 1000 },
+      // Define the metadata of the playlist item
+      data: {
+        title: mainChapter.title,
+        duration: mainChapter.duration / 1000,
+        live: mainChapter.type === 'LIVESTREAM',
+        imageUrl: mainChapter.imageUrl,
+        imageTitle: mainChapter.imageTitle
+      },
       // Define the poster image
       poster: mainChapter.imageUrl
     };

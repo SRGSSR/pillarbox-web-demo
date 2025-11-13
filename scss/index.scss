@@ -87,7 +87,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: normal;
   white-space: nowrap;
   text-transform: none;
-  word-wrap: normal;
+  overflow-wrap: normal;
   font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
