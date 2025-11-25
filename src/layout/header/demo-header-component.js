@@ -81,6 +81,13 @@ export class DemoHeaderElement extends LitElement {
               Showcase
             </route-link>
           </li>
+          <li part="monitoring-li">
+            <a href="https://grafana.pillarbox.ch/"
+               title="Monitoring" part="monitoring-link"
+               target="_blank" rel="noopener noreferrer">
+              <i class="material-symbols-outlined">bar_chart</i>
+            </a>
+          </li>
         </ul>
       </nav>`;
   }

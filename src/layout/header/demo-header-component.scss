@@ -49,4 +49,20 @@ demo-header {
     }
   }
 
+  [part="monitoring-li"] {
+    margin-left: auto;
+  }
+
+  [part="monitoring-link"] {
+    color: var(--color-6);
+    text-decoration: none;
+
+    i {
+      font-size: var(--size-6);
+    }
+
+    &:hover {
+      color: var(--color-1);
+    }
+  }
 }
