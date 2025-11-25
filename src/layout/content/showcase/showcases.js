@@ -11,6 +11,7 @@ import rawChapterSelection from '../../../../static/showcases/chapter-selection.
 import rawFirefoxPiP from '../../../../static/showcases/firefox-pip.html?raw';
 import rawSpatialNavigation from '../../../../static/showcases/spatial-navigation.html?raw';
 import rawThumbnailPreview from '../../../../static/showcases/thumbnail-preview.html?raw';
+import rawToggleLiveAudioVideo from '../../../../static/showcases/toggle-live-audio-video.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 import { html } from 'lit';
 
@@ -105,5 +106,12 @@ export const showcases= [
     title: 'Thumbnail Preview',
     description: html`This example shows how to use the thumbnail preview metadata from the current SRGSSR source and inject it into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/thumbnail-preview#readme" target="_blank">Thumbnail Preview plugin</a>.`,
     code: getTextFromHTML(rawThumbnailPreview),
+  },
+  {
+    id: 'toggle-live-audio-video',
+    href: 'toggle-live-audio-video.html',
+    title: 'Toggle between an audio and a video live stream',
+    description: html`This example shows how to switch between the audio and video streams of the same channel.`,
+    code: getTextFromHTML(rawToggleLiveAudioVideo),
   }
 ];

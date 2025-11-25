@@ -1,0 +1,45 @@
+@use 'static-showcase';
+
+
+#streams {
+  display: flex;
+  justify-content: space-around;
+  margin-top: var(--size-3);
+
+  button {
+    display: flex;
+    place-items: center;
+    gap: var(--size-1);
+    padding: var(--size-2) var(--size-4);
+    color: var(--color-1);
+    font-weight: var(--font-weight-6);
+    font-size: var(--size-3);
+    background-color: var(--gray-7);
+    border: 0;
+    border-radius: var(--radius-2);
+    cursor: pointer;
+    transition: background-color 0.4s, border-color 0.4s;
+
+    &:hover {
+      background-color: var(--red-9);
+    }
+  }
+
+  .channel-active {
+      background-color: var(--red-9);
+
+      &:hover {
+        background-color: var(--red-11);
+      }
+  }
+
+  .material-symbols-outlined {
+    pointer-events: none;
+  }
+}
+
+#streamtime {
+  margin-top: var(--size-6);
+  font-size: var(--size-9);
+  text-align: center;
+}

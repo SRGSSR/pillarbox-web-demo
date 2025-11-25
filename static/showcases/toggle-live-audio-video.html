@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Toggle between the audio and video streams of the same channel</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="./toggle-live-audio-video.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Toggle between the audio and video streams of the same channel</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+    <div id="streams">
+      <button id="srf1" class="channel-active">SRF1
+        <span class="material-symbols-outlined">music_note</span>
+      </button>
+      <button id="srf3">SRF3
+        <span class="material-symbols-outlined"></span>
+      </button>
+      <button id="srfMusikwelle">SRF Musikwelle
+        <span class="material-symbols-outlined"></span>
+      </button>
+      <button id="srfVirus">SRF Virus
+        <span class="material-symbols-outlined"></span>
+      </button>
+      <button id="couleur3">Couleur 3
+        <span class="material-symbols-outlined"></span>
+      </button>
+    </div>
+    <h2 id="streamtime"></h2>
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from '@srgssr/pillarbox-web';
+
+      // List of channels with audio and video streams
+      const urns = {
+        'srf1': [
+          'urn:srf:audio:69e8ac16-4327-4af4-b873-fd5cd6e895a7',
+          'urn:srf:video:5b90d1fb-477b-4d98-86a6-82921a4bb0ea'
+        ],
+        'srf3': [
+          'urn:srf:audio:dd0fa1ba-4ff6-4e1a-ab74-d7e49057d96f',
+          'urn:srf:video:972b2dbd-3958-43b7-8c15-e92f56c8d734'
+        ],
+        'srfMusikwelle': [
+          'urn:srf:audio:a9c5c070-8899-46c7-ac27-f04f1be902fd',
+          'urn:srf:video:973440d3-60a5-4ddf-ae83-2c77815a32a1'
+        ],
+        'srfVirus': [
+          'urn:srf:audio:66815fe2-9008-4853-80a5-f9caaffdf3a9',
+          'urn:srf:video:2a60b590-8a28-4540-bce8-fc4e52b3b5d8'
+        ],
+        'couleur3': [
+          'urn:rts:audio:3262363',
+          'urn:rts:video:8841634'
+        ]
+      }
+
+      // Create a pillarbox player instance with the thumbnail-preview component
+      window.player = pillarbox('video-element-id');
+      // Change default player volume
+      player.volume(0.3);
+      // Sets autoplay to true after the first user interaction
+      player.one('play', () => { player.autoplay(true) });
+      // Load the source for the player
+      player.src({
+        src: 'urn:srf:audio:69e8ac16-4327-4af4-b873-fd5cd6e895a7', type: 'srgssr/urn'
+      });
+
+      // Listen for click events
+      streams.addEventListener('click', (e) => {
+        e.preventDefault();
+        const { id, nodeName } = e.target;
+
+        if (nodeName !== 'BUTTON') return;
+
+        pillarbox.dom.$$('#streams button').forEach(button => {
+          button.classList.toggle('channel-active', button.id === id);
+          button.querySelector('.material-symbols-outlined').innerText = '';
+        });
+
+        let activeChannelIconEl = pillarbox.dom.$('.channel-active .material-symbols-outlined');
+
+        // When the URN is a different channel we simply load the first stream of the channel
+        if (!urns[id].includes(player.currentSource().mediaData.urn)) {
+          player.src({
+            src: urns[id][0],
+            type: 'srgssr/urn'
+          });
+
+          // Add audio icon since the first stream is a live audio
+          activeChannelIconEl.innerText = 'music_note';
+
+          return;
+        }
+
+        // ---------------------------------------------------------------------
+        // The core logic to switch between the audio and video live stream ----
+        // ---------------------------------------------------------------------
+
+        // Switch between the audio or video stream of the same channel
+        const urn = player.currentSource().mediaData.urn === urns[id][0] ? urns[id][1] : urns[id][0];
+        // Store player's current position before switching URN
+        const currentTime = player.currentTime();
+
+        // Using loadeddata instead of loadedmetadata because of
+        // https://bugs.webkit.org/show_bug.cgi?id=261512
+        player.one('loadeddata', () => {
+          // restore the position
+          player.currentTime(currentTime);
+        });
+
+        // Toggle between the audio and video streams of the same channel
+        player.src({
+          src: urn,
+          type: 'srgssr/urn'
+        });
+
+        // Toggle between the audio and video icon
+        activeChannelIconEl.innerText = urn.includes('audio') ? 'music_note' : 'movie';
+      });
+
+      // Display stream's current time if the manifest contains
+      // #EXT-X-PROGRAM-DATE-TIME
+      function streamTimePosition(player) {
+        const activeCueValue = Array.from(player.textTracks())?.find(t => t.kind === 'metadata')?.activeCues?.[0]?.value;
+
+        if (!activeCueValue) return;
+
+        const { start, programDateTime } = activeCueValue;
+
+        if (!programDateTime) return;
+
+        const offsetInChunk = player.currentTime() - start;
+        const timePosition = new Date(programDateTime + Math.round(offsetInChunk * 1000));
+        const timeToFormat = timePosition.getHours() * 3600 + timePosition.getMinutes() * 60 + timePosition.getSeconds()
+
+        return pillarbox.time.formatTime(timeToFormat, 6000);
+      }
+
+      player.on('timeupdate', () => {
+        const position = streamTimePosition(player);
+
+        if (!position) return streamtime.textContent = "";
+
+        streamtime.textContent = position;
+      });
+    </script>
+
+    <script type="module">
+      import pillarbox from '@srgssr/pillarbox-web';
+      import '../../src/layout/header/core-demo-header-component.js';
+
+      document.querySelector('#close-btn').addEventListener('click', () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+    </script>
+
+  </body>
+
+</html>
