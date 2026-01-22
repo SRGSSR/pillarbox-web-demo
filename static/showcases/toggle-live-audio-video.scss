@@ -3,7 +3,8 @@
 
 #streams {
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: var(--size-1);
   margin-top: var(--size-3);
 
   button {
