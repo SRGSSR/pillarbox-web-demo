@@ -1,4 +1,8 @@
+@use "../../../scss/theme-mixin";
+
 demo-header {
+  @include theme-mixin.base-theme-mixin;
+
   ul, li {
     margin: 0;
     padding: 0;
@@ -24,13 +28,17 @@ demo-header {
     display: flex;
     align-items: center;
 
-    route-link {
+    route-link, a {
       margin-left: var(--size-2);
     }
 
-    route-link::part(a) {
+    route-link::part(a), a {
       display: flex;
       align-items: center;
+      text-decoration: none;
+    }
+
+    a:hover {
       text-decoration: none;
     }
 
@@ -46,23 +54,6 @@ demo-header {
 
     li {
       margin: 0;
-    }
-  }
-
-  [part="monitoring-li"] {
-    margin-left: auto;
-  }
-
-  [part="monitoring-link"] {
-    color: var(--color-6);
-    text-decoration: none;
-
-    i {
-      font-size: var(--size-6);
-    }
-
-    &:hover {
-      color: var(--color-1);
     }
   }
 }

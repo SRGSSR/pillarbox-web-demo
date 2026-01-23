@@ -55,6 +55,10 @@ export class DemoHeaderElement extends LitElement {
                     title="Settings" slot="actions">
           <i class="material-symbols-outlined">settings</i>
         </route-link>
+        <a href="https://grafana.pillarbox.ch/" title="Monitoring"
+           target="_blank" rel="noopener noreferrer" slot="actions">
+          <i class="material-symbols-outlined">bar_chart</i>
+        </a>
       </core-demo-header>
     `;
   }
@@ -80,13 +84,6 @@ export class DemoHeaderElement extends LitElement {
             <route-link href="showcase${this.debug ? '?debug=true' : ''}">
               Showcase
             </route-link>
-          </li>
-          <li part="monitoring-li">
-            <a href="https://grafana.pillarbox.ch/"
-               title="Monitoring" part="monitoring-link"
-               target="_blank" rel="noopener noreferrer">
-              <i class="material-symbols-outlined">bar_chart</i>
-            </a>
           </li>
         </ul>
       </nav>`;
