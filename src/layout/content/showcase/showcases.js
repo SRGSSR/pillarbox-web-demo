@@ -69,7 +69,7 @@ export const showcases= [
     id: 'countdown',
     href: 'countdown.html',
     title: 'Countdown Timer',
-    description: html`In this showcase, we'll demonstrate how to display a countdown timer.`,
+    description: html`In this showcase, we'll demonstrate how to display a countdown timer using the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/countdown-display#readme" target="_blank">@srgssr/countdown-display</a> component.`,
     code: getTextFromHTML(rawCountdown),
   },
   {

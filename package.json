@@ -36,8 +36,9 @@
     "vite": "^7.2.2"
   },
   "dependencies": {
+    "@srgssr/countdown-display": "^1.0.0",
     "@srgssr/pillarbox-playlist": "^3.3.0",
-    "@srgssr/pillarbox-web": "^1.24.1",
+    "@srgssr/pillarbox-web": "^1.31.0",
     "@srgssr/skip-button": "^1.1.0",
     "@srgssr/thumbnail-preview": "^1.0.3",
     "highlight.js": "^11.11.1",
