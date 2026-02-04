@@ -46,16 +46,19 @@ linting rules defined in this project. You can use the following commands to che
 code:
 
 Check your javascript code:
+
 ```shell
 npm run eslint
 ```
 
 Check your CSS and SCSS code:
+
 ```shell
 npm run stylelint
 ```
 
 Fix your CSS and SCSS code:
+
 ```shell
 npm run stylelint:fix
 ```
@@ -65,12 +68,26 @@ your changes. You can enable this hook by running the `prepare` script: `npm run
 
 Before submitting a pull request, please make sure that your code builds successfully. You can use
 the following commands to build the project:
+
 ```shell
 npm run build
 ```
 
 Please take note of our [Contribution Guide](CONTRIBUTING.md).
 
+### Using `nvm`
+
+This project includes an `.nvmrc` file that specifies the recommended Node.js version.
+
+If you use `nvm`, you can automatically switch to the correct Node version by running: `nvm use`
+If the required version is not installed yet, run: `nvm install`. This will install the Node.js
+version defined in `.nvmrc` and switch your shell to use it.
+
+For more details on installing and using the `.nvmrc` file see the official
+[`.nvmrc` documentation][nvmrc-doc].
+
 ## Licensing
 
 This project is licensed under the MIT License. See the [LICENSE](../LICENSE) file for more details.
+
+[nvmrc-doc]: https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc
