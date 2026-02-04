@@ -13,34 +13,34 @@ export class ShowCasePage extends LitElement {
 
   render() {
     return html`
-      ${map(showcases ?? [], this.#renderItem.bind(this))}
+      <div class="fade-in"
+           @animationend="${e => e.target.classList.remove('fade-in')}">
+        ${map(showcases ?? [], this.#renderItem.bind(this))}
+      </div>
     `;
   }
 
 
   #renderItem({ id, href, title, description, code }) {
     return html`
-      <div class="fade-in"
-           @animationend="${e => e.target.classList.remove('fade-in')}">
-        <showcase-component href="${href}">
-          <a id="${id}" href="#${id}" slot="title" part="anchor-title">
-            <h2>${title}</h2>
-          </a>
-          <p slot="description">${description}</p>
-          <span slot="toggle-collapsed">
+      <showcase-component href="${href}">
+        <a id="${id}" href="#${id}" slot="title" part="anchor-title">
+          <h2>${title}</h2>
+        </a>
+        <p slot="description">${description}</p>
+        <span slot="toggle-collapsed">
             <i class="material-symbols-outlined">visibility</i> See the Implementation
           </span>
-          <span slot="toggle-expanded">
+        <span slot="toggle-expanded">
             <i class="material-symbols-outlined">visibility_off</i> Hide the Implementation
           </span>
-          <code-block slot="code" language="javascript">${code}</code-block>
-        </showcase-component>
-        <a part="showcase-link"
+        <code-block slot="code" language="javascript">${code}</code-block>
+        <a slot="action" part="showcase-link"
            href="./static/showcases/${href}"
            target="_blank">
           Open this showcase
         </a>
-      </div>
+      </showcase-component>
     `;
   }
 }

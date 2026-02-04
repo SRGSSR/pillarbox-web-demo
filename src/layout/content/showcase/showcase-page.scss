@@ -11,38 +11,31 @@ showcase-page {
 
   [part="showcase-link"] {
     display: flex;
-    flex-direction: column;
-    gap: var(--size-2);
+    align-items: center;
     justify-content: center;
     min-height: var(--size-9);
-    margin: 0;
-    color: var(--color-0);
     font-weight: var(--font-weight-6);
     font-size: var(--size-3);
-    text-align: center;
     text-decoration: none;
     background-color: var(--color-9);
-    border: 1px solid var(--color-10);
     border-radius: var(--radius-2);
-    transition: background-color 0.4s, border-color 0.4s;
-    padding-inline: var(--size-3);
+    transition: background-color 0.4s;
 
     &:hover {
       text-decoration: none;
       background-color: var(--color-8);
-      border-color: var(--color-9);
     }
   }
 
-  div {
+  showcase-component {
     margin-top: var(--size-7);
+
+    a {
+      font-size: inherit;
+    }
   }
 
-  div:last-child {
+  showcase-component:last-child {
     margin-bottom: var(--size-7);
-  }
-
-  a {
-    font-size: inherit;
   }
 }
