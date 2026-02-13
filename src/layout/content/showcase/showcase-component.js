@@ -76,6 +76,8 @@ export class ShowcaseComponent extends LitElement {
             </div>
           `)}
         </div>
+
+        <slot name="action"></slot>
       </div>
     `;
   }
