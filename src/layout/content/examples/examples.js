@@ -77,15 +77,9 @@ const EXAMPLES = {
       type: 'application/x-mpegURL'
     },
     {
-      title: 'Video livestream - HLS',
-      description: 'Couleur 3 en vidéo (live)',
-      src: 'https://rtsc3video.akamaized.net/hls/live/2042837/c3video/3/playlist.m3u8?dw=0',
-      type: 'application/x-mpegURL'
-    },
-    {
       title: 'Video livestream with DVR - HLS',
       description: 'Couleur 3 en vidéo (DVR)',
-      src: 'https://rtsc3video.akamaized.net/hls/live/2042837/c3video/3/playlist.m3u8',
+      src: 'https://visualradio-rts-couleur3-d.akamaized.net/out/v1/6a1472634ad745f59a9e63ee8adbbc00/index.m3u8',
       type: 'application/x-mpegURL'
     },
     {
@@ -97,7 +91,7 @@ const EXAMPLES = {
     {
       title: 'Audio livestream - HLS',
       description: 'Couleur 3 (DVR)',
-      src: 'https://lsaplus.swisstxt.ch/audio/couleur3_96.stream/playlist.m3u8',
+      src: 'https://stxt-audiostreaming.akamaized.net/hls/live/2117380/couleur3/master.m3u8',
       type: 'application/x-mpegURL'
     },
     {
