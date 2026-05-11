@@ -1,0 +1,79 @@
+version: 2
+updates:
+  # --- GitHub Actions ---
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      action-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  # --- NPM: demo ---
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
+
+  # --- NPM: samples ---
+  - package-ecosystem: "npm"
+    directory: "/samples/angular"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
+
+  - package-ecosystem: "npm"
+    directory: "/samples/lightningjs"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
+
+  - package-ecosystem: "npm"
+    directory: "/samples/react"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
+
+  - package-ecosystem: "npm"
+    directory: "/samples/umd"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
+
+  - package-ecosystem: "npm"
+    directory: "/samples/vanilla-ts"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
+
+  - package-ecosystem: "npm"
+    directory: "/samples/vue"
+    schedule:
+      interval: "weekly"
+    groups:
+      node-dependencies:
+        patterns: [ "*" ]
+        update-types: [ "minor", "patch" ]
