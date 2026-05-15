@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-0-GgfcNR.js";/* empty css                        */e(`main-player`,{debug:!0}).src({src:`urn:rts:video:6820736`,type:`srgssr/urn`}),e(`second-player`,{muted:!0,debug:!0}).src({src:`urn:rts:video:6735513`,type:`srgssr/urn`,disableTrackers:!0}),document.querySelector(`#toggle-player`).addEventListener(`click`,()=>{e.getAllPlayers().forEach(e=>{e.muted(!e.muted())})}),document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e;
+//# sourceMappingURL=multi-player-BjtoGWxj.js.map
