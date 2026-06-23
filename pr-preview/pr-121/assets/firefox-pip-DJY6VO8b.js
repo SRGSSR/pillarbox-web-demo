@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-0-GgfcNR.js";var t=e(`video-element-id`,{fill:!0,muted:!0,disablePictureInPicture:e.browser.IS_FIREFOX});t.src({src:`urn:rts:video:9883196`,type:`srgssr/urn`}),window.player=t,document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e;
+//# sourceMappingURL=firefox-pip-DJY6VO8b.js.map
