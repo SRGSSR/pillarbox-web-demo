@@ -12,6 +12,12 @@ concurrency: preview-${{ github.ref }}
 
 jobs:
   deploy-preview:
+    if: ${{ github.actor != 'dependabot[bot]' }}
+
+    permissions:
+      contents: write
+      pull-requests: write
+
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
