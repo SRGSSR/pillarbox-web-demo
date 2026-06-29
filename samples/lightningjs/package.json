@@ -9,10 +9,10 @@
     "dev": "vite"
   },
   "devDependencies": {
-    "vite": "^8.0.15"
+    "vite": "^8.1.0"
   },
   "dependencies": {
-    "@srgssr/pillarbox-web": "^1.35.1",
-    "@lightningjs/blits": "^2.3.0"
+    "@srgssr/pillarbox-web": "^1.36.1",
+    "@lightningjs/blits": "^2.6.0"
   }
 }
