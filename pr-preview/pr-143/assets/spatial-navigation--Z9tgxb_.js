@@ -1,2 +1,0 @@
-import{o as e}from"./core-demo-header-component-C6PDx-DJ.js";var t=e(`video-element-id`,{fill:!0,muted:!0,spatialNavigation:{enabled:!0,horizontalSeek:!0}},()=>{t.spatialNavigation.start()});t.src({src:`urn:rts:video:9883196`,type:`srgssr/urn`}),window.player=t,document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e;
-//# sourceMappingURL=spatial-navigation--Z9tgxb_.js.map
