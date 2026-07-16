@@ -18,6 +18,9 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
     groups:
       node-dependencies:
         patterns: [ "*" ]
@@ -28,6 +31,17 @@ updates:
     directory: "/samples/angular"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
+      # Angular majors require running `ng update` migrations manually,
+      # and typescript/rxjs majors must stay within Angular's supported range.
+      - dependency-name: "@angular/*"
+        update-types: [ "version-update:semver-major" ]
+      - dependency-name: "typescript"
+        update-types: [ "version-update:semver-major" ]
+      - dependency-name: "rxjs"
+        update-types: [ "version-update:semver-major" ]
     groups:
       node-dependencies:
         patterns: [ "*" ]
@@ -37,6 +51,9 @@ updates:
     directory: "/samples/lightningjs"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
     groups:
       node-dependencies:
         patterns: [ "*" ]
@@ -46,6 +63,14 @@ updates:
     directory: "/samples/react"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
+      # eslint-plugin-react does not support eslint 10 yet
+      - dependency-name: "eslint"
+        update-types: [ "version-update:semver-major" ]
+      - dependency-name: "@eslint/js"
+        update-types: [ "version-update:semver-major" ]
     groups:
       node-dependencies:
         patterns: [ "*" ]
@@ -55,6 +80,9 @@ updates:
     directory: "/samples/umd"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
     groups:
       node-dependencies:
         patterns: [ "*" ]
@@ -64,6 +92,9 @@ updates:
     directory: "/samples/vanilla-ts"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
     groups:
       node-dependencies:
         patterns: [ "*" ]
@@ -73,6 +104,9 @@ updates:
     directory: "/samples/vue"
     schedule:
       interval: "weekly"
+    ignore:
+      - dependency-name: "@srgssr/*"
+      - dependency-name: "video.js"
     groups:
       node-dependencies:
         patterns: [ "*" ]

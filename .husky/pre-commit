@@ -1,1 +1,12 @@
 npm run eslint && npm run stylelint
+
+staged=$(git diff --cached --name-only)
+
+for sample in samples/*/; do
+  echo "$staged" | grep -q "^$sample" || continue
+  if [ ! -d "${sample}node_modules" ]; then
+    echo "pre-commit: $sample has staged changes but its dependencies are not installed, run npm install in $sample" >&2
+    exit 1
+  fi
+  (cd "$sample" && npm run lint --if-present)
+done

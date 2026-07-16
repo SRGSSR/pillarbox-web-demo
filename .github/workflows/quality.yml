@@ -33,3 +33,47 @@ jobs:
       - name: Run JS and CSS linters
         run: |
           npm run eslint && npm run stylelint
+
+      - name: Run build
+        run: |
+          npm run build
+
+  samples:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        sample: [ angular, lightningjs, react, umd, vanilla-ts, vue ]
+
+    defaults:
+      run:
+        working-directory: samples/${{ matrix.sample }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: '.nvmrc'
+          cache: npm
+          cache-dependency-path: samples/${{ matrix.sample }}/package-lock.json
+
+      - name: Install dependencies
+        env:
+          CI: true
+        run: |
+          npm ci
+
+      - name: Run linter
+        run: |
+          npm run lint --if-present
+
+      - name: Run build
+        run: |
+          npm run build --if-present
