@@ -13,7 +13,7 @@
     "@angular/core": "^21.2.13",
     "@angular/forms": "^21.2.13",
     "@angular/platform-browser": "^21.2.13",
-    "@angular/platform-browser-dynamic": "^21.2.13",
+    "@angular/platform-browser-dynamic": "^22.0.7",
     "@angular/router": "^21.2.13",
     "@srgssr/pillarbox-web": "^1.36.1",
     "open-props": "^1.7.23",
