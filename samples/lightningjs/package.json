@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "@srgssr/pillarbox-web": "^1.36.1",
-    "@lightningjs/blits": "^2.8.0"
+    "@lightningjs/blits": "^2.8.4"
   }
 }
