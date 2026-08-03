@@ -33,7 +33,7 @@
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.1",
-    "vite": "^8.1.5"
+    "vite": "^8.2.0"
   },
   "dependencies": {
     "@srgssr/countdown-display": "^1.0.0",
@@ -43,7 +43,7 @@
     "@srgssr/thumbnail-preview": "^1.0.3",
     "highlight.js": "^11.11.1",
     "lit": "^3.3.3",
-    "minimatch": "^10.2.5",
+    "minimatch": "^10.2.6",
     "open-props": "^1.7.23",
     "videojs-contrib-quality-menu": "^1.0.4"
   }
