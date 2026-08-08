@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-vg8vps55.js";/* empty css                        */var t=e(`video-element-id`,{muted:!0});t.src({src:`urn:rts:video:6820736`,type:`srgssr/urn`}),t.on(`loadeddata`,()=>{t.currentTime(300)}),document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e;
+//# sourceMappingURL=start-time-BtL7uV8l.js.map
