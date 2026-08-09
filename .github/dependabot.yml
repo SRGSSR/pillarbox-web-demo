@@ -34,14 +34,11 @@ updates:
     ignore:
       - dependency-name: "@srgssr/*"
       - dependency-name: "video.js"
-      # Angular majors require running `ng update` migrations manually,
-      # and typescript/rxjs majors must stay within Angular's supported range.
+      # Angular versions require running `ng update` migrations manually,
+      # and typescript/rxjs must stay within Angular's supported range.
       - dependency-name: "@angular/*"
-        update-types: [ "version-update:semver-major" ]
       - dependency-name: "typescript"
-        update-types: [ "version-update:semver-major" ]
       - dependency-name: "rxjs"
-        update-types: [ "version-update:semver-major" ]
     groups:
       node-dependencies:
         patterns: [ "*" ]
