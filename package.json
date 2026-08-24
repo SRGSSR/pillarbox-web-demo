@@ -27,13 +27,13 @@
     "globals": "^17.11.0",
     "husky": "^9.1.7",
     "postcss-lit": "^1.4.1",
-    "sass": "^1.102.0",
+    "sass": "^1.103.1",
     "stylelint": "^17.14.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.1",
-    "vite": "^8.2.1"
+    "vite": "^8.2.2"
   },
   "dependencies": {
     "@srgssr/countdown-display": "^1.0.0",
