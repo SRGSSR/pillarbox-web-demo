@@ -87,7 +87,7 @@
   pillarbox.registerPlugin('blockedSegmentNotification', BlockedSegmentNotification);
 
   // Create a pillarbox player instance with the blockedSegmentNotification plugin
-  const player = pillarbox(
+  window.player = pillarbox(
     'video-element-id', {
       muted: true,
       plugins: {

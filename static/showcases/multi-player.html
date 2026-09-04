@@ -30,13 +30,13 @@
   import pillarbox from '@srgssr/pillarbox-web';
 
   // Initialize the Main Player
-  const mainPlayer = pillarbox('main-player', { debug: true });
+  window.mainPlayer = pillarbox('main-player', { debug: true });
   mainPlayer.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
 
   // Initialize the Second Player
-  const secondPlayer = pillarbox('second-player', { muted: true, debug: true });
+  window.secondPlayer = pillarbox('second-player', { muted: true, debug: true });
   // Tracking is disabled for this source, only one source can be tracked at a time.
-  secondPlayer.src({ src: 'urn:rts:video:6735513', type: 'srgssr/urn', disableTrackers: true });
+  secondPlayer.src({ src: 'urn:rts:video:a74879fd-064a-3c92-959a-0244b07b6193', type: 'srgssr/urn', disableTrackers: true });
 
   // Add an event listener to a button with the id 'toggle-player'
   document.querySelector('#toggle-player').addEventListener('click', () => {
