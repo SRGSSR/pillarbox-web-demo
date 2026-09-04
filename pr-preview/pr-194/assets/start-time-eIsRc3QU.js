@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-D9cvS36a.js";/* empty css                        */window.player=e(`video-element-id`,{muted:!0}),player.src({src:`urn:rts:video:6820736`,type:`srgssr/urn`}),player.on(`loadeddata`,()=>{player.currentTime(300)}),document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e;
+//# sourceMappingURL=start-time-eIsRc3QU.js.map
