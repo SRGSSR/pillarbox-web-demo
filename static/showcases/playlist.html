@@ -29,7 +29,7 @@
   import '@srgssr/pillarbox-playlist/ui';
 
   // Create a pillarbox player instance with the playlist plugin
-  const player = pillarbox('video-element-id', {
+  window.player = pillarbox('video-element-id', {
     // Activate autoplay to automatically start the next element
     autoplay: true,
     muted: true,
