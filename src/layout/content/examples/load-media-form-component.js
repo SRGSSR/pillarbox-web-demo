@@ -103,6 +103,7 @@ export class LoadMediaFormComponent extends LitElement {
         <i class="material-symbols-outlined">link</i>
         <input type="text"
                placeholder="Enter a URL or URN to play its content..."
+               @input="${e => { this.src = e.target.value; }}"
                @keyup="${this.#handleLoadBarKeyUp}"
                .value="${this.src ?? ''}">
         <button title="Open DRM Settings"
@@ -113,7 +114,7 @@ export class LoadMediaFormComponent extends LitElement {
           </i>
         </button>
       </div>
-      
+
       ${this.#drmSettingsTemplate()}
 
       <button part="load-bar-action"
