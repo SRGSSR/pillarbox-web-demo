@@ -90,7 +90,7 @@
   pillarbox.registerPlugin('currentChapter', CurrentChapterPlugin);
 
   // Create a pillarbox player instance with the currentChapter plugin
-  const player = pillarbox(
+  window.player = pillarbox(
     'video-element-id',
     {
       muted: true,
