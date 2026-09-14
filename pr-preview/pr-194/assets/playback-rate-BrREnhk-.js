@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-D9cvS36a.js";e(`video-element-id`,{fill:!0,muted:!0,playbackRates:[.5,.75,1,1.25,1.5,2]}).src({src:`urn:rts:video:9883196`,type:`srgssr/urn`}),document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e,window.player=e.getPlayer(`video-element-id`);
+//# sourceMappingURL=playback-rate-BrREnhk-.js.map
