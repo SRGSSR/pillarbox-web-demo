@@ -67,7 +67,7 @@
       }
 
       // Create a pillarbox player instance with the thumbnail-preview component
-      window.player = pillarbox('video-element-id');
+      const player = pillarbox('video-element-id');
       // Change default player volume
       player.volume(0.3);
       // Sets autoplay to true after the first user interaction
@@ -166,6 +166,7 @@
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
     </script>
 
   </body>

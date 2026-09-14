@@ -66,8 +66,6 @@
       // activated, since the logic for activating the countdown is handled by
       // the error event handler
       // player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
-
-      window.player = player;
     </script>
 
     <script type="module">
@@ -79,6 +77,7 @@
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
     </script>
 
   </body>

@@ -24,7 +24,7 @@
   import pillarbox from '@srgssr/pillarbox-web';
 
   // Create by referencing the video element with its unique ID
-  window.player = pillarbox('video-element-id', { muted: true });
+  const player = pillarbox('video-element-id', { muted: true });
 
   // Load the video source
   player.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
@@ -45,6 +45,7 @@
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 </script>
 
 </body>

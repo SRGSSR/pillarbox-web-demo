@@ -27,7 +27,7 @@
   import '@srgssr/thumbnail-preview';
 
   // Create a pillarbox player instance with the thumbnail-preview component
-  window.player = pillarbox('video-element-id', { plugins: { thumbnailPreview: {} } });
+  const player = pillarbox('video-element-id', { plugins: { thumbnailPreview: {} } });
 
   // Find and set the sprite sheet on loaded metadata
   player.on('loadedmetadata', () => {
@@ -54,6 +54,7 @@
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 </script>
 
 </body>

@@ -27,7 +27,7 @@
   import '@srgssr/skip-button';
 
   // Create a pillarbox player instance with the skip-button component
-  window.player = pillarbox(
+  const player = pillarbox(
     'video-element-id',
     {
       muted: true,
@@ -48,6 +48,7 @@
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 </script>
 
 </body>

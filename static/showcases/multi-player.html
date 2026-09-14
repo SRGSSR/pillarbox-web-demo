@@ -30,11 +30,11 @@
   import pillarbox from '@srgssr/pillarbox-web';
 
   // Initialize the Main Player
-  window.mainPlayer = pillarbox('main-player', { debug: true });
+  const mainPlayer = pillarbox('main-player', { debug: true });
   mainPlayer.src({ src: 'urn:rts:video:6820736', type: 'srgssr/urn' });
 
   // Initialize the Second Player
-  window.secondPlayer = pillarbox('second-player', { muted: true, debug: true });
+  const secondPlayer = pillarbox('second-player', { muted: true, debug: true });
   // Tracking is disabled for this source, only one source can be tracked at a time.
   secondPlayer.src({ src: 'urn:rts:video:a74879fd-064a-3c92-959a-0244b07b6193', type: 'srgssr/urn', disableTrackers: true });
 
@@ -56,6 +56,8 @@
   });
 
   window.pillarbox = pillarbox;
+  window.mainPlayer = pillarbox.getPlayer('main-player');
+  window.secondPlayer = pillarbox.getPlayer('second-player');
 </script>
 
 </body>
