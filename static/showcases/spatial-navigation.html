@@ -44,8 +44,6 @@
       );
 
       player.src({ src: "urn:rts:video:9883196", type: "srgssr/urn" });
-
-      window.player = player;
     </script>
 
     <script type="module">
@@ -57,6 +55,7 @@
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer("video-element-id");
     </script>
   </body>
 </html>
