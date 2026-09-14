@@ -22,18 +22,18 @@
     "@commitlint/config-conventional": "^21.0.2",
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^10.0.1",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "glob": "^13.0.6",
     "globals": "^17.12.0",
     "husky": "^9.1.7",
     "postcss-lit": "^1.4.1",
     "sass": "^1.104.0",
-    "stylelint": "^17.14.1",
+    "stylelint": "^17.15.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-config-standard-scss": "^17.0.0",
     "stylelint-order": "^8.1.1",
-    "vite": "^8.2.2"
+    "vite": "^8.3.0"
   },
   "dependencies": {
     "@srgssr/countdown-display": "^1.0.0",
