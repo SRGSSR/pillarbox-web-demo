@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-VvfLQ5iO.js";var t=e(`video-element-id`,{fill:!0,muted:!0,spatialNavigation:{enabled:!0,horizontalSeek:!0}},()=>{t.spatialNavigation.start()});t.src({src:`urn:rts:video:9883196`,type:`srgssr/urn`}),window.player=t,document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e;
+//# sourceMappingURL=spatial-navigation-B_ExvaYc.js.map
