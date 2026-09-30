@@ -330,6 +330,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -372,7 +373,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   // Initialize the Second Player
   const secondPlayer = pillarbox('second-player', { muted: true, debug: true });
   // Tracking is disabled for this source, only one source can be tracked at a time.
-  secondPlayer.src({ src: 'urn:rts:video:6735513', type: 'srgssr/urn', disableTrackers: true });
+  secondPlayer.src({ src: 'urn:rts:video:a74879fd-064a-3c92-959a-0244b07b6193', type: 'srgssr/urn', disableTrackers: true });
 
   // Add an event listener to a button with the id 'toggle-player'
   document.querySelector('#toggle-player').addEventListener('click', () => {
@@ -392,6 +393,8 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.mainPlayer = pillarbox.getPlayer('main-player');
+  window.secondPlayer = pillarbox.getPlayer('second-player');
 <\/script>
 
 </body>
@@ -509,6 +512,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -626,6 +630,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -680,6 +685,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -770,6 +776,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -823,6 +830,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -895,8 +903,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       // activated, since the logic for activating the countdown is handled by
       // the error event handler
       // player.src({ src: 'urn:rts:video:10894383', type: 'srgssr/urn' });
-
-      window.player = player;
     <\/script>
 
     <script type="module">
@@ -908,6 +914,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
     <\/script>
 
   </body>
@@ -951,8 +958,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       );
 
       player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
-
-      window.player = player;
     <\/script>
 
     <script type="module">
@@ -964,6 +969,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
     <\/script>
 
   </body>
@@ -996,7 +1002,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   import pillarbox from '@srgssr/pillarbox-web';
 
   // Create a pillarbox player instance with the currentChapter plugin
-  window.player = pillarbox(
+  const player = pillarbox(
     'video-element-id',
     { muted: true }
   );
@@ -1094,6 +1100,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -1136,8 +1143,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       );
 
       player.src({ src: 'urn:rts:video:9883196', type: 'srgssr/urn' });
-
-      window.player = player;
     <\/script>
 
     <script type="module">
@@ -1149,6 +1154,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
     <\/script>
 
   </body>
@@ -1200,8 +1206,6 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       );
 
       player.src({ src: "urn:rts:video:9883196", type: "srgssr/urn" });
-
-      window.player = player;
     <\/script>
 
     <script type="module">
@@ -1213,6 +1217,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer("video-element-id");
     <\/script>
   </body>
 </html>
@@ -1272,6 +1277,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   });
 
   window.pillarbox = pillarbox;
+  window.player = pillarbox.getPlayer('video-element-id');
 <\/script>
 
 </body>
@@ -1345,7 +1351,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       }
 
       // Create a pillarbox player instance with the thumbnail-preview component
-      window.player = pillarbox('video-element-id');
+      const player = pillarbox('video-element-id');
       // Change default player volume
       player.volume(0.3);
       // Sets autoplay to true after the first user interaction
@@ -1444,6 +1450,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
       });
 
       window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
     <\/script>
 
   </body>
@@ -1511,4 +1518,4 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
           </li>
         </ul>
       </nav>`}};customElements.define(`demo-header`,He);var Ue=class extends t{static properties={route:{state:!0}};constructor(){super(),this.route=e.currentRoute,e.addEventListener(`routechanged`,({detail:{route:e}})=>{this.route?.destroy(),this.route=e})}createRenderRoot(){return this}render(){return f(`<${this.route.component}></${this.route.component}>`)}};customElements.define(`route-outlet`,Ue);var $=g.loadPreferences();S.host=$.dataProviderHost,e.start({defaultPath:`examples`}),e.queryParams.debug?($.debug=e.queryParams.debug===`true`,g.savePreferences($)):$.debug&&e.updateState({debug:`true`});
-//# sourceMappingURL=index-BeYHJH-f.js.map
+//# sourceMappingURL=index-4HVfpoRE.js.map
