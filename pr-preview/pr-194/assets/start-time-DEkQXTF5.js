@@ -1,2 +1,0 @@
-import{o as e}from"./core-demo-header-component-D9cvS36a.js";/* empty css                        */var t=e(`video-element-id`,{muted:!0});t.src({src:`urn:rts:video:6820736`,type:`srgssr/urn`}),t.on(`loadeddata`,()=>{t.currentTime(300)}),document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e,window.player=e.getPlayer(`video-element-id`);
-//# sourceMappingURL=start-time-DEkQXTF5.js.map
