@@ -1,0 +1,17 @@
+@use 'static-showcase';
+
+.pbw-sign-language-button {
+  cursor: pointer;
+
+  .vjs-icon-placeholder::before {
+    font-size: 2em;
+    font-family: 'Material Symbols Outlined', serif;
+    line-height: 1.5;
+    font-feature-settings: 'liga';
+    content: 'sign_language';
+  }
+
+  &.pbw-sign-language-active {
+    color: var(--red-6);
+  }
+}
