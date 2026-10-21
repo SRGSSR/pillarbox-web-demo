@@ -1,0 +1,2 @@
+import{o as e}from"./core-demo-header-component-VvfLQ5iO.js";e(`video-element-id`,{fill:!0,muted:!0,disablePictureInPicture:e.browser.IS_FIREFOX}).src({src:`urn:rts:video:9883196`,type:`srgssr/urn`}),document.querySelector(`#close-btn`).addEventListener(`click`,()=>{window.close()}),window.pillarbox=e,window.player=e.getPlayer(`video-element-id`);
+//# sourceMappingURL=firefox-pip-NbKgQJS4.js.map
