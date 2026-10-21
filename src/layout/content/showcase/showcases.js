@@ -12,6 +12,7 @@ import rawFirefoxPiP from '../../../../static/showcases/firefox-pip.html?raw';
 import rawSpatialNavigation from '../../../../static/showcases/spatial-navigation.html?raw';
 import rawThumbnailPreview from '../../../../static/showcases/thumbnail-preview.html?raw';
 import rawToggleLiveAudioVideo from '../../../../static/showcases/toggle-live-audio-video.html?raw';
+import rawSignLanguage from '../../../../static/showcases/sign-language.html?raw';
 import { getTextFromHTML } from './example-parser.js';
 import { html } from 'lit';
 
@@ -113,5 +114,12 @@ export const showcases= [
     title: 'Toggle between an audio and a video live stream',
     description: html`This example shows how to switch between the audio and video streams of the same channel.`,
     code: getTextFromHTML(rawToggleLiveAudioVideo),
+  },
+  {
+    id: 'sign-language',
+    href: 'sign-language.html',
+    title: 'Watch in Sign Language',
+    description: html`This example shows how to add an accessibility button to the control bar that switches between the standard and the sign language versions of the same program, resuming playback at the same position.`,
+    code: getTextFromHTML(rawSignLanguage),
   }
 ];
