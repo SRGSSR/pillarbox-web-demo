@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Watch in Sign Language</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="./sign-language.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Watch in Sign Language</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from '@srgssr/pillarbox-web';
+
+      // The same program in its standard and signed versions
+      const STANDARD_URN = 'urn:rts:video:9ef30a42-26a4-339c-852e-701fdf21911c';
+      const SIGNED_URN = 'urn:rts:video:e2e7fc74-c321-36c4-8354-998797cc0139';
+
+      const Button = pillarbox.getComponent('Button');
+
+      // A control bar button to toggle between the standard and signed versions
+      class SignLanguageButton extends Button {
+        #signed = false;
+
+        constructor(player, options) {
+          super(player, options);
+          this.#updateState();
+        }
+
+        // The icon is drawn in CSS through the pbw-sign-language-button class
+        buildCSSClass() {
+          return `pbw-sign-language-button ${super.buildCSSClass()}`;
+        }
+
+        handleClick() {
+          this.#signed = !this.#signed;
+          this.#updateState();
+          this.#switchSource(this.#signed ? SIGNED_URN : STANDARD_URN);
+        }
+
+        // Keep the label and pressed state in sync for assistive technologies
+        #updateState() {
+          this.controlText(this.#signed ? 'Watch without sign language' : 'Watch in sign language');
+          this.setAttribute('aria-pressed', String(this.#signed));
+          this.toggleClass('pbw-sign-language-active', this.#signed);
+        }
+
+        // Load the other version and resume playback at the same position
+        #switchSource(urn) {
+          const player = this.player();
+          const currentTime = player.currentTime();
+          const wasPlaying = !player.paused();
+
+          // Using loadeddata instead of loadedmetadata because of
+          // https://bugs.webkit.org/show_bug.cgi?id=261512
+          player.one('loadeddata', () => {
+            player.currentTime(currentTime);
+          });
+
+          player.src({ src: urn, type: 'srgssr/urn' });
+
+          if (wasPlaying) player.play();
+        }
+      }
+
+      pillarbox.registerComponent('SignLanguageButton', SignLanguageButton);
+
+      const player = pillarbox('video-element-id', { fill: true });
+
+      // Add the button to the control bar, just before the fullscreen toggle
+      const controlBar = player.getChild('ControlBar');
+      const fullscreenIndex = controlBar.children().indexOf(controlBar.getChild('FullscreenToggle'));
+
+      controlBar.addChild('SignLanguageButton', {}, fullscreenIndex);
+
+      player.src({ src: STANDARD_URN, type: 'srgssr/urn' });
+    </script>
+
+    <script type="module">
+      import pillarbox from '@srgssr/pillarbox-web';
+      import '../../src/layout/header/core-demo-header-component.js';
+
+      document.querySelector('#close-btn').addEventListener('click', () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
+    </script>
+
+  </body>
+
+</html>
