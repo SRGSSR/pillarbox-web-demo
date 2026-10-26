@@ -1456,11 +1456,117 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
   </body>
 
 </html>
-`;function Re(e){let t=e.replace(/^[\r\n]+|[\r\n]+$/g,``),n=t.split(`
-`)[0].match(/^ */)[0].length,r=RegExp(`^ {${n}}`,`gm`);return t.replace(r,``)}var ze=new DOMParser;function Q(e,t=`[data-implementation]`){return Re(ze.parseFromString(e,`text/html`).querySelector(t).textContent)}var Be=[{id:`start-time`,href:`start-time.html`,title:`Start the player at a given position`,description:u`In this showcase, we'll demonstrate how to load a video source and start playback at a specific position using Pillarbox. This can be useful when you want to provide users with the option to begin watching a video from a predefined timestamp. To achieve this functionality, follow the code snippet below:`,code:Q(we)},{id:`multi-player`,href:`multi-player.html`,title:`Multiple Players`,description:u`This example demonstrates how to incorporate multiple video players on a webpage.In this showcase, two players are initialized, each with its own configuration, a button allows to toggle the mute state for both players.`,code:Q(Te)},{id:`blocked-segments`,href:`blocked-segment.html`,title:`Detect Blocked Segments`,description:u`This tutorial covers how to use Pillarbox to create a plugin that detects and notifies when a blocked segment is skipped. <br><br><b>Note:</b> The blocked segment starts at 29:26 for this example.`,code:Q(Ee)},{id:`chapters`,href:`chapters.html`,title:`Display Current Chapter`,description:u`This showcase explains how to use Pillarbox to create a plugin that displays the currently playing chapter in a box above the progress bar.`,code:Q(De)},{id:`skip-credits`,href:`skip-credits.html`,title:`Skip Credits`,description:u`This example shows how to use the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/skip-button#readme" target="_blank">Pillarbox Skip Button component</a> to add a "Skip" button during detected credit intervals. <br><br><b>Note:</b> Seek to 26:40 to see the button.`,code:Q(Oe)},{id:`playlist`,href:`playlist.html`,title:`Playlist`,description:u`This example shows how to fetch media data for a set of video sources and load them into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/pillarbox-playlist#readme" target="_blank">Pillarbox Playlist plugin</a> with metadata such as title and duration.`,code:Q(ke)},{id:`quality-menu`,href:`quality-menu.html`,title:`Quality Menu`,description:u`In this showcase, we'll demonstrate how to display a quality selector menu using the <a href="https://github.com/videojs/videojs-contrib-quality-menu" target="_blank">videojs-contrib-quality-menu</a> plugin.`,code:Q(Ae)},{id:`countdown`,href:`countdown.html`,title:`Countdown Timer`,description:u`In this showcase, we'll demonstrate how to display a countdown timer using the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/countdown-display#readme" target="_blank">@srgssr/countdown-display</a> component.`,code:Q(je)},{id:`playback-rate`,href:`playback-rate.html`,title:`Playback Rate`,description:u`In this showcase, we'll demonstrate how to display the playback rate component.`,code:Q(Me)},{id:`chapter-selection`,href:`chapter-selection.html`,title:`Chapter Selection`,description:u`In this showcase, we'll demonstrate how to display a chapter selector.`,code:Q(Ne)},{id:`firefox-pip`,href:`firefox-pip.html`,title:`Hide Firefox PiP Button`,description:u`In this showcase, we'll demonstrate how to hide Firefox PiP Button. Activating or deactivating PiP in Firefox applies at the next player resize, such as when entering full screen mode. This appears to be due to an implementation bug in Firefox. Refer to the <a href="https://github.com/SRGSSR/pillarbox-web-demo/pull/57" target="_blank">PR</a> for more details.`,code:Q(Pe)},{id:`spatial-navigation`,href:`spatial-navigation.html`,title:`Enable Spatial Navigation`,description:u`In this showcase, we will demonstrate how to enable <a href="https://videojs.com/guides/spatial-navigation/" target="_blank" rel="noopener noreferrer">spatial navigation</a>, allowing users to control the player with a remote on smart TVs like Tizen and webOS.<br><br>            <i>Note: If you're targeting TV devices with spatial navigation, consider removing the volume button and setting muted: false, as volume is typically handled by the device itself.</i>`,code:Q(Fe)},{id:`thumbnail-preview`,href:`thumbnail-preview.html`,title:`Thumbnail Preview`,description:u`This example shows how to use the thumbnail preview metadata from the current SRGSSR source and inject it into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/thumbnail-preview#readme" target="_blank">Thumbnail Preview plugin</a>.`,code:Q(Ie)},{id:`toggle-live-audio-video`,href:`toggle-live-audio-video.html`,title:`Toggle between an audio and a video live stream`,description:u`This example shows how to switch between the audio and video streams of the same channel.`,code:Q(Le)}],Ve=class extends t{createRenderRoot(){return this}render(){return u`
+`,Re=`<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pillarbox Demo - Watch in Sign Language</title>
+    <link rel="icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="./sign-language.scss" />
+  </head>
+
+  <body>
+    <core-demo-header></core-demo-header>
+    <div class="showcase-content">
+      <h2>Watch in Sign Language</h2>
+      <div class="video-container">
+        <video-js id="video-element-id" class="pillarbox-js" controls></video-js>
+      </div>
+
+      <button class="showcase-btn" id="close-btn">Close this window</button>
+    </div>
+
+    <script type="module" data-implementation>
+      // Import the pillarbox library
+      import pillarbox from '@srgssr/pillarbox-web';
+
+      // The same program in its standard and signed versions
+      const STANDARD_URN = 'urn:rts:video:9ef30a42-26a4-339c-852e-701fdf21911c';
+      const SIGNED_URN = 'urn:rts:video:e2e7fc74-c321-36c4-8354-998797cc0139';
+
+      const Button = pillarbox.getComponent('Button');
+
+      // A control bar button to toggle between the standard and signed versions
+      class SignLanguageButton extends Button {
+        #signed = false;
+
+        constructor(player, options) {
+          super(player, options);
+          this.#updateState();
+        }
+
+        // The icon is drawn in CSS through the pbw-sign-language-button class
+        buildCSSClass() {
+          return \`pbw-sign-language-button \${super.buildCSSClass()}\`;
+        }
+
+        handleClick() {
+          this.#signed = !this.#signed;
+          this.#updateState();
+          this.#switchSource(this.#signed ? SIGNED_URN : STANDARD_URN);
+        }
+
+        // Keep the label and pressed state in sync for assistive technologies
+        #updateState() {
+          this.controlText(this.#signed ? 'Watch without sign language' : 'Watch in sign language');
+          this.setAttribute('aria-pressed', String(this.#signed));
+          this.toggleClass('pbw-sign-language-active', this.#signed);
+        }
+
+        // Load the other version and resume playback at the same position
+        #switchSource(urn) {
+          const player = this.player();
+          const currentTime = player.currentTime();
+          const wasPlaying = !player.paused();
+
+          // Using loadeddata instead of loadedmetadata because of
+          // https://bugs.webkit.org/show_bug.cgi?id=261512
+          player.one('loadeddata', () => {
+            player.currentTime(currentTime);
+          });
+
+          player.src({ src: urn, type: 'srgssr/urn' });
+
+          if (wasPlaying) player.play();
+        }
+      }
+
+      pillarbox.registerComponent('SignLanguageButton', SignLanguageButton);
+
+      const player = pillarbox('video-element-id', { fill: true });
+
+      // Add the button to the control bar, just before the fullscreen toggle
+      const controlBar = player.getChild('ControlBar');
+      const fullscreenIndex = controlBar.children().indexOf(controlBar.getChild('FullscreenToggle'));
+
+      controlBar.addChild('SignLanguageButton', {}, fullscreenIndex);
+
+      player.src({ src: STANDARD_URN, type: 'srgssr/urn' });
+    <\/script>
+
+    <script type="module">
+      import pillarbox from '@srgssr/pillarbox-web';
+      import '../../src/layout/header/core-demo-header-component.js';
+
+      document.querySelector('#close-btn').addEventListener('click', () => {
+        window.close();
+      });
+
+      window.pillarbox = pillarbox;
+      window.player = pillarbox.getPlayer('video-element-id');
+    <\/script>
+
+  </body>
+
+</html>
+`;function ze(e){let t=e.replace(/^[\r\n]+|[\r\n]+$/g,``),n=t.split(`
+`)[0].match(/^ */)[0].length,r=RegExp(`^ {${n}}`,`gm`);return t.replace(r,``)}var Be=new DOMParser;function Q(e,t=`[data-implementation]`){return ze(Be.parseFromString(e,`text/html`).querySelector(t).textContent)}var Ve=[{id:`start-time`,href:`start-time.html`,title:`Start the player at a given position`,description:u`In this showcase, we'll demonstrate how to load a video source and start playback at a specific position using Pillarbox. This can be useful when you want to provide users with the option to begin watching a video from a predefined timestamp. To achieve this functionality, follow the code snippet below:`,code:Q(we)},{id:`multi-player`,href:`multi-player.html`,title:`Multiple Players`,description:u`This example demonstrates how to incorporate multiple video players on a webpage.In this showcase, two players are initialized, each with its own configuration, a button allows to toggle the mute state for both players.`,code:Q(Te)},{id:`blocked-segments`,href:`blocked-segment.html`,title:`Detect Blocked Segments`,description:u`This tutorial covers how to use Pillarbox to create a plugin that detects and notifies when a blocked segment is skipped. <br><br><b>Note:</b> The blocked segment starts at 29:26 for this example.`,code:Q(Ee)},{id:`chapters`,href:`chapters.html`,title:`Display Current Chapter`,description:u`This showcase explains how to use Pillarbox to create a plugin that displays the currently playing chapter in a box above the progress bar.`,code:Q(De)},{id:`skip-credits`,href:`skip-credits.html`,title:`Skip Credits`,description:u`This example shows how to use the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/skip-button#readme" target="_blank">Pillarbox Skip Button component</a> to add a "Skip" button during detected credit intervals. <br><br><b>Note:</b> Seek to 26:40 to see the button.`,code:Q(Oe)},{id:`playlist`,href:`playlist.html`,title:`Playlist`,description:u`This example shows how to fetch media data for a set of video sources and load them into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/pillarbox-playlist#readme" target="_blank">Pillarbox Playlist plugin</a> with metadata such as title and duration.`,code:Q(ke)},{id:`quality-menu`,href:`quality-menu.html`,title:`Quality Menu`,description:u`In this showcase, we'll demonstrate how to display a quality selector menu using the <a href="https://github.com/videojs/videojs-contrib-quality-menu" target="_blank">videojs-contrib-quality-menu</a> plugin.`,code:Q(Ae)},{id:`countdown`,href:`countdown.html`,title:`Countdown Timer`,description:u`In this showcase, we'll demonstrate how to display a countdown timer using the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/countdown-display#readme" target="_blank">@srgssr/countdown-display</a> component.`,code:Q(je)},{id:`playback-rate`,href:`playback-rate.html`,title:`Playback Rate`,description:u`In this showcase, we'll demonstrate how to display the playback rate component.`,code:Q(Me)},{id:`chapter-selection`,href:`chapter-selection.html`,title:`Chapter Selection`,description:u`In this showcase, we'll demonstrate how to display a chapter selector.`,code:Q(Ne)},{id:`firefox-pip`,href:`firefox-pip.html`,title:`Hide Firefox PiP Button`,description:u`In this showcase, we'll demonstrate how to hide Firefox PiP Button. Activating or deactivating PiP in Firefox applies at the next player resize, such as when entering full screen mode. This appears to be due to an implementation bug in Firefox. Refer to the <a href="https://github.com/SRGSSR/pillarbox-web-demo/pull/57" target="_blank">PR</a> for more details.`,code:Q(Pe)},{id:`spatial-navigation`,href:`spatial-navigation.html`,title:`Enable Spatial Navigation`,description:u`In this showcase, we will demonstrate how to enable <a href="https://videojs.com/guides/spatial-navigation/" target="_blank" rel="noopener noreferrer">spatial navigation</a>, allowing users to control the player with a remote on smart TVs like Tizen and webOS.<br><br>            <i>Note: If you're targeting TV devices with spatial navigation, consider removing the volume button and setting muted: false, as volume is typically handled by the device itself.</i>`,code:Q(Fe)},{id:`thumbnail-preview`,href:`thumbnail-preview.html`,title:`Thumbnail Preview`,description:u`This example shows how to use the thumbnail preview metadata from the current SRGSSR source and inject it into the <a href="https://github.com/SRGSSR/pillarbox-web-suite/tree/main/packages/thumbnail-preview#readme" target="_blank">Thumbnail Preview plugin</a>.`,code:Q(Ie)},{id:`toggle-live-audio-video`,href:`toggle-live-audio-video.html`,title:`Toggle between an audio and a video live stream`,description:u`This example shows how to switch between the audio and video streams of the same channel.`,code:Q(Le)},{id:`sign-language`,href:`sign-language.html`,title:`Watch in Sign Language`,description:u`This example shows how to add an accessibility button to the control bar that switches between the standard and the sign language versions of the same program, resuming playback at the same position.`,code:Q(Re)}],He=class extends t{createRenderRoot(){return this}render(){return u`
       <div class="fade-in"
            @animationend="${e=>e.target.classList.remove(`fade-in`)}">
-        ${z(Be??[],this.#e.bind(this))}
+        ${z(Ve??[],this.#e.bind(this))}
       </div>
     `}#e({id:e,href:t,title:n,description:r,code:i}){return u`
       <showcase-component href="${t}">
@@ -1481,7 +1587,7 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
           Open this showcase
         </a>
       </showcase-component>
-    `}};customElements.define(`showcase-page`,Ve),e.addRoute(`showcase`,`showcase-page`);var He=class extends t{static properties={debug:{type:Boolean,state:!0}};createRenderRoot(){return this}#e=({detail:{queryParams:e}})=>{this.debug=e.debug===`true`};connectedCallback(){super.connectedCallback(),this.debug=e.queryParams.debug===`true`,e.addEventListener(`routechanged`,this.#e),e.addEventListener(`queryparams`,this.#e)}disconnectedCallback(){e.removeEventListener(`routechanged`,this.#e),e.removeEventListener(`queryparams`,this.#e)}render(){return u`
+    `}};customElements.define(`showcase-page`,He),e.addRoute(`showcase`,`showcase-page`);var Ue=class extends t{static properties={debug:{type:Boolean,state:!0}};createRenderRoot(){return this}#e=({detail:{queryParams:e}})=>{this.debug=e.debug===`true`};connectedCallback(){super.connectedCallback(),this.debug=e.queryParams.debug===`true`,e.addEventListener(`routechanged`,this.#e),e.addEventListener(`queryparams`,this.#e)}disconnectedCallback(){e.removeEventListener(`routechanged`,this.#e),e.removeEventListener(`queryparams`,this.#e)}render(){return u`
       ${this.#t()}
       ${this.#n()}
     `}#t(){return u`
@@ -1517,5 +1623,5 @@ https://github.com/highlightjs/highlight.js/issues/2277`),i=e,r=t),n===void 0&&(
             </route-link>
           </li>
         </ul>
-      </nav>`}};customElements.define(`demo-header`,He);var Ue=class extends t{static properties={route:{state:!0}};constructor(){super(),this.route=e.currentRoute,e.addEventListener(`routechanged`,({detail:{route:e}})=>{this.route?.destroy(),this.route=e})}createRenderRoot(){return this}render(){return f(`<${this.route.component}></${this.route.component}>`)}};customElements.define(`route-outlet`,Ue);var $=g.loadPreferences();S.host=$.dataProviderHost,e.start({defaultPath:`examples`}),e.queryParams.debug?($.debug=e.queryParams.debug===`true`,g.savePreferences($)):$.debug&&e.updateState({debug:`true`});
-//# sourceMappingURL=index-spfRwSTk.js.map
+      </nav>`}};customElements.define(`demo-header`,Ue);var We=class extends t{static properties={route:{state:!0}};constructor(){super(),this.route=e.currentRoute,e.addEventListener(`routechanged`,({detail:{route:e}})=>{this.route?.destroy(),this.route=e})}createRenderRoot(){return this}render(){return f(`<${this.route.component}></${this.route.component}>`)}};customElements.define(`route-outlet`,We);var $=g.loadPreferences();S.host=$.dataProviderHost,e.start({defaultPath:`examples`}),e.queryParams.debug?($.debug=e.queryParams.debug===`true`,g.savePreferences($)):$.debug&&e.updateState({debug:`true`});
+//# sourceMappingURL=index-KAlav0Mo.js.map
