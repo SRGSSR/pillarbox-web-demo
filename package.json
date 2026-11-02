@@ -43,7 +43,7 @@
     "@srgssr/thumbnail-preview": "^1.0.3",
     "highlight.js": "^11.12.0",
     "lit": "^3.3.3",
-    "minimatch": "^10.2.6",
+    "minimatch": "^11.0.3",
     "open-props": "^1.7.23",
     "videojs-contrib-quality-menu": "^1.0.4"
   }
