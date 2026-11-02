@@ -27,7 +27,7 @@
     "globals": "^17.13.0",
     "husky": "^9.1.7",
     "postcss-lit": "^1.4.1",
-    "sass": "^1.106.1",
+    "sass": "^1.107.0",
     "stylelint": "^17.16.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^40.0.0",
